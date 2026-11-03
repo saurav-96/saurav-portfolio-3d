@@ -4,6 +4,20 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v2.9.0] — 2026-11-03 (Hero Portrait Upscale & Balanced Stage Presence)
+
+### Changed & Refined
+- **Hero Portrait Upscale & Proportions (`css/style.css` & `css/responsive.css`):**
+  - Enlarged hero portrait frame maximum width from `445px` to `535px` and maximum height from `500px` to `580px`, giving Saurav a commanding, prominent presence in the hero stage.
+  - Increased portrait stage height to `560px` and enlarged dual-tone background glow aura to `540px × 540px` with enhanced blur (`48px`) and rim glow shadows.
+  - Expanded base neon orbit ring from `400px` to `480px` to perfectly frame his wider shoulders, folded arms, and waist.
+  - Added responsive scaling in `css/responsive.css` for tablet (`max-width: 470px`, `max-height: 520px`) and mobile devices (`max-width: 360px`, `max-height: 440px`).
+- **Bio Portrait & Avatar Badge Upscale:**
+  - Added `scale-105 origin-bottom` to the framed bio portrait in `about.html` to fill the card with higher visual impact.
+  - Upgraded developer identity and access avatar badges on `contact.html`, `services.html`, and `projects.html` from `w-16 h-16` to `w-20 h-20` (80px × 80px).
+
+---
+
 ## [v2.8.0] — 2026-11-03 (Universal 3D Scroll-Trigger Choreography & Full Portrait Cutout Across All Pages)
 
 ### Added & Refined

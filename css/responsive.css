@@ -54,7 +54,13 @@
 /* Tablet & Below (<= 1024px) */
 @media (max-width: 1024px) {
   .hero-portrait-stage {
-    min-height: 430px;
+    min-height: 490px;
+  }
+  .portrait-frame {
+    max-width: 470px;
+  }
+  .portrait-img {
+    max-height: 520px;
   }
 }
 
@@ -75,19 +81,27 @@
   }
 
   .hero-portrait-stage {
-    min-height: 360px;
+    min-height: 410px;
     margin-top: 1rem;
   }
 
+  .portrait-frame {
+    max-width: 360px;
+  }
+
+  .portrait-img {
+    max-height: 440px;
+  }
+
   .portrait-glow-aura {
-    width: 290px;
-    height: 290px;
+    width: 360px;
+    height: 360px;
   }
 
   .neon-orbit-ring {
     bottom: 14px;
-    width: 280px;
-    height: 280px;
+    width: 330px;
+    height: 330px;
   }
 
   .floating-poly {
