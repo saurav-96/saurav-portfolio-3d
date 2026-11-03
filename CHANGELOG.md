@@ -4,6 +4,23 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.3.0] — 2026-11-03 (Strict Zero-Design-Change Performance Hardening & Reflow Prevention)
+
+### Optimized (Zero Design, Content, or Animation Changes)
+- **Eliminated Scroll Layout Thrashing (`js/three-scene.js` & `js/navigation.js`):**
+  - Caching `document.documentElement.scrollHeight - window.innerHeight` bounds on debounced `resize` events rather than querying the DOM layout engine on every scroll tick.
+  - Implemented a `requestAnimationFrame` ticking gate (`scrollTicking`) on the window scroll listener in `js/navigation.js`, preventing duplicate paint cycles and synchronizing navbar elevation and reading progress bar updates with native display refreshes.
+- **Eliminated Mousemove Reflows on Interactive 3D Cards & Magnetic Physics (`js/animations.js`):**
+  - Refactored 3D glass card tilt tracking and magnetic button physics to cache `getBoundingClientRect()` on `mouseenter` rather than querying DOM rects continuously on every sub-pixel `mousemove` event.
+  - Eliminated micro-jitter and feedback oscillation during magnetic spring attraction while preserving 100% identical easing, spring travel, and visual response.
+- **GPU Loop Memory & Reference Optimization (`js/three-scene.js`):**
+  - Hoisted the particle starfield typed array reference (`particlesGeo.attributes.position.array`) outside of the 60 FPS `animate()` render loop, eliminating redundant property traversals every frame.
+  - Preserved canvas pause via `IntersectionObserver` and clamped delta times (`Math.min(delta, 0.1)`) against GPU tab switching spikes.
+- **Verified Zero Visual Disruption:**
+  - 100% preservation of all visual styles, typography, layouts, colors, content, and animation parameters across all 5 pages (`index.html`, `about.html`, `projects.html`, `services.html`, `contact.html`).
+
+---
+
 ## [v3.2.0] — 2026-11-03 (Universal Reduced-Motion & Touch Blockers Removal, Persistent 3D Scroll-Trigger System)
 
 ### Fixed & Enhanced

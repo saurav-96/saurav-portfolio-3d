@@ -302,12 +302,18 @@
       );
     }
 
-    // Track Scroll Progress
+    // Track Scroll Progress with cached scroll bounds to avoid layout thrashing
     let lastScrollY = window.scrollY || 0;
+    let cachedMaxScroll = 1;
+
+    function recalculateMaxScroll() {
+      cachedMaxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    }
+    recalculateMaxScroll();
+
     function updateScrollValue() {
-      const currentY = window.scrollY || 0;
-      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      window.PortfolioThreeScene.scrollProgress = currentY / maxScroll;
+      const currentY = window.scrollY || window.pageYOffset || 0;
+      window.PortfolioThreeScene.scrollProgress = currentY / cachedMaxScroll;
       const delta = currentY - lastScrollY;
       window.PortfolioThreeScene.targetVelocity += delta * 0.008;
       window.PortfolioThreeScene.targetVelocity = Math.max(-2.5, Math.min(2.5, window.PortfolioThreeScene.targetVelocity));
@@ -342,6 +348,7 @@
       () => {
         if (resizeTimer) clearTimeout(resizeTimer);
         resizeTimer = setTimeout(() => {
+          recalculateMaxScroll();
           camera.aspect = window.innerWidth / window.innerHeight;
           camera.updateProjectionMatrix();
           renderer.setSize(window.innerWidth, window.innerHeight);
@@ -354,6 +361,7 @@
     let smoothVelocity = 0;
     let lastTime = performance.now();
     let accumulatedTime = 0;
+    const pPositions = particlesGeo.attributes.position.array;
 
     function animate() {
       requestAnimationFrame(animate);
@@ -431,7 +439,6 @@
       mainGroup.position.z = basePos.z + Math.cos(elapsed * 0.7) * 0.25 + smoothScroll * 1.2;
 
       // Living Continuous Particle Starfield Flow & Boundary Wrap
-      const pPositions = particlesGeo.attributes.position.array;
       const velBoost = 1 + Math.abs(vel) * 2.5;
       for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;

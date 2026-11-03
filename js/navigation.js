@@ -68,9 +68,19 @@
       });
     }
 
-    // Scroll state for navbar & top progress bar
-    function updateScrollUI() {
-      const scrollY = window.scrollY || window.pageYOffset;
+    // Scroll state for navbar & top progress bar with RAF throttling and cached doc bounds
+    let scrollTicking = false;
+    let cachedDocHeight = 1;
+
+    function recalculateDocHeight() {
+      cachedDocHeight = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    }
+    recalculateDocHeight();
+
+    window.addEventListener('resize', recalculateDocHeight, { passive: true });
+
+    function renderScrollUI() {
+      const scrollY = window.scrollY || window.pageYOffset || 0;
       if (navbarGlass) {
         if (scrollY > 28) {
           navbarGlass.classList.add('scrolled');
@@ -80,14 +90,21 @@
       }
 
       if (progressBar) {
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = docHeight > 0 ? Math.min(100, Math.max(0, (scrollY / docHeight) * 100)) : 0;
+        const pct = Math.min(100, Math.max(0, (scrollY / cachedDocHeight) * 100));
         progressBar.style.width = pct.toFixed(2) + '%';
+      }
+      scrollTicking = false;
+    }
+
+    function onScroll() {
+      if (!scrollTicking) {
+        requestAnimationFrame(renderScrollUI);
+        scrollTicking = true;
       }
     }
 
-    window.addEventListener('scroll', updateScrollUI, { passive: true });
-    updateScrollUI();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    renderScrollUI();
   }
 
   if (document.readyState === 'loading') {

@@ -20,21 +20,32 @@
     allGlassCards.forEach((card) => {
       const maxTilt = parseFloat(card.getAttribute('data-tilt-max') || '8.5');
       let rafId = null;
+      let cachedRect = null;
+
+      card.addEventListener(
+        'mouseenter',
+        () => {
+          cachedRect = card.getBoundingClientRect();
+        },
+        { passive: true }
+      );
 
       card.addEventListener(
         'mousemove',
         (e) => {
+          if (!cachedRect) {
+            cachedRect = card.getBoundingClientRect();
+          }
           if (rafId) cancelAnimationFrame(rafId);
           rafId = requestAnimationFrame(() => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const x = e.clientX - cachedRect.left;
+            const y = e.clientY - cachedRect.top;
 
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
 
-            const relX = x / rect.width - 0.5;
-            const relY = y / rect.height - 0.5;
+            const relX = x / cachedRect.width - 0.5;
+            const relY = y / cachedRect.height - 0.5;
             const rotX = (-relY * maxTilt * 2).toFixed(2);
             const rotY = (relX * maxTilt * 2).toFixed(2);
             card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -8px, 24px)`;
@@ -47,6 +58,7 @@
         'mouseleave',
         () => {
           if (rafId) cancelAnimationFrame(rafId);
+          cachedRect = null;
           card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0px, 0px)';
         },
         { passive: true }
@@ -111,13 +123,22 @@
       document.querySelectorAll('[data-magnetic], .btn-primary, .btn-secondary').forEach((btn) => {
         const xTo = gsap.quickTo(btn, 'x', { duration: 0.32, ease: 'power2.out' });
         const yTo = gsap.quickTo(btn, 'y', { duration: 0.32, ease: 'power2.out' });
+        let btnRect = null;
+
+        btn.addEventListener(
+          'mouseenter',
+          () => {
+            btnRect = btn.getBoundingClientRect();
+          },
+          { passive: true }
+        );
 
         btn.addEventListener(
           'mousemove',
           (e) => {
-            const rect = btn.getBoundingClientRect();
-            const dx = e.clientX - (rect.left + rect.width / 2);
-            const dy = e.clientY - (rect.top + rect.height / 2);
+            if (!btnRect) btnRect = btn.getBoundingClientRect();
+            const dx = e.clientX - (btnRect.left + btnRect.width / 2);
+            const dy = e.clientY - (btnRect.top + btnRect.height / 2);
             xTo(dx * 0.22);
             yTo(dy * 0.25);
           },
@@ -127,6 +148,7 @@
         btn.addEventListener(
           'mouseleave',
           () => {
+            btnRect = null;
             xTo(0);
             yTo(0);
           },
