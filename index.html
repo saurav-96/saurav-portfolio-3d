@@ -32,8 +32,8 @@
       theme: {
         extend: {
           colors: {
-            obsidian: '#07070C',
-            midnight: '#0D0E17',
+            obsidian: '#06060B',
+            midnight: '#0C0D17',
             violetAccent: '#7C3AED',
             purpleNeon: '#A855F7',
             cyberCyan: '#06B6D4',
@@ -137,9 +137,9 @@
 
     <main id="main-content" class="pt-28 sm:pt-32 pb-20">
       <!-- ===================================================================
-           SECTION 1: HERO SECTION (SPLIT-SCREEN LAYOUT)
+           SECTION 1: HERO SECTION (SPLIT-SCREEN LAYOUT — CLEAN PORTRAIT STAGE)
            =================================================================== -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
           <!-- Left Column: Value Proposition & CTAs -->
           <div class="lg:col-span-7 space-y-6">
@@ -150,12 +150,12 @@
               </span>
             </div>
 
-            <h1 data-hero-reveal class="font-heading text-4xl sm:text-5xl xl:text-[3.55rem] font-bold tracking-tight text-white leading-[1.12]">
+            <h1 data-hero-reveal class="font-heading text-4xl sm:text-5xl xl:text-[3.75rem] font-bold tracking-tight text-white leading-[1.09]">
               Hi, I'm Saurav Bhusal.<br />
               I turn ideas into <span class="text-gradient">intuitive, impactful</span> digital experiences.
             </h1>
 
-            <p data-hero-reveal class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+            <p data-hero-reveal class="text-slate-200 text-base sm:text-lg max-w-2xl leading-relaxed">
               I design and develop modern digital products, combining thoughtful UI/UX, creative frontend engineering, and emerging AI technologies.
             </p>
 
@@ -176,111 +176,101 @@
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
               </span>
-              <span>Available for remote freelance projects &amp; collaborations</span>
+              <span>Available for remote freelance projects &amp; international collaborations</span>
             </div>
           </div>
 
-          <!-- Right Column: Portrait Container, Rim Lighting, 3D Elements & Code Card -->
+          <!-- Right Column: Clean Unobstructed Portrait Stage + Rim Lighting + 3D Polyhedra -->
           <div class="lg:col-span-5" data-hero-reveal>
-            <div class="hero-portrait-stage">
+            <div class="hero-portrait-stage" data-tilt data-tilt-max="4">
               <div class="portrait-glow-aura animate-pulse-glow" aria-hidden="true"></div>
 
               <!-- Floating 3D Geometric Polyhedron Top-Left -->
-              <svg class="floating-poly animate-float -top-2 left-4 w-14 h-14" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-                <polygon points="40,6 72,26 60,68 20,68 8,26" stroke="#22D3EE" stroke-width="1.5" fill="rgba(6,182,212,0.12)"/>
-                <polyline points="40,6 40,42 72,26" stroke="#A855F7" stroke-width="1.2"/>
-                <polyline points="8,26 40,42 60,68" stroke="#22D3EE" stroke-width="1.2"/>
-                <line x1="40" y1="42" x2="20" y2="68" stroke="#A855F7" stroke-width="1.2"/>
+              <svg class="floating-poly animate-float top-2 left-4 w-14 h-14" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                <polygon points="40,6 72,26 60,68 20,68 8,26" stroke="#22D3EE" stroke-width="1.6" fill="rgba(6,182,212,0.14)"/>
+                <polyline points="40,6 40,42 72,26" stroke="#A855F7" stroke-width="1.3"/>
+                <polyline points="8,26 40,42 60,68" stroke="#22D3EE" stroke-width="1.3"/>
+                <line x1="40" y1="42" x2="20" y2="68" stroke="#A855F7" stroke-width="1.3"/>
+              </svg>
+
+              <!-- Floating 3D Geometric Polyhedron Top-Right -->
+              <svg class="floating-poly animate-float-delayed top-8 right-4 w-12 h-12" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+                <polygon points="40,10 70,30 70,58 40,74 10,58 10,30" stroke="#A855F7" stroke-width="1.6" fill="rgba(168,85,247,0.14)"/>
+                <polyline points="10,30 40,46 70,30" stroke="#22D3EE" stroke-width="1.2"/>
+                <line x1="40" y1="46" x2="40" y2="74" stroke="#22D3EE" stroke-width="1.2"/>
               </svg>
 
               <!-- Floating 3D Geometric Polyhedron Bottom-Left -->
-              <svg class="floating-poly animate-float-delayed bottom-10 left-0 w-16 h-16" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+              <svg class="floating-poly animate-float-delayed bottom-12 left-2 w-16 h-16" viewBox="0 0 80 80" fill="none" aria-hidden="true">
                 <polygon points="40,8 74,40 40,72 6,40" stroke="#A855F7" stroke-width="1.6" fill="rgba(168,85,247,0.15)"/>
-                <polygon points="40,18 62,40 40,62 18,40" stroke="#22D3EE" stroke-width="1" fill="none"/>
+                <polygon points="40,18 62,40 40,62 18,40" stroke="#22D3EE" stroke-width="1.1" fill="none"/>
                 <line x1="40" y1="8" x2="40" y2="72" stroke="#C084FC" stroke-width="1"/>
                 <line x1="6" y1="40" x2="74" y2="40" stroke="#22D3EE" stroke-width="1"/>
               </svg>
 
-              <!-- Designated Actual Portrait Container -->
+              <!-- Designated Actual Portrait Container (Clean — No Overlapping Code Box) -->
               <div class="portrait-frame">
                 <img
                   src="assets/images/saurav-cutout.png"
                   alt="Saurav Bhusal — Creative Web Developer and UI/UX Designer"
                   class="portrait-img"
-                  width="420"
-                  height="480"
+                  width="440"
+                  height="495"
                 />
               </div>
 
               <!-- Glowing Purple & Cyan Rim Orbit Ring -->
               <div class="neon-orbit-ring" aria-hidden="true"></div>
-
-              <!-- Glassmorphic Developer Code Card -->
-              <div class="dev-code-card animate-float" role="region" aria-label="Developer Profile Snippet">
-                <div class="window-dots" aria-hidden="true">
-                  <span class="window-dot bg-rose-500"></span>
-                  <span class="window-dot bg-amber-400"></span>
-                  <span class="window-dot bg-emerald-400"></span>
-                  <span class="ml-2 text-[10px] text-slate-400">developer.config.ts</span>
-                </div>
-                <pre class="text-slate-200 overflow-x-auto"><code><span class="text-purple-400">const</span> <span class="text-cyan-300">developer</span> = {
-  <span class="text-slate-400">name:</span> <span class="text-emerald-300">"Saurav Bhusal"</span>,
-  <span class="text-slate-400">skills:</span> [<span class="text-amber-300">"Web Dev"</span>, <span class="text-amber-300">"UI/UX"</span>,
-           <span class="text-amber-300">"AI &amp; Automation"</span>],
-  <span class="text-slate-400">mission:</span> <span class="text-cyan-300">"Build something
-            extraordinary"</span>
-};</code></pre>
-              </div>
             </div>
           </div>
         </div>
 
-        <!-- Credibility & Highlights Strip (Matching Reference Mockup) -->
+        <!-- Credibility & Highlights Strip -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10" data-reveal-group>
           <a href="projects.html" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-500/35 flex items-center justify-center text-cyan-300 shrink-0">
+            <div class="icon-box w-12 h-12 bg-gradient-to-br from-cyan-500/25 to-blue-600/15 border border-cyan-400/40 text-cyan-300 shrink-0">
               <i data-lucide="folder-git-2" class="w-5 h-5"></i>
             </div>
             <div>
-              <div class="font-heading font-bold text-white text-base group-hover:text-cyan-300 transition">7+ Projects</div>
-              <div class="text-xs text-slate-400">Web Apps, UI/UX &amp; Extensions</div>
+              <div class="font-heading font-bold text-white text-base group-hover:text-cyan-300 transition">7+ Live &amp; Lab Projects</div>
+              <div class="text-xs text-slate-300">Web Apps, MV3 &amp; UI/UX</div>
             </div>
           </a>
 
           <a href="about.html#achievements" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/35 flex items-center justify-center text-purple-300 shrink-0">
+            <div class="icon-box w-12 h-12 bg-gradient-to-br from-purple-500/25 to-indigo-600/15 border border-purple-400/40 text-purple-300 shrink-0">
               <i data-lucide="award" class="w-5 h-5"></i>
             </div>
             <div>
               <div class="font-heading font-bold text-white text-base group-hover:text-purple-300 transition">1st Runner-Up</div>
-              <div class="text-xs text-slate-400">Web Design Hackathon (NIT LEGEND)</div>
+              <div class="text-xs text-slate-300">Web Design Hackathon (NIT LEGEND)</div>
             </div>
           </a>
 
           <a href="about.html#achievements" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/35 flex items-center justify-center text-amber-300 shrink-0">
-              <i data-lucide="trophy" class="w-5 h-5"></i>
+            <div class="icon-box w-12 h-12 bg-gradient-to-br from-amber-500/25 to-orange-600/15 border border-amber-400/40 text-amber-300 shrink-0">
+              <i data-lucide="shield-check" class="w-5 h-5"></i>
             </div>
             <div>
-              <div class="font-heading font-bold text-white text-base group-hover:text-amber-300 transition">Harvard CS50x</div>
-              <div class="text-xs text-slate-400">&amp; UX/UI Competition (2025)</div>
+              <div class="font-heading font-bold text-white text-base group-hover:text-amber-300 transition">6 Verified Credentials</div>
+              <div class="text-xs text-slate-300">Harvard CS50x &amp; freeCodeCamp</div>
             </div>
           </a>
 
           <a href="contact.html" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-300 shrink-0">
+            <div class="icon-box w-12 h-12 bg-gradient-to-br from-emerald-500/25 to-teal-600/15 border border-emerald-400/40 text-emerald-300 shrink-0">
               <i data-lucide="globe-2" class="w-5 h-5"></i>
             </div>
             <div>
               <div class="font-heading font-bold text-white text-base group-hover:text-emerald-300 transition">Global Freelancer</div>
-              <div class="text-xs text-slate-400">Upwork &amp; Freelancer.com</div>
+              <div class="text-xs text-slate-300">Upwork &amp; Freelancer.com</div>
             </div>
           </a>
         </div>
       </section>
 
       <!-- ===================================================================
-           SECTION 2: FEATURED PROJECT SHOWCASE (3 LARGE PROJECT CARDS)
+           SECTION 2: FEATURED PROJECT SHOWCASE (CUSTOM SHOWCASE THUMBNAILS)
            =================================================================== -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14" data-reveal-group>
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10" data-reveal-item>
@@ -305,12 +295,12 @@
             <div>
               <div class="project-thumb-wrap mb-5">
                 <img
-                  src="assets/projects/swasthyasutra.jpg"
-                  alt="SwasthyaSutra Healthcare Technology Web Platform interface"
+                  src="assets/projects/swasthyasutra-thumb.png"
+                  alt="SwasthyaSutra AI-Powered Connected Healthcare and Telemedicine Platform"
                   class="project-thumb"
                   loading="lazy"
                   width="640"
-                  height="400"
+                  height="480"
                 />
               </div>
               <div class="flex items-center justify-between gap-2 mb-2">
@@ -319,16 +309,16 @@
               </div>
               <h3 class="font-heading text-xl font-bold text-white mb-2">SwasthyaSutra</h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                A healthcare-focused digital platform designed to make healthcare information and services more accessible.
+                A healthcare-focused digital platform designed to make healthcare information, real-time wearable vitals monitoring, and SanjeevanAI health guidance more accessible.
               </p>
             </div>
 
             <div class="pt-3 border-t border-white/10">
               <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">JavaScript</span>
-                <span class="tech-pill">Healthcare UI/UX</span>
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Tailwind CSS</span>
+                <span class="tech-pill">SanjeevanAI Engine</span>
+                <span class="tech-pill">Vitals UI</span>
               </div>
               <div class="flex items-center justify-between gap-3">
                 <button type="button" data-open-case="swasthyasutra" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
@@ -353,12 +343,12 @@
             <div>
               <div class="project-thumb-wrap mb-5">
                 <img
-                  src="assets/projects/keyflow.jpg"
-                  alt="KeyFlow Productivity Web Application dashboard"
+                  src="assets/projects/keyflow-thumb.png"
+                  alt="KeyFlow Personal Keyboard Shortcut Manager SaaS Web Application"
                   class="project-thumb"
                   loading="lazy"
                   width="640"
-                  height="400"
+                  height="480"
                 />
               </div>
               <div class="flex items-center justify-between gap-2 mb-2">
@@ -367,16 +357,16 @@
               </div>
               <h3 class="font-heading text-xl font-bold text-white mb-2">KeyFlow</h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                A productivity-focused web experience designed around organization, workflow management, and focus.
+                A productivity-focused web experience designed around tactile 3D keycaps, live key capture, custom workflow collections, and JSON/CSV portability.
               </p>
             </div>
 
             <div class="pt-3 border-t border-white/10">
               <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="tech-pill">JavaScript</span>
+                <span class="tech-pill">React 19</span>
+                <span class="tech-pill">Vite 6</span>
+                <span class="tech-pill">Tailwind CSS</span>
                 <span class="tech-pill">LocalStorage</span>
-                <span class="tech-pill">UI System</span>
-                <span class="tech-pill">Workflow UX</span>
               </div>
               <div class="flex items-center justify-between gap-3">
                 <button type="button" data-open-case="keyflow" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
@@ -401,12 +391,12 @@
             <div>
               <div class="project-thumb-wrap mb-5">
                 <img
-                  src="assets/projects/egov-platform.jpg"
-                  alt="E-Government Platform Butwal SmartGov civic dashboard"
+                  src="assets/projects/egov-thumb.png"
+                  alt="Butwal SmartGov AI E-Government Civic Portal"
                   class="project-thumb"
                   loading="lazy"
                   width="640"
-                  height="400"
+                  height="480"
                 />
               </div>
               <div class="flex items-center justify-between gap-2 mb-2">
@@ -415,16 +405,16 @@
               </div>
               <h3 class="font-heading text-xl font-bold text-white mb-2">E-Government Platform</h3>
               <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                A digital governance platform concept focused on making public services more accessible through modern web technologies.
+                A digital governance platform concept (Butwal SmartGov) focused on making public services, live municipal KPIs, and department hubs accessible.
               </p>
             </div>
 
             <div class="pt-3 border-t border-white/10">
               <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">JavaScript</span>
-                <span class="tech-pill">Civic Portal UI</span>
+                <span class="tech-pill">React 18</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Tailwind CSS</span>
+                <span class="tech-pill">Recharts</span>
               </div>
               <div class="flex items-center justify-between gap-3">
                 <button type="button" data-open-case="egov" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
@@ -467,7 +457,7 @@
           <!-- Pillar 1 -->
           <div class="glass-card p-6 flex flex-col justify-between" data-reveal-item data-tilt>
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-purple-500/15 border border-purple-500/35 flex items-center justify-center text-purple-300 mb-5">
+              <div class="icon-box w-12 h-12 bg-gradient-to-br from-purple-500/25 to-indigo-600/15 border border-purple-400/40 text-purple-300 mb-5">
                 <i data-lucide="lightbulb" class="w-6 h-6"></i>
               </div>
               <span class="font-mono text-xs text-purple-400">01 / CONCEPT</span>
@@ -484,7 +474,7 @@
           <!-- Pillar 2 -->
           <div class="glass-card p-6 flex flex-col justify-between" data-reveal-item data-tilt>
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/35 flex items-center justify-center text-cyan-300 mb-5">
+              <div class="icon-box w-12 h-12 bg-gradient-to-br from-cyan-500/25 to-blue-600/15 border border-cyan-400/40 text-cyan-300 mb-5">
                 <i data-lucide="users" class="w-6 h-6"></i>
               </div>
               <span class="font-mono text-xs text-cyan-400">02 / EMPATHY</span>
@@ -501,7 +491,7 @@
           <!-- Pillar 3 -->
           <div class="glass-card p-6 flex flex-col justify-between" data-reveal-item data-tilt>
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/35 flex items-center justify-center text-indigo-300 mb-5">
+              <div class="icon-box w-12 h-12 bg-gradient-to-br from-indigo-500/25 to-purple-600/15 border border-indigo-400/40 text-indigo-300 mb-5">
                 <i data-lucide="code-2" class="w-6 h-6"></i>
               </div>
               <span class="font-mono text-xs text-indigo-300">03 / EXECUTION</span>
@@ -518,7 +508,7 @@
           <!-- Pillar 4 -->
           <div class="glass-card p-6 flex flex-col justify-between" data-reveal-item data-tilt>
             <div>
-              <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-300 mb-5">
+              <div class="icon-box w-12 h-12 bg-gradient-to-br from-emerald-500/25 to-teal-600/15 border border-emerald-400/40 text-emerald-300 mb-5">
                 <i data-lucide="sparkles" class="w-6 h-6"></i>
               </div>
               <span class="font-mono text-xs text-emerald-400">04 / EVOLUTION</span>
@@ -556,7 +546,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <a href="services.html#web-development" class="glass-card p-6 group block" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/35 flex items-center justify-center text-purple-300 mb-4">
+            <div class="icon-box w-12 h-12 bg-gradient-to-br from-purple-500/25 to-indigo-600/15 border border-purple-400/40 text-purple-300 mb-4">
               <i data-lucide="globe" class="w-5 h-5"></i>
             </div>
             <h3 class="font-heading text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition">Web Development</h3>
@@ -570,7 +560,7 @@
           </a>
 
           <a href="services.html#ui-ux-design" class="glass-card p-6 group block" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-500/35 flex items-center justify-center text-cyan-300 mb-4">
+            <div class="icon-box w-12 h-12 bg-gradient-to-br from-cyan-500/25 to-blue-600/15 border border-cyan-400/40 text-cyan-300 mb-4">
               <i data-lucide="layers" class="w-5 h-5"></i>
             </div>
             <h3 class="font-heading text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition">UI/UX Design</h3>
@@ -584,7 +574,7 @@
           </a>
 
           <a href="services.html#ai-automation" class="glass-card p-6 group block" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-indigo-500/15 border border-indigo-500/35 flex items-center justify-center text-indigo-300 mb-4">
+            <div class="icon-box w-12 h-12 bg-gradient-to-br from-indigo-500/25 to-purple-600/15 border border-indigo-400/40 text-indigo-300 mb-4">
               <i data-lucide="cpu" class="w-5 h-5"></i>
             </div>
             <h3 class="font-heading text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition">AI Automation</h3>
@@ -598,7 +588,7 @@
           </a>
 
           <a href="services.html#graphic-design" class="glass-card p-6 group block" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-pink-500/15 border border-pink-500/35 flex items-center justify-center text-pink-300 mb-4">
+            <div class="icon-box w-12 h-12 bg-gradient-to-br from-pink-500/25 to-purple-600/15 border border-pink-400/40 text-pink-300 mb-4">
               <i data-lucide="palette" class="w-5 h-5"></i>
             </div>
             <h3 class="font-heading text-lg font-bold text-white mb-2 group-hover:text-pink-300 transition">Graphic Design</h3>
@@ -618,7 +608,7 @@
            =================================================================== -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6" data-reveal-group>
         <div class="glass-card p-8 sm:p-12 relative overflow-hidden" data-reveal-item>
-          <div class="absolute -right-16 -bottom-24 w-80 h-80 rounded-full bg-gradient-to-tr from-purple-600/30 via-cyan-500/20 to-transparent blur-2xl pointer-events-none" aria-hidden="true"></div>
+          <div class="absolute -right-16 -bottom-24 w-80 h-80 rounded-full bg-gradient-to-tr from-purple-600/35 via-cyan-500/25 to-transparent blur-2xl pointer-events-none" aria-hidden="true"></div>
 
           <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
             <div class="max-w-2xl">

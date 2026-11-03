@@ -15,7 +15,7 @@
       filterGroup: 'web',
       projectNature: 'Personal Web Application Prototype (Live Demo)',
       statusClass: 'status-live',
-      thumbnail: 'assets/projects/swasthyasutra.jpg',
+      thumbnail: 'assets/projects/swasthyasutra-thumb.png',
       liveUrl: 'https://saurav-96.github.io/SwasthyaSutra/',
       githubUrl: 'https://github.com/saurav-96/SwasthyaSutra',
       overview:
@@ -25,10 +25,10 @@
       objective:
         'Design and build an accessible, dark-mode-ready healthcare web experience that presents health monitoring insights, appointment pathways, and AI-assisted guidance (SanjeevanAI concept) in a clean visual hierarchy.',
       contribution:
-        'End-to-end UI/UX Architecture, Visual Identity, Frontend Engineering (HTML5, CSS3, JavaScript), Interactive Dashboard Components, and Responsive Layout Implementation.',
+        'End-to-end UI/UX Architecture, Visual Identity, Frontend Engineering (React, Tailwind CSS, JavaScript), Interactive Dashboard Components, and Responsive Layout Implementation.',
       designProcess:
         'Structured around high-contrast data cards, calm cyan/blue medical trust accents, and clear call-to-action buttons so users can move from overview metrics to specific health tools without cognitive overload.',
-      techStack: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'Responsive UI/UX', 'GitHub Pages'],
+      techStack: ['React', 'Tailwind CSS', 'SanjeevanAI Engine', 'Real-Time Vitals UI', 'Telemedicine Portal', 'Responsive UX'],
       challenges:
         'Balancing dense health metric visualizations (heart rate BPM, sync indicators, and AI insight cards) while maintaining generous whitespace and fast load performance on mobile browsers.',
       outcomes:
@@ -43,9 +43,9 @@
       filterGroup: 'web',
       projectNature: 'Personal Web Application (Live Demo)',
       statusClass: 'status-live',
-      thumbnail: 'assets/projects/keyflow.jpg',
+      thumbnail: 'assets/projects/keyflow-thumb.png',
       liveUrl: 'https://saurav-96.github.io/KeyFlow/',
-      githubUrl: 'https://github.com/saurav-96',
+      githubUrl: 'https://github.com/saurav-96/KeyFlow',
       overview:
         'A productivity-focused web experience designed around keyboard shortcut organization, workflow management, and rapid muscle-memory lookup.',
       problem:
@@ -53,10 +53,10 @@
       objective:
         'Create a tactile, searchable personal keyboard command center where users can filter shortcuts by application, pin favorites, add custom bindings, and import/export collections.',
       contribution:
-        'Product Concept, UI/UX Component System (tactile keycap badges, workspace sidebar, quick-filter chips), State & LocalStorage Management, and Vanilla JavaScript Search Filtering.',
+        'Product Concept, UI/UX Component System (tactile 3D keycaps, live key capture, workspace sidebar, quick-filter chips), State & LocalStorage Persistence, and RFC 4180 CSV/JSON Portability.',
       designProcess:
         'Designed with a clean dashboard layout featuring instant application filters (VS Code, Chrome, Windows, Figma, Photoshop), one-click copy actions, and OS-aware keycap notation.',
-      techStack: ['HTML5', 'CSS3', 'JavaScript (ES6+)', 'LocalStorage API', 'UI/UX Design'],
+      techStack: ['React 19', 'Vite 6', 'Tailwind CSS', 'Lucide Icons', 'Vitest Tested', 'LocalStorage Persistence'],
       challenges:
         'Designing keycap combinations so multi-key bindings (such as Ctrl + Shift + P) remain readable, aligned, and scannable across both desktop and mobile viewports.',
       outcomes:
@@ -66,12 +66,12 @@
     egov: {
       id: 'egov',
       number: 'PROJECT 03',
-      title: 'E-Government Platform',
+      title: 'E-Government Platform (Butwal SmartGov)',
       category: 'Civic Technology',
       filterGroup: 'web',
       projectNature: 'Civic Tech Concept & Live Portal Prototype',
       statusClass: 'status-live',
-      thumbnail: 'assets/projects/egov-platform.jpg',
+      thumbnail: 'assets/projects/egov-thumb.png',
       liveUrl: 'https://saurav-96.github.io/E-Governmet-platform/',
       githubUrl: 'https://github.com/saurav-96/E-Governmet-platform',
       overview:
@@ -84,9 +84,9 @@
         'Information Architecture, Civic Dashboard UI Design, Bilingual-ready Navigation Structure, Department Status Cards, and Responsive Frontend Development.',
       designProcess:
         'Organized municipal workflows into a clear left-hand department directory paired with an executive overview dashboard highlighting citizen service categories and recent city notices.',
-      techStack: ['HTML5', 'CSS3', 'JavaScript', 'Civic UI/UX', 'Responsive Grid'],
+      techStack: ['React 18', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Recharts', 'Lucide Icons'],
       challenges:
-        'Structuring nine distinct municipal departments (Health, Agriculture, Traffic Safety, Environment, Education, IT, Tourism, Business, Gov Services) into an intuitive navigation system.',
+        'Structuring municipal departments (Health, Agriculture, Traffic Safety, Environment, Education, IT, Tourism, Business, Gov Services) into an intuitive navigation system.',
       outcomes:
         'Created a live civic technology demonstration hosted on GitHub Pages that illustrates how thoughtful UI/UX can modernize public-sector digital portals.'
     },
@@ -99,25 +99,25 @@
       filterGroup: 'web',
       projectNature: 'CS50x Final Project & Browser Extension',
       statusClass: 'status-live',
-      thumbnail: 'assets/projects/tubekit.svg',
+      thumbnail: 'assets/projects/tubekit-thumb.png',
       liveUrl: 'https://github.com/saurav-96/TubeKit',
       githubUrl: 'https://github.com/saurav-96/TubeKit',
       overview:
-        'A browser extension project exploring useful YouTube productivity features, including playback controls, thumbnail capture, video frame screenshots, and custom keyboard shortcuts.',
+        'A browser extension project exploring useful YouTube productivity features, including 0.10x–4.00x precision playback speed controls, HD thumbnail capture, lossless PNG frame screenshots, and custom keyboard shortcuts.',
       problem:
         'Students, researchers, and creators watching educational content on YouTube frequently need quick frame captures, high-resolution thumbnails, or fine-grained playback speed adjustments without leaving the player.',
       objective:
-        'Build a lightweight Chromium browser extension using Manifest V3 that injects clean, non-intrusive utility controls directly into the YouTube watch experience.',
+        'Build a lightweight Chromium browser extension using Manifest V3 that injects a glassmorphic 7-control utility bar directly into the YouTube watch experience.',
       contribution:
         'Chrome Extension Architecture (Manifest V3), Content Script DOM Integration, Popup Interface Design, Canvas Frame Capture Logic, and Keyboard Shortcut Handlers.',
       designProcess:
         'Focused on zero-clutter ergonomics so utility triggers blend naturally with YouTube’s dark interface while providing instant feedback.',
       featureBreakdown: {
         implemented: [
-          'Custom playback speed step controls and quick reset',
-          'One-click video frame screenshot capture via HTML5 Canvas',
+          '7-element glassmorphic in-player control pill (0.10x–4.00x speed)',
+          'One-click lossless PNG video frame screenshot capture via HTML5 Canvas',
           'High-resolution YouTube video thumbnail extractor',
-          'Keyboard shortcut bindings for rapid player control'
+          'Custom keyboard shortcut bindings & Chrome Storage Sync'
         ],
         planned: [
           'Timestamped markdown note export for study sessions',
@@ -125,7 +125,7 @@
           'Cloud sync for saved video timestamps'
         ]
       },
-      techStack: ['JavaScript (ES6+)', 'Chrome Extension API (Manifest V3)', 'HTML5 Canvas', 'CSS3'],
+      techStack: ['Chrome Extension MV3', 'JavaScript (ES6+)', 'HTML5 Canvas & Video API', 'Chrome Storage Sync', 'CS50x Final Project'],
       challenges:
         'Handling YouTube’s Single-Page Application (SPA) dynamic DOM updates reliably so injected controls persist cleanly when navigating between videos.',
       outcomes:
@@ -241,8 +241,8 @@
           if (typeof window.gsap !== 'undefined') {
             gsap.fromTo(
               card,
-              { opacity: 0, y: 18, scale: 0.98 },
-              { opacity: 1, y: 0, scale: 1, duration: 0.38, ease: 'power2.out', clearProps: 'transform' }
+              { opacity: 0, y: 14, scale: 0.985 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: 'power2.out', clearProps: 'transform' }
             );
           }
         } else {
@@ -334,7 +334,7 @@
       const repoBtnHTML =
         data.githubUrl && data.githubUrl !== data.liveUrl
           ? `<a href="${data.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn-secondary text-sm">
-               <span>GitHub Profile / Source</span>
+               <span>GitHub Repository</span>
                <span aria-hidden="true">↗</span>
              </a>`
           : '';
@@ -356,7 +356,7 @@
           <p class="text-slate-300 text-base leading-relaxed mb-6">${data.overview}</p>
 
           <div class="rounded-2xl overflow-hidden border border-purple-500/25 bg-[#07070C] mb-6">
-            <img src="${data.thumbnail}" alt="${data.title} screenshot preview" class="w-full max-h-[380px] object-cover" />
+            <img src="${data.thumbnail}" alt="${data.title} showcase preview" class="w-full max-h-[440px] object-contain mx-auto" />
           </div>
 
           ${featureComparisonHTML}
@@ -424,7 +424,7 @@
       }
     }
 
-    // Keyboard Focus Trap inside Case Study Modal (ui-ux-pro-max Modal Focus Rule)
+    // Keyboard Focus Trap inside Case Study Modal
     if (modalBackdrop) {
       modalBackdrop.addEventListener('keydown', (e) => {
         if (e.key !== 'Tab' || !modalBackdrop.classList.contains('open')) return;
@@ -481,7 +481,6 @@
       }
     });
 
-    // Check URL query parameter ?case=projectId or ?category=filter
     const params = new URLSearchParams(window.location.search);
     const initialCategory = params.get('category');
     if (initialCategory && filterButtons.length > 0) {

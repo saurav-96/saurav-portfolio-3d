@@ -8,10 +8,10 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
   border: 1px solid var(--border-glass);
   color: var(--text-primary);
   cursor: pointer;
@@ -23,13 +23,13 @@
   left: 1rem;
   right: 1rem;
   z-index: 99;
-  background: rgba(13, 14, 23, 0.96);
+  background: rgba(12, 13, 23, 0.96);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   border: 1px solid var(--border-glass-strong);
   border-radius: 1.35rem;
   padding: 1.25rem;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85);
   transform: translateY(-14px) scale(0.98);
   opacity: 0;
   visibility: hidden;
@@ -42,17 +42,19 @@
   visibility: visible;
 }
 
+.mobile-nav-drawer .nav-link {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  padding: 0.75rem 1.25rem;
+  justify-content: flex-start;
+  border-radius: 0.85rem;
+}
+
 /* Tablet & Below (<= 1024px) */
 @media (max-width: 1024px) {
-  .dev-code-card {
-    right: 0;
-    top: 12px;
-    width: 255px;
-    font-size: 0.7rem;
-  }
-
   .hero-portrait-stage {
-    min-height: 420px;
+    min-height: 430px;
   }
 }
 
@@ -73,35 +75,19 @@
   }
 
   .hero-portrait-stage {
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 0;
-    min-height: auto;
-    margin-top: 1.25rem;
-    gap: 1rem;
+    min-height: 360px;
+    margin-top: 1rem;
   }
 
   .portrait-glow-aura {
-    left: 50%;
-    transform: translateX(-50%);
-    width: 280px;
-    height: 280px;
+    width: 290px;
+    height: 290px;
   }
 
   .neon-orbit-ring {
-    left: 50%;
-    bottom: 135px;
-    width: 270px;
-    height: 270px;
-  }
-
-  .dev-code-card {
-    position: relative;
-    top: auto;
-    right: auto;
-    width: 100%;
-    max-width: 340px;
-    margin: 0 auto;
+    bottom: 14px;
+    width: 280px;
+    height: 280px;
   }
 
   .floating-poly {

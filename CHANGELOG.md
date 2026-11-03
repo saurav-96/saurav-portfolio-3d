@@ -4,7 +4,35 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
-## [v2.0.0] — 2026-11-03 (Current Release — Multi-Page 3D Interactive + UI/UX Pro Max Upgrade)
+## [v2.5.0] — 2026-11-03 (Verified Credentials, 3D Component Motion & Custom Project Showcase)
+
+### Added
+- **Verified Credentials & Certifications Showcase (`about.html`):**
+  - Added 6 authentic developer credentials with certificate IDs, dates, and direct verification links:
+    1. First Runner-Up — Web Design Hackathon 2026 (NIT LEGEND & Mayor of Butwal Sub-Metropolitan City)
+    2. UX/UI Design Competition 2025 (Sagarmatha Secondary Boarding School & Swarnim IT Club)
+    3. Harvard CS50x Certificate (`c95716f9-c771-4c7b-91b5-c0e45c322f56`)
+    4. freeCodeCamp — Legacy Responsive Web Design V8 (`fcc-fb9ff4ab-867a-4946-9bc0-614b82559f76`)
+    5. freeCodeCamp — Legacy JavaScript Algorithms & Data Structures V8 (`fcc-fb9ff4ab-867a-4946-9bc0-614b82559f76`)
+    6. freeCodeCamp — Legacy JavaScript Algorithms & Data Structures V7 (`fcc-fb9ff4ab-867a-4946-9bc0-614b82559f76`)
+  - Interactive full-screen Certificate Lightbox modal viewer with zoom preview and one-click ID copy.
+- **Custom Project Showcase Thumbnails:**
+  - Integrated high-craft project showcase thumbnails for `SwasthyaSutra`, `KeyFlow`, `E-Government Platform (Butwal SmartGov)`, and `TubeKit (YouTube Power-Tools)` on both `index.html` and `projects.html`.
+  - Updated case study modal data (`js/projects.js`) with React 19, Vite 6, SanjeevanAI, and Chrome Extension MV3 details.
+- **3D Interactive Background & Component Architecture:**
+  - Upgraded Three.js scene (`js/three-scene.js`) with outer wireframe icosahedron, cyan vertex points, crystalline core, signature wireframe torus knot, triple gyroscopic orbital rings, floating 3D polyhedron satellites, and multi-color 3D particle starfield synced with scroll progress, scroll velocity, mouse parallax, and pointer impulse.
+  - All cards across the site upgraded into interactive 3D components (`data-tilt`) with perspective rotation, cursor-following radial glare, and inner elements (icons, thumbnail wraps, status badges) that pop forward in 3D space (`translateZ`).
+  - Added GSAP 3D perspective scroll reveals (`rotationX`, `scale`, `transformPerspective: 1100`) and hero portrait scroll parallax.
+- **Clean Transparent Portrait Cutout:**
+  - Removed photographic studio background using high-precision neural segmentation, cleaned specks with connected component analysis, and saved as a crisp RGBA PNG (`assets/images/saurav-cutout.png`).
+  - Synced portrait rim lighting with background neon aura and orbital ring.
+- **Bold & Attractive Navigation Typography:**
+  - Upgraded brand logo to uppercase Space Grotesk 800 (`SAURAV.`) with cyan neon drop-glow.
+  - Upgraded navigation links to bold Space Grotesk 700 with high-contrast text, glass active pill, glowing cyan/purple active indicator bar, and hover text-shadow.
+
+---
+
+## [v2.0.0] — 2026-11-03 (Multi-Page 3D Interactive + UI/UX Pro Max Upgrade)
 
 ### Added
 - **5-Page Modular Architecture:**
