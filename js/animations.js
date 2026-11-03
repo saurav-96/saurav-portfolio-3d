@@ -1,8 +1,8 @@
 /* ==========================================================================
    SAURAV BHUSAL — PREMIUM 3D INTERACTIVE PORTFOLIO
-   js/animations.js — Lenis Smooth Scroll, 3D ScrollTrigger Choreography,
-                      Perspective 3D Section & Card Fly-Ins,
-                      Magnetic Buttons, and Cursor-Following Radial Glare
+   js/animations.js — Lenis Smooth Scroll, Universal 3D ScrollTrigger
+                       Choreography, Perspective 3D Component Fly-Ins,
+                       Magnetic Buttons, and Cursor-Following Radial Glare
    ========================================================================== */
 
 (function () {
@@ -142,17 +142,17 @@
       }
     }
 
-    // 6. 3D Hero Entrance Choreography (Perspective 3D Unfold)
+    // 6. 3D Hero Entrance Choreography (Perspective 3D Unfold on initial view)
     const heroItems = document.querySelectorAll('[data-hero-reveal]');
     if (heroItems.length > 0) {
       gsap.fromTo(
         heroItems,
         {
-          y: 35,
+          y: 40,
           opacity: 0,
           rotationX: -14,
-          z: -60,
-          scale: 0.95,
+          z: -65,
+          scale: 0.94,
           transformPerspective: 1200
         },
         {
@@ -161,7 +161,7 @@
           rotationX: 0,
           z: 0,
           scale: 1,
-          duration: 0.75,
+          duration: 0.8,
           stagger: 0.08,
           ease: 'power3.out',
           clearProps: 'transform,opacity'
@@ -173,21 +173,61 @@
       return;
     }
 
-    // 7. Scroll-Triggered 3D Perspective Section & Card Fly-Ins
-    // When user scrolls down, elements sweep in from 3D space with rotationX, z-depth and scale
-    document.querySelectorAll('[data-reveal-group]').forEach((group) => {
-      const children = group.querySelectorAll('[data-reveal-item]');
-      if (children.length === 0) return;
+    // 7. Universal 3D Scroll-Triggered Section Header Reveals
+    // As visitor scrolls, each section title, eyebrow badge & description gracefully glides into place
+    const sectionHeaders = document.querySelectorAll('section:not(:first-of-type) [data-reveal-item]:not(.glass-card):not(.project-card), section:not(:first-of-type) > div > .max-w-2xl, section:not(:first-of-type) .eyebrow-badge');
+    sectionHeaders.forEach((header) => {
+      if (header.closest('[data-hero-reveal]')) return;
+      gsap.fromTo(
+        header,
+        {
+          y: 38,
+          opacity: 0,
+          rotationX: -12,
+          z: -50,
+          transformPerspective: 1100
+        },
+        {
+          y: 0,
+          opacity: 1,
+          rotationX: 0,
+          z: 0,
+          duration: 0.72,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 88%',
+            once: true
+          }
+        }
+      );
+    });
+
+    // 8. Universal 3D Component Fly-Ins: Every Card Group & Grid
+    // As visitor scrolls down, cards and components fly in from 3D space with rotationX, depth, scale, and stagger
+    const animatedCardsSet = new Set();
+
+    // Group-based 3D reveals (Grids with [data-reveal-group] or cards inside .grid)
+    const revealGroups = document.querySelectorAll('[data-reveal-group], section:not(:first-of-type) .grid');
+    revealGroups.forEach((group) => {
+      // Find cards directly belonging to this group
+      const cards = Array.from(group.querySelectorAll('[data-reveal-item], .glass-card, .project-card')).filter(
+        (card) => card.closest('[data-reveal-group], section .grid') === group
+      );
+      if (cards.length === 0) return;
+
+      cards.forEach((c) => animatedCardsSet.add(c));
 
       gsap.fromTo(
-        children,
+        cards,
         {
-          y: 52,
+          y: 60,
           opacity: 0,
-          rotationX: -16,
-          rotationY: (i) => (i % 2 === 0 ? -3 : 3),
-          z: -85,
-          scale: 0.92,
+          rotationX: -18,
+          rotationY: (i) => (i % 2 === 0 ? -4 : 4),
+          z: -95,
+          scale: 0.91,
           transformPerspective: 1200
         },
         {
@@ -197,32 +237,39 @@
           rotationY: 0,
           z: 0,
           scale: 1,
-          duration: 0.75,
+          duration: 0.82,
           stagger: 0.085,
           ease: 'power3.out',
-          clearProps: 'transform,opacity',
           scrollTrigger: {
             trigger: group,
-            start: 'top 85%',
+            start: 'top 86%',
             once: true
+          },
+          onComplete: () => {
+            cards.forEach((card) => {
+              // Clear transform so data-tilt 3D hover interactions are 100% responsive
+              card.style.transform = '';
+              card.style.opacity = '1';
+            });
           }
         }
       );
     });
 
-    // 8. Scroll-Based 3D Cards on Pages without explicit [data-reveal-group] (e.g. Projects Grid & Service Articles)
-    const standaloneCards = Array.from(document.querySelectorAll('.project-card, #web-development, #ui-ux-design, #ai-automation, #graphic-design')).filter(
-      (el) => !el.closest('[data-reveal-group]')
+    // Standalone 3D Cards (Cards not already caught by a group)
+    const allRemainingCards = Array.from(document.querySelectorAll('.glass-card, .project-card')).filter(
+      (card) => !animatedCardsSet.has(card) && !card.closest('[data-hero-reveal]')
     );
-    standaloneCards.forEach((card) => {
+
+    allRemainingCards.forEach((card) => {
       gsap.fromTo(
         card,
         {
-          y: 48,
+          y: 54,
           opacity: 0,
-          rotationX: -15,
-          z: -75,
-          scale: 0.93,
+          rotationX: -16,
+          z: -80,
+          scale: 0.92,
           transformPerspective: 1200
         },
         {
@@ -231,23 +278,56 @@
           rotationX: 0,
           z: 0,
           scale: 1,
-          duration: 0.72,
+          duration: 0.76,
           ease: 'power3.out',
-          clearProps: 'transform,opacity',
           scrollTrigger: {
             trigger: card,
-            start: 'top 86%',
+            start: 'top 87%',
             once: true
+          },
+          onComplete: () => {
+            card.style.transform = '';
+            card.style.opacity = '1';
           }
         }
       );
     });
 
-    // 9. Scroll-Based Parallax Sync for Hero Portrait, Studio Aura & Base Orbit Ring
+    // 9. Interactive 4-Step Working Process Timeline 3D Stagger (services.html)
+    const timelineSteps = document.querySelectorAll('.pl-4.space-y-6 > .relative.flex.items-start');
+    if (timelineSteps.length > 0) {
+      gsap.fromTo(
+        timelineSteps,
+        {
+          x: 36,
+          opacity: 0,
+          rotationY: 14,
+          z: -45,
+          transformPerspective: 1000
+        },
+        {
+          x: 0,
+          opacity: 1,
+          rotationY: 0,
+          z: 0,
+          duration: 0.7,
+          stagger: 0.12,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: timelineSteps[0].parentElement,
+            start: 'top 84%',
+            once: true
+          }
+        }
+      );
+    }
+
+    // 10. Scroll-Based Parallax Sync for Hero Portrait, Studio Aura & Base Orbit Ring
     if (portraitStage && !isTouchDevice) {
       gsap.to('.portrait-frame', {
-        y: -32,
-        z: 36,
+        y: -36,
+        z: 42,
         ease: 'none',
         scrollTrigger: {
           trigger: portraitStage,

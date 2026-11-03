@@ -4,6 +4,26 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v2.8.0] — 2026-11-03 (Universal 3D Scroll-Trigger Choreography & Full Portrait Cutout Across All Pages)
+
+### Added & Refined
+- **Universal 3D Scroll-Based Component Choreography (`js/animations.js`):**
+  - Upgraded GSAP ScrollTrigger to orchestrate every section header, project card, service article, skill module, certificate card, timeline step, and CTA banner into position 3-dimensionally as the visitor scrolls down.
+  - Cards fly into position with spatial 3D perspective (`perspective: 1200px`, `rotateX: -18deg`, alternating `rotateY: ±4deg`, `translateZ: -95px`, `translateY: 60px`, `scale: 0.91`) smoothly expanding to `scale: 1` with `power3.out` easing.
+  - Added grouped row-based stagger (`0.085s`) for every project grid, skill category, and certificate collection, preventing static pop-ins.
+  - Cleaned up transform properties upon tween completion (`clearProps: 'transform'`) to ensure vanilla-tilt (`data-tilt`) and hover 3D states remain 100% responsive without CSS property lock.
+  - Added dedicated 3D slide-in stagger for the 4-step Working Process timeline in `services.html` and section titles across all pages.
+- **New Full-Silhouette Portrait Cutout Across All 5 Pages:**
+  - Processed user's uploaded portrait (`media_1793702110933_271d7f46.jpg`) through an automated alpha-feathering pipeline to eliminate the faux-checkerboard background and produce a clean, genuine transparent RGBA PNG (`assets/images/saurav-cutout.png`, 657x1008).
+  - Deployed this high-resolution cutout across all 5 pages:
+    1. **Home (`index.html`):** Hero stage framed with glowing neon orbit ring, dual-tone studio rim lighting, and living 3D cosmic background.
+    2. **About (`about.html`):** Bio showcase portrait with live status badge and discipline highlights.
+    3. **Projects (`projects.html`):** Bottom consultation CTA banner featuring Saurav's avatar.
+    4. **Services (`services.html`):** Direct Developer 1-on-1 Access card in the working process sidebar.
+    5. **Contact (`contact.html`):** Verified Creator identity card with real-time "Remote Ready" status badge.
+
+---
+
 ## [v2.7.0] — 2026-11-03 (Continuous Living Background Motion, Studio Rim Lighting Sync & Hero Polish)
 
 ### Changed & Refined

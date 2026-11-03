@@ -164,11 +164,11 @@
            PROJECT SHOWCASE GRID (ALL 7 PROJECTS)
            =================================================================== -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7" data-reveal-group>
 
           <!-- PROJECT 01: SWASTHYASUTRA -->
           <article
-            class="glass-card project-card p-5 flex flex-col justify-between"
+            class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item
             data-project-card
             data-categories="web,uiux"
             data-tilt
@@ -224,7 +224,7 @@
 
           <!-- PROJECT 02: KEYFLOW -->
           <article
-            class="glass-card project-card p-5 flex flex-col justify-between"
+            class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item
             data-project-card
             data-categories="web,uiux"
             data-tilt
@@ -280,7 +280,7 @@
 
           <!-- PROJECT 03: E-GOVERNMENT PLATFORM -->
           <article
-            class="glass-card project-card p-5 flex flex-col justify-between"
+            class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item
             data-project-card
             data-categories="web,uiux"
             data-tilt
@@ -336,7 +336,7 @@
 
           <!-- PROJECT 04: YOUTUBE POWER-TOOLS (TUBEKIT) -->
           <article
-            class="glass-card project-card p-5 flex flex-col justify-between"
+            class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item
             data-project-card
             data-categories="web"
             data-tilt
@@ -402,7 +402,7 @@
 
           <!-- PROJECT 05: MINDFUL YOU -->
           <article
-            class="glass-card project-card p-5 flex flex-col justify-between"
+            class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item
             data-project-card
             data-categories="uiux"
             data-tilt
@@ -451,7 +451,7 @@
 
           <!-- PROJECT 06: AI & AUTOMATION EXPERIMENTS -->
           <article
-            class="glass-card project-card p-5 flex flex-col justify-between"
+            class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item
             data-project-card
             data-categories="ai"
             data-tilt
@@ -500,7 +500,7 @@
 
           <!-- PROJECT 07: CREATIVE DESIGN (SPANS FULL WIDTH OR 3-COL CARD) -->
           <article
-            class="glass-card project-card p-6 md:col-span-2 lg:col-span-3"
+            class="glass-card project-card p-6 md:col-span-2 lg:col-span-3" data-reveal-item
             data-project-card
             data-categories="graphic,uiux"
           >
@@ -612,15 +612,27 @@
       </section>
 
       <!-- Bottom Conversion CTA -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12">
-        <div class="glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white mb-2">
-              Want a custom web application or UI/UX redesign?
-            </h2>
-            <p class="text-slate-300 text-sm sm:text-base">
-              Let's discuss your goals and turn your concept into a polished digital product.
-            </p>
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12" data-reveal-group>
+        <div class="glass-card p-8 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-6" data-reveal-item data-tilt>
+          <div class="flex items-center gap-5">
+            <div class="relative w-16 h-16 rounded-2xl overflow-hidden bg-gradient-to-br from-cyan-500/25 to-purple-600/30 border border-cyan-400/40 shrink-0 hidden sm:block">
+              <img
+                src="assets/images/saurav-cutout.png"
+                alt="Saurav Bhusal"
+                class="w-full h-full object-cover object-top"
+                width="64"
+                height="64"
+                loading="lazy"
+              />
+            </div>
+            <div>
+              <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white mb-1">
+                Want a custom web application or UI/UX redesign?
+              </h2>
+              <p class="text-slate-300 text-sm sm:text-base">
+                Let's discuss your goals and turn your concept into a polished digital product with Saurav Bhusal.
+              </p>
+            </div>
           </div>
           <div class="flex flex-wrap gap-3 shrink-0">
             <a href="contact.html" class="btn-primary" data-magnetic>
