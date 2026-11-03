@@ -13,6 +13,10 @@ const PORT = 8765;
 const CHROME_PATH = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
 const DEBUG_PORT = 9420 + Math.floor(Math.random() * 300);
 
+if (!fs.existsSync(path.join(ROOT, 'scratch'))) {
+  fs.mkdirSync(path.join(ROOT, 'scratch'), { recursive: true });
+}
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
@@ -158,21 +162,29 @@ for (const item of pagesToTest) {
 // Functional Test 1: Projects Filter & Case-Study Modal on projects.html
 await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 950, deviceScaleFactor: 1, mobile: false });
 await send('Page.navigate', { url: `http://127.0.0.1:${PORT}/projects.html` });
-await sleep(1600);
+await sleep(2500);
 
 const projectFilterRes = await send('Runtime.evaluate', {
+  awaitPromise: true,
   returnByValue: true,
-  expression: `(() => {
+  expression: `(async () => {
     const aiBtn = document.querySelector('[data-filter="ai"]');
-    aiBtn.click();
+    if (aiBtn) aiBtn.click();
+    await new Promise(r => setTimeout(r, 200));
     const visibleAfterAi = Array.from(document.querySelectorAll('[data-project-card]:not(.hidden)')).length;
+
     const allBtn = document.querySelector('[data-filter="all"]');
-    allBtn.click();
+    if (allBtn) allBtn.click();
+    await new Promise(r => setTimeout(r, 200));
     const visibleAfterAll = Array.from(document.querySelectorAll('[data-project-card]:not(.hidden)')).length;
 
     // Open SwasthyaSutra case study modal
-    document.querySelector('[data-open-case="swasthyasutra"]').click();
-    const modalOpen = document.getElementById('case-study-modal').classList.contains('open');
+    const caseBtn = document.querySelector('[data-open-case="swasthyasutra"]');
+    if (caseBtn) caseBtn.click();
+    await new Promise(r => setTimeout(r, 300));
+
+    const modal = document.getElementById('case-study-modal');
+    const modalOpen = modal ? modal.classList.contains('open') : false;
     const modalTitle = document.getElementById('modal-project-title')?.textContent?.trim();
     return { visibleAfterAi, visibleAfterAll, modalOpen, modalTitle };
   })()`
@@ -184,7 +196,7 @@ fs.writeFileSync('scratch/qa-case-study-modal.png', Buffer.from(modalShot.data, 
 
 // Functional Test 2: Contact Form Validation & Submission State on contact.html
 await send('Page.navigate', { url: `http://127.0.0.1:${PORT}/contact.html` });
-await sleep(1500);
+await sleep(2500);
 const contactTestRes = await send('Runtime.evaluate', {
   awaitPromise: true,
   returnByValue: true,

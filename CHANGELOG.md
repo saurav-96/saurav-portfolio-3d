@@ -4,6 +4,43 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.0.0] — 2026-11-03 (Ultimate 3D Transformation, Lenis Smooth Motion, Masked Word Reveals & Performance Engine)
+
+### Added & Transformed
+- **Agent Skills Architecture Installation (`.agents/skills/`):**
+  - Inspected, verified, and installed 9 high-craft GitHub agent skills from `https://github.com/SoftwareInFocus/threejs-skills`:
+    1. `gsap` — Advanced timelines, ScrollTrigger, staggers, and easing best practices.
+    2. `threejs` — 3D scene architecture, WebGL shaders, geometries, lighting, and GPU performance.
+    3. `animation-on-scroll` — IntersectionObserver triggers and scroll-linked state machines.
+    4. `cinematic-gsap-lenis-motion-system` — Editorial smooth scrolling, pinned sections, and mouse-reactive motion systems.
+    5. `cinematic-scroll-storytelling` — Section-by-section scroll-scrubbed transitions and sticky narratives.
+    6. `gsap-scrolltrigger-storytelling` — Coordinated 3D component entrances, depth layering, and scroll synchronization.
+    7. `optimize-web-animations` — Frame-rate auditing, offscreen keyframe pausing, memory-leak prevention, and RAF throttling.
+    8. `scroll-progress-timeline` — Data-driven scroll progress rails, dynamic fill states, and step indicators.
+    9. `masked-reveal` — Masked word-by-word typography reveals through overflow masks.
+- **Lenis Smooth Scroll Engine (`js/animations.js` & `css/animations.css`):**
+  - Integrated Lenis 1.1.13 smooth scrolling synchronized directly with GSAP's ticker (`gsap.ticker.add((time) => lenis.raf(time * 1000))`) and `ScrollTrigger.update`.
+  - Added zero-lag smoothing (`gsap.ticker.lagSmoothing(0)`) and touch-aware graceful fallbacks.
+- **Masked Editorial Word Reveals (`masked-reveal` skill):**
+  - Built a non-destructive DOM traversal splitter that wraps words in `.word-mask > .word-reveal` while cleanly preserving nested gradient spans (`<span class="text-gradient">`), line breaks, and CSS classes.
+  - Applied word-by-word staggered reveal (`0.026s`) on hero headlines across pages with screen-reader accessible `aria-label` and `aria-hidden` attributes.
+- **Ambient Cursor Spotlight Micro-Interaction:**
+  - Implemented `.ambient-cursor-spotlight` with dual radial gradient (violet/cyan) tracked smoothly using `gsap.quickTo` on desktop viewports.
+- **Magnetic Button Physics Upgrade:**
+  - Upgraded all `[data-magnetic]`, `.btn-primary`, and `.btn-secondary` elements with `gsap.quickTo` spring dynamics.
+- **Section-by-Section Storytelling WebGL Camera Motion (`js/three-scene.js`):**
+  - Implemented cinematic camera flight along Z and Y axes synchronized with scroll progress and mouse position.
+  - Added delta time clamping (`Math.min(delta, 0.1)`) to eliminate particle and geometry jumps when switching back from inactive browser tabs.
+  - Added `IntersectionObserver` on `#webgl-canvas` to pause WebGL rendering loops when offscreen.
+- **Scroll-Progress Process Timeline (`services.html`):**
+  - Implemented dynamic vertical progress rail with gradient fill (`#timeline-progress-fill`) linked to GSAP ScrollTrigger and active step glow badges (`.timeline-step.is-active`).
+- **Animation Performance & Resource Optimization (`optimize-web-animations`):**
+  - Added section-level `IntersectionObserver` that toggles `.is-offscreen` on offscreen sections and footers to pause background CSS keyframe animations when out of view.
+- **Comprehensive Automated QA Verification:**
+  - Verified 0 broken images, 0 console errors, 0 horizontal overflow, fully functioning project case-study modals, and verified contact form submission across all 5 pages.
+
+---
+
 ## [v2.9.0] — 2026-11-03 (Hero Portrait Upscale & Balanced Stage Presence)
 
 ### Changed & Refined

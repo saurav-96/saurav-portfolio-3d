@@ -221,3 +221,117 @@ main, section, .grid {
     animation: none !important;
   }
 }
+
+
+/* ==========================================================================
+   LENIS SMOOTH SCROLL INTEGRATION (cinematic-gsap-lenis-motion-system)
+   ========================================================================== */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   MASKED STAGGERED WORD REVEALS (masked-reveal & cinematic motion)
+   ========================================================================== */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.08em;
+}
+
+.word-reveal {
+  display: inline-block;
+  will-change: transform, opacity;
+  transform: translate3d(0, 115%, 0);
+  opacity: 0;
+}
+
+/* ==========================================================================
+   INTERACTIVE AMBIENT CURSOR GLOW (luxury editorial spotlight)
+   ========================================================================== */
+.ambient-cursor-spotlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 540px;
+  height: 540px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, rgba(6, 182, 212, 0.04) 42%, transparent 72%);
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+  transition: opacity 0.5s ease;
+  opacity: 0;
+}
+
+body.cursor-active .ambient-cursor-spotlight {
+  opacity: 1;
+}
+
+/* ==========================================================================
+   SCROLL-PROGRESS TIMELINE (scroll-progress-timeline)
+   ========================================================================== */
+.timeline-track-rail {
+  position: absolute;
+  left: 23px;
+  top: 1rem;
+  bottom: 1.5rem;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.timeline-track-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #06B6D4, #A855F7, #EC4899);
+  transform-origin: top;
+  transform: scaleY(0);
+  will-change: transform;
+  border-radius: 2px;
+}
+
+.timeline-step-badge {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.timeline-step.is-active .timeline-step-badge {
+  transform: scale(1.14);
+  border-color: #22D3EE !important;
+  box-shadow: 0 0 24px rgba(6, 182, 212, 0.85), inset 0 0 10px rgba(6, 182, 212, 0.5) !important;
+}
+
+/* ==========================================================================
+   PERFORMANCE: PAUSE OFFSCREEN ANIMATIONS (optimize-web-animations)
+   ========================================================================== */
+.is-offscreen {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word-reveal {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .ambient-cursor-spotlight {
+    display: none !important;
+  }
+  .timeline-track-fill {
+    transform: scaleY(1) !important;
+  }
+}

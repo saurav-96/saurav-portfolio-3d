@@ -315,11 +315,24 @@
     window.addEventListener('scroll', updateScrollValue, { passive: true });
     updateScrollValue();
 
-    // Pause WebGL loop when page is hidden
+    // Pause WebGL loop when page is hidden or offscreen (optimize-web-animations)
     let isPageVisible = !document.hidden;
     document.addEventListener('visibilitychange', () => {
       isPageVisible = !document.hidden;
     });
+
+    let isCanvasInViewport = true;
+    if ('IntersectionObserver' in window) {
+      const canvasObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            isCanvasInViewport = entry.isIntersecting;
+          });
+        },
+        { threshold: 0 }
+      );
+      canvasObserver.observe(canvas);
+    }
 
     // Debounced Resize Handler
     let resizeTimer = null;
@@ -341,15 +354,26 @@
       return;
     }
 
-    const clock = new THREE.Clock();
     let smoothScroll = window.PortfolioThreeScene.scrollProgress || 0;
     let smoothVelocity = 0;
+    let lastTime = performance.now();
+    let accumulatedTime = 0;
 
     function animate() {
       requestAnimationFrame(animate);
-      if (!isPageVisible) return;
+      if (!isPageVisible || !isCanvasInViewport) {
+        lastTime = performance.now();
+        return;
+      }
 
-      const elapsed = clock.getElapsedTime();
+      const now = performance.now();
+      const rawDelta = (now - lastTime) / 1000;
+      lastTime = now;
+      // Clamp delta time to max 100ms to prevent leaps when switching back from backgrounded tabs
+      const delta = Math.min(Math.max(rawDelta, 0), 0.1);
+      accumulatedTime += delta;
+      const elapsed = accumulatedTime;
+
       const targetScroll = window.PortfolioThreeScene.scrollProgress || 0;
       smoothScroll += (targetScroll - smoothScroll) * 0.08;
 
@@ -430,9 +454,16 @@
       }
       particlesGeo.attributes.position.needsUpdate = true;
 
-      // Dynamic Camera Depth Flight on Scroll
-      camera.position.z = 11.5 - Math.sin(smoothScroll * Math.PI * 0.85) * 2.0 + Math.abs(vel) * 0.3;
-      camera.rotation.x = -vel * 0.06;
+      // Cinematic Section-by-Section Storytelling Camera Flight
+      const scrollFlightZ = 11.5 - Math.sin(smoothScroll * Math.PI) * 2.2 + Math.abs(vel) * 0.35;
+      const scrollFlightY = (smoothScroll - 0.5) * -1.2;
+      const scrollFlightX = Math.sin(smoothScroll * Math.PI * 2) * 0.5;
+
+      camera.position.z = scrollFlightZ;
+      camera.position.y = scrollFlightY - currentMouseY * 0.25;
+      camera.position.x = scrollFlightX + currentMouseX * 0.35;
+      camera.rotation.x = -vel * 0.05 + currentMouseY * -0.035;
+      camera.rotation.y = (smoothScroll - 0.5) * 0.14 + currentMouseX * -0.035;
 
       renderer.render(scene, camera);
     }

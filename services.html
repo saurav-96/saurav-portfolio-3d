@@ -435,12 +435,16 @@
                 A transparent, four-step workflow designed to keep your project aligned from initial discovery to final delivery.
               </p>
 
-              <!-- 4-Step Vertical Timeline -->
-              <div class="relative pl-4 space-y-6 before:content-[''] before:absolute before:left-[23px] before:top-4 before:bottom-4 before:w-[2px] before:bg-gradient-to-b before:from-cyan-400 before:via-purple-500 before:to-indigo-500">
+              <!-- 4-Step Vertical Timeline with Dynamic Scroll Progress -->
+              <div class="relative pl-4 space-y-6 timeline-container" id="working-process-timeline">
+                <div class="timeline-track-rail" aria-hidden="true">
+                  <div class="timeline-track-fill" id="timeline-progress-fill"></div>
+                </div>
+
 
                 <!-- Step 01 -->
-                <div class="relative flex items-start gap-4">
-                  <div class="w-9 h-9 rounded-full bg-[#0D0E17] border-2 border-cyan-400 text-cyan-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 z-10 shadow-[0_0_15px_rgba(6,182,212,0.4)]">
+                <div class="relative flex items-start gap-4 timeline-step" data-timeline-step="01">
+                  <div class="w-9 h-9 rounded-full bg-[#0D0E17] border-2 border-cyan-400 text-cyan-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 z-10 shadow-[0_0_15px_rgba(6,182,212,0.4)] timeline-step-badge">
                     01
                   </div>
                   <div class="pt-0.5">
@@ -452,8 +456,8 @@
                 </div>
 
                 <!-- Step 02 -->
-                <div class="relative flex items-start gap-4">
-                  <div class="w-9 h-9 rounded-full bg-[#0D0E17] border-2 border-purple-400 text-purple-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 z-10 shadow-[0_0_15px_rgba(168,85,247,0.4)]">
+                <div class="relative flex items-start gap-4 timeline-step" data-timeline-step="02">
+                  <div class="w-9 h-9 rounded-full bg-[#0D0E17] border-2 border-purple-400 text-purple-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 z-10 shadow-[0_0_15px_rgba(168,85,247,0.4)] timeline-step-badge">
                     02
                   </div>
                   <div class="pt-0.5">
@@ -465,8 +469,8 @@
                 </div>
 
                 <!-- Step 03 -->
-                <div class="relative flex items-start gap-4">
-                  <div class="w-9 h-9 rounded-full bg-[#0D0E17] border-2 border-indigo-400 text-indigo-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 z-10 shadow-[0_0_15px_rgba(99,102,241,0.4)]">
+                <div class="relative flex items-start gap-4 timeline-step" data-timeline-step="03">
+                  <div class="w-9 h-9 rounded-full bg-[#0D0E17] border-2 border-indigo-400 text-indigo-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 z-10 shadow-[0_0_15px_rgba(99,102,241,0.4)] timeline-step-badge">
                     03
                   </div>
                   <div class="pt-0.5">
@@ -478,8 +482,8 @@
                 </div>
 
                 <!-- Step 04 -->
-                <div class="relative flex items-start gap-4">
-                  <div class="w-9 h-9 rounded-full bg-[#0D0E17] border-2 border-emerald-400 text-emerald-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 z-10 shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+                <div class="relative flex items-start gap-4 timeline-step" data-timeline-step="04">
+                  <div class="w-9 h-9 rounded-full bg-[#0D0E17] border-2 border-emerald-400 text-emerald-300 font-mono text-xs font-bold flex items-center justify-center shrink-0 z-10 shadow-[0_0_15px_rgba(16,185,129,0.4)] timeline-step-badge">
                     04
                   </div>
                   <div class="pt-0.5">
@@ -490,8 +494,7 @@
                   </div>
                 </div>
 
-              </div>
-
+                            </div>
               <div class="mt-8 pt-6 border-t border-white/10 space-y-3">
                 <a href="contact.html" class="btn-primary w-full justify-center">
                   <span>Start Your Project</span>
