@@ -167,6 +167,25 @@
 
             <!-- SERVICE 01: WEB DEVELOPMENT -->
             <article id="web-development" class="glass-card p-6 sm:p-8" data-reveal-item data-tilt>
+              <!-- Visual Reference Banner -->
+              <div class="service-visual-banner">
+                <div class="w-full h-full p-4 flex flex-col justify-between bg-gradient-to-r from-purple-900/30 via-slate-900/40 to-cyan-950/30">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-1.5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                      <span class="font-mono text-[11px] text-slate-400 ml-2">app.tsx — React + Three.js + Tailwind</span>
+                    </div>
+                    <span class="font-mono text-[10px] text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded">60 FPS WebGL</span>
+                  </div>
+                  <div class="font-mono text-xs text-slate-300 flex items-center justify-between">
+                    <span class="text-purple-300">const <span class="text-cyan-300">scene</span> = new Three.Scene(); <span class="text-slate-500">// Responsive 3D Canvas</span></span>
+                    <span class="text-emerald-400">● 100% Mobile Ready</span>
+                  </div>
+                </div>
+              </div>
+
               <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 rounded-2xl bg-purple-500/15 border border-purple-500/40 flex items-center justify-center text-purple-300">
@@ -217,7 +236,10 @@
 
               <!-- Mandatory CTA after Service 01 -->
               <div class="pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                <span class="font-mono text-xs text-slate-400">Stack: HTML5 • CSS3 • Tailwind • JS • React • Three.js</span>
+                <button type="button" class="btn-secondary text-xs py-2 px-3.5" data-open-service="web-development">
+                  <span>Explore Details &amp; FAQs</span>
+                  <span aria-hidden="true">→</span>
+                </button>
                 <a href="contact.html?service=Web%20Development" class="btn-primary text-sm" data-magnetic>
                   <span>Inquire About Web Development</span>
                   <span aria-hidden="true">→</span>
@@ -227,6 +249,24 @@
 
             <!-- SERVICE 02: UI/UX DESIGN -->
             <article id="ui-ux-design" class="glass-card p-6 sm:p-8" data-reveal-item data-tilt>
+              <!-- Visual Reference Banner -->
+              <div class="service-visual-banner">
+                <div class="w-full h-full p-4 flex flex-col justify-between bg-gradient-to-r from-cyan-950/40 via-slate-900/40 to-pink-950/30">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-pink-500"></span>
+                      <span class="font-mono text-[11px] text-pink-300">Figma • Design System v2.4</span>
+                    </div>
+                    <span class="font-mono text-[10px] text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 px-2 py-0.5 rounded">Auto-Layout 5.0</span>
+                  </div>
+                  <div class="flex items-center gap-3 text-xs text-slate-300 font-mono">
+                    <span class="px-2 py-1 rounded bg-white/5 border border-white/10">❖ Button / Primary</span>
+                    <span class="px-2 py-1 rounded bg-white/5 border border-white/10">❖ Card / Glassmorphic</span>
+                    <span class="text-pink-300 hidden sm:inline">↗ Interactive Prototype</span>
+                  </div>
+                </div>
+              </div>
+
               <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/40 flex items-center justify-center text-cyan-300">
@@ -277,7 +317,10 @@
 
               <!-- Mandatory CTA after Service 02 -->
               <div class="pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                <span class="font-mono text-xs text-slate-400">Tools: Figma • FigJam • Prototyping • Component Systems</span>
+                <button type="button" class="btn-secondary text-xs py-2 px-3.5" data-open-service="ui-ux-design">
+                  <span>Explore Details &amp; FAQs</span>
+                  <span aria-hidden="true">→</span>
+                </button>
                 <a href="contact.html?service=UI/UX%20Design" class="btn-primary text-sm" data-magnetic>
                   <span>Inquire About UI/UX Design</span>
                   <span aria-hidden="true">→</span>
@@ -287,6 +330,23 @@
 
             <!-- SERVICE 03: AI AUTOMATION -->
             <article id="ai-automation" class="glass-card p-6 sm:p-8" data-reveal-item data-tilt>
+              <!-- Visual Reference Banner -->
+              <div class="service-visual-banner">
+                <div class="w-full h-full p-4 flex flex-col justify-between bg-gradient-to-r from-indigo-950/40 via-slate-900/40 to-cyan-950/30">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-indigo-400"></span>
+                      <span class="font-mono text-[11px] text-indigo-300">Python 3.11 • Automated Pipeline</span>
+                    </div>
+                    <span class="font-mono text-[10px] text-emerald-300 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded">REST API Sync</span>
+                  </div>
+                  <div class="font-mono text-xs text-slate-300 flex items-center justify-between">
+                    <span class="text-cyan-300">python -m run_pipeline --batch=active <span class="text-emerald-400">[200 OK]</span></span>
+                    <span class="text-purple-300 hidden sm:inline">Chrome MV3 Service Worker</span>
+                  </div>
+                </div>
+              </div>
+
               <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/40 flex items-center justify-center text-indigo-300">
@@ -333,7 +393,10 @@
 
               <!-- Mandatory CTA after Service 03 -->
               <div class="pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                <span class="font-mono text-xs text-slate-400">Stack: Python • JS • Chrome Extensions • REST APIs</span>
+                <button type="button" class="btn-secondary text-xs py-2 px-3.5" data-open-service="ai-automation">
+                  <span>Explore Details &amp; FAQs</span>
+                  <span aria-hidden="true">→</span>
+                </button>
                 <a href="contact.html?service=AI%20Automation" class="btn-primary text-sm" data-magnetic>
                   <span>Inquire About AI Automation</span>
                   <span aria-hidden="true">→</span>
@@ -343,6 +406,24 @@
 
             <!-- SERVICE 04: GRAPHIC DESIGN -->
             <article id="graphic-design" class="glass-card p-6 sm:p-8" data-reveal-item data-tilt>
+              <!-- Visual Reference Banner -->
+              <div class="service-visual-banner">
+                <div class="w-full h-full p-4 flex flex-col justify-between bg-gradient-to-r from-pink-950/40 via-purple-900/30 to-amber-950/30">
+                  <div class="flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-pink-400"></span>
+                      <span class="font-mono text-[11px] text-pink-300">Visual Suite • High-Converting CTR</span>
+                    </div>
+                    <span class="font-mono text-[10px] text-amber-300 bg-amber-950/60 border border-amber-500/30 px-2 py-0.5 rounded">High Contrast</span>
+                  </div>
+                  <div class="flex items-center gap-3 text-xs text-slate-300 font-mono">
+                    <span class="text-white font-semibold">▶ YouTube Thumbnails</span>
+                    <span class="text-purple-300">◆ Brand Logos</span>
+                    <span class="text-pink-300 hidden sm:inline">✦ Campaign Posters</span>
+                  </div>
+                </div>
+              </div>
+
               <div class="flex flex-wrap items-center justify-between gap-4 mb-5">
                 <div class="flex items-center gap-4">
                   <div class="w-12 h-12 rounded-2xl bg-pink-500/15 border border-pink-500/40 flex items-center justify-center text-pink-300">
@@ -389,7 +470,10 @@
 
               <!-- Mandatory CTA after Service 04 -->
               <div class="pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
-                <span class="font-mono text-xs text-slate-400">Tools: Figma • Canva • Visual Systems</span>
+                <button type="button" class="btn-secondary text-xs py-2 px-3.5" data-open-service="graphic-design">
+                  <span>Explore Details &amp; FAQs</span>
+                  <span aria-hidden="true">→</span>
+                </button>
                 <a href="contact.html?service=Graphic%20Design" class="btn-primary text-sm" data-magnetic>
                   <span>Inquire About Graphic Design</span>
                   <span aria-hidden="true">→</span>
@@ -511,6 +595,21 @@
       </section>
     </main>
 
+    <!-- Interactive Services Detail & FAQ Modal -->
+    <div id="service-detail-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="service-modal-title" data-lenis-prevent>
+      <div class="modal-panel p-6 sm:p-8 relative max-w-3xl" data-lenis-prevent>
+        <button
+          id="service-modal-close"
+          type="button"
+          class="sticky top-0 float-right z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-purple-500/30 border border-white/20 flex items-center justify-center text-white transition cursor-pointer"
+          aria-label="Close service details"
+        >
+          ✕
+        </button>
+        <div id="service-modal-body"></div>
+      </div>
+    </div>
+
     <!-- Shared Footer -->
     <footer class="site-footer py-10 px-4 sm:px-6 lg:px-8">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -534,9 +633,15 @@
           <li><a href="assets/documents/Saurav-Bhusal-CV.html" class="text-cyan-400 hover:underline">Resume / CV</a></li>
         </ul>
 
-        <div class="flex items-center gap-4 text-xs text-slate-400">
+        <div class="flex flex-wrap items-center gap-3.5 text-xs text-slate-400">
           <a href="https://github.com/saurav-96" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">GitHub</a>
-          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition">LinkedIn</a>
+          <a href="https://www.instagram.com/sauravbhusal_96/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 transition">Instagram</a>
+          <a href="https://www.facebook.com/saurav.bhusal.148" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">Facebook</a>
+          <a href="https://x.com/all_saurav" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">X</a>
+          <a href="https://wa.me/9779766271244" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">WhatsApp</a>
+          <a href="https://t.me/+9779766271244" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition">Telegram</a>
+          <span class="text-white/20">|</span>
           <a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition">Upwork</a>
           <a href="https://www.fiverr.com/sellers/saurav_bhusal" target="_blank" rel="noopener noreferrer" class="hover:text-[#1DBF73] transition">Fiverr</a>
           <a href="https://www.freelancer.com/u/sauravb369" target="_blank" rel="noopener noreferrer" class="hover:text-purple-300 transition">Freelancer</a>
@@ -560,5 +665,6 @@
   <script src="js/three-scene.js" defer></script>
   <script src="js/animations.js" defer></script>
   <script src="js/main.js" defer></script>
+  <script src="js/services-modal.js" defer></script>
 </body>
 </html>

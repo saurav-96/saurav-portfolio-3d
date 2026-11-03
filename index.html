@@ -249,7 +249,7 @@
            SECTION 2: FEATURED PROJECT SHOWCASE (CUSTOM SHOWCASE THUMBNAILS)
            =================================================================== -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14" data-reveal-group>
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10" data-reveal-item>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8" data-reveal-item>
           <div>
             <span class="eyebrow-badge mb-3">
               <span class="eyebrow-dot"></span>
@@ -259,13 +259,39 @@
               Featured <span class="text-gradient">Projects</span>
             </h2>
           </div>
-          <a href="projects.html" class="btn-secondary text-sm self-start sm:self-auto">
-            <span>View All 7 Projects</span>
-            <span aria-hidden="true">→</span>
-          </a>
+          <div class="flex items-center gap-3">
+            <div class="flex items-center gap-2">
+              <button
+                id="carousel-prev-btn"
+                type="button"
+                class="carousel-nav-btn"
+                aria-label="Previous project"
+                disabled
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                id="carousel-next-btn"
+                type="button"
+                class="carousel-nav-btn"
+                aria-label="Next project"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+            <a href="projects.html" class="btn-secondary text-sm">
+              <span>View All 7 Projects</span>
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
+        <div class="projects-carousel-container">
+          <div id="projects-carousel-track" class="projects-carousel-track" tabindex="0" aria-label="Featured Projects Carousel" role="region">
           <!-- Featured Card 1: SwasthyaSutra -->
           <article class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item data-tilt>
             <div>
@@ -409,8 +435,194 @@
               </div>
             </div>
           </article>
+
+          <!-- Project 04: YouTube Power-Tools (TubeKit) -->
+          <article class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item data-tilt>
+            <div>
+              <div class="project-thumb-wrap mb-5">
+                <img
+                  src="assets/projects/tubekit-thumb.png"
+                  alt="YouTube Power-Tools (TubeKit) Chrome Extension MV3 In-Player Suite"
+                  class="project-thumb"
+                  loading="lazy"
+                  width="640"
+                  height="480"
+                />
+              </div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="font-mono text-xs uppercase tracking-wider text-purple-300">04 • Browser Extension</span>
+                <span class="status-badge status-live">CS50x Final</span>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-white mb-2">YouTube Power-Tools</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                A browser extension project exploring useful YouTube productivity features, including playback speed stepping (0.10x–4.00x), lossless screenshot capture, and hotkeys.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-pill">Chrome MV3</span>
+                <span class="tech-pill">JavaScript (ES6+)</span>
+                <span class="tech-pill">HTML5 Canvas</span>
+                <span class="tech-pill">CS50x Project</span>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <button type="button" data-open-case="youtubepowertools" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
+                  Case Study + Details
+                </button>
+                <a
+                  href="https://github.com/saurav-96/TubeKit"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white hover:text-cyan-300 transition"
+                  aria-label="View TubeKit on GitHub"
+                >
+                  <span>GitHub Repo</span>
+                  <span class="circle-cta" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 05: Mindful You -->
+          <article class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item data-tilt>
+            <div>
+              <div class="project-thumb-wrap mb-5">
+                <img
+                  src="assets/projects/mindful-you.svg"
+                  alt="Mindful You Wellness Landing Page and Mobile UI/UX Concept"
+                  class="project-thumb"
+                  loading="lazy"
+                  width="640"
+                  height="480"
+                />
+              </div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="font-mono text-xs uppercase tracking-wider text-cyan-400">05 • UI/UX Concept</span>
+                <span class="status-badge status-concept">Design Prototype</span>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-white mb-2">Mindful You</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                A modern wellness landing page and mobile interface concept focused on clean layouts, intuitive user journeys, and conversion-oriented visual design.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-pill">Figma</span>
+                <span class="tech-pill">Wireframing</span>
+                <span class="tech-pill">Prototyping</span>
+                <span class="tech-pill">Mobile UI</span>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <button type="button" data-open-case="mindfulyou" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
+                  Case Study + Details
+                </button>
+                <button
+                  type="button"
+                  data-open-case="mindfulyou"
+                  class="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white hover:text-cyan-300 transition cursor-pointer"
+                >
+                  <span>Inspect Concept</span>
+                  <span class="circle-cta" aria-hidden="true">→</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 06: AI & Automation Experiments -->
+          <article class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item data-tilt>
+            <div>
+              <div class="project-thumb-wrap mb-5">
+                <img
+                  src="assets/projects/ai-automation-lab.svg"
+                  alt="AI and Python Automation Experiments Workflow"
+                  class="project-thumb"
+                  loading="lazy"
+                  width="640"
+                  height="480"
+                />
+              </div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="font-mono text-xs uppercase tracking-wider text-purple-300">06 • AI / Python</span>
+                <span class="status-badge status-lab">R&amp;D Sandbox</span>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-white mb-2">AI Automation Experiments</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                An evolving collection of experiments exploring Python automation, AI-assisted workflows, and practical integrations for developer productivity.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">AI Workflows</span>
+                <span class="tech-pill">CLI Scripts</span>
+                <span class="tech-pill">Automation</span>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <button type="button" data-open-case="aiautomation" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
+                  Case Study + Details
+                </button>
+                <button
+                  type="button"
+                  data-open-case="aiautomation"
+                  class="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white hover:text-cyan-300 transition cursor-pointer"
+                >
+                  <span>Explore Lab</span>
+                  <span class="circle-cta" aria-hidden="true">→</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 07: Creative Design & Visual Suite -->
+          <article class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item data-tilt>
+            <div>
+              <div class="project-thumb-wrap mb-5">
+                <img
+                  src="assets/projects/creative-design-suite.svg"
+                  alt="Creative Design and Visual Communication Suite"
+                  class="project-thumb"
+                  loading="lazy"
+                  width="640"
+                  height="480"
+                />
+              </div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="font-mono text-xs uppercase tracking-wider text-pink-400">07 • Graphic Design</span>
+                <span class="status-badge status-concept">Visual Suite</span>
+              </div>
+              <h3 class="font-heading text-xl font-bold text-white mb-2">Creative Design Suite</h3>
+              <p class="text-sm text-slate-300 leading-relaxed mb-4">
+                A curated showcase of visual design work across brand identities, high-converting YouTube thumbnails, promotional posters, and visual communication.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex flex-wrap gap-1.5 mb-4">
+                <span class="tech-pill">Canva</span>
+                <span class="tech-pill">Figma</span>
+                <span class="tech-pill">Brand Identity</span>
+                <span class="tech-pill">Thumbnails</span>
+              </div>
+              <div class="flex items-center justify-between gap-3">
+                <button type="button" data-open-case="creativedesign" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
+                  Case Study + Details
+                </button>
+                <a
+                  href="projects.html"
+                  class="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white hover:text-cyan-300 transition"
+                >
+                  <span>Full Gallery</span>
+                  <span class="circle-cta" aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
       <!-- ===================================================================
            SECTION 3: MY POTENTIAL / CREATIVE PHILOSOPHY (4-COLUMN BENTO)
@@ -616,8 +828,8 @@
     </main>
 
     <!-- Case Study Detail Modal (Shared Interactive Component) -->
-    <div id="case-study-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-project-title">
-      <div class="modal-panel relative">
+    <div id="case-study-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-project-title" data-lenis-prevent>
+      <div class="modal-panel relative" data-lenis-prevent>
         <button
           id="case-study-modal-close"
           type="button"
@@ -653,9 +865,15 @@
           <li><a href="assets/documents/Saurav-Bhusal-CV.html" class="text-cyan-400 hover:underline">Resume / CV</a></li>
         </ul>
 
-        <div class="flex items-center gap-4 text-xs text-slate-400">
+        <div class="flex flex-wrap items-center gap-3.5 text-xs text-slate-400">
           <a href="https://github.com/saurav-96" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-white transition">GitHub</a>
-          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-white transition">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-cyan-300 transition">LinkedIn</a>
+          <a href="https://www.instagram.com/sauravbhusal_96/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-pink-400 transition">Instagram</a>
+          <a href="https://www.facebook.com/saurav.bhusal.148" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-blue-400 transition">Facebook</a>
+          <a href="https://x.com/all_saurav" target="_blank" rel="noopener noreferrer" aria-label="X Twitter" class="hover:text-white transition">X</a>
+          <a href="https://wa.me/9779766271244" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="hover:text-emerald-400 transition">WhatsApp</a>
+          <a href="https://t.me/+9779766271244" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="hover:text-sky-400 transition">Telegram</a>
+          <span class="text-white/20">|</span>
           <a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener noreferrer" aria-label="Upwork" class="hover:text-cyan-300 transition">Upwork</a>
           <a href="https://www.fiverr.com/sellers/saurav_bhusal" target="_blank" rel="noopener noreferrer" aria-label="Fiverr" class="hover:text-[#1DBF73] transition">Fiverr</a>
           <a href="https://www.freelancer.com/u/sauravb369" target="_blank" rel="noopener noreferrer" aria-label="Freelancer" class="hover:text-purple-300 transition">Freelancer</a>

@@ -981,3 +981,344 @@ p {
   backdrop-filter: blur(18px);
   margin-top: auto;
 }
+
+/* ==========================================================================
+   FEATURED PROJECTS CAROUSEL (HOME SECTION)
+   ========================================================================== */
+.projects-carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.projects-carousel-track {
+  display: flex;
+  gap: 1.75rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.75rem 0.25rem 1.75rem 0.25rem;
+}
+
+.projects-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+.projects-carousel-track > .project-card {
+  flex: 0 0 100%;
+  max-width: 100%;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 640px) {
+  .projects-carousel-track > .project-card {
+    flex: 0 0 calc(50% - 0.9rem);
+    max-width: calc(50% - 0.9rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-carousel-track > .project-card {
+    flex: 0 0 calc(33.333% - 1.2rem);
+    max-width: calc(33.333% - 1.2rem);
+  }
+}
+
+.carousel-nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(12, 13, 23, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+}
+
+.carousel-nav-btn:hover:not(:disabled) {
+  background: rgba(168, 85, 247, 0.22);
+  border-color: var(--accent-cyan);
+  color: #22D3EE;
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(6, 182, 212, 0.45);
+}
+
+.carousel-nav-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.carousel-nav-btn:disabled,
+.carousel-nav-btn[aria-disabled="true"] {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   MODAL SCROLL LOCK & TOUCH RETENTION
+   ========================================================================== */
+html.modal-open,
+body.modal-open {
+  overflow: hidden !important;
+  touch-action: none !important;
+}
+
+.modal-backdrop {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-panel {
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Custom Modal Scrollbar */
+.modal-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-panel::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+}
+
+.modal-panel::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.35);
+  border-radius: 4px;
+}
+
+.modal-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.55);
+}
+
+/* ==========================================================================
+   ABOUT PHOTO CARD ENHANCED HARMONY
+   ========================================================================== */
+.about-portrait-stage {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 28%, rgba(124, 58, 237, 0.22) 0%, rgba(6, 182, 212, 0.12) 42%, rgba(12, 13, 23, 0.95) 100%);
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.65), 0 0 35px rgba(124, 58, 237, 0.18);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 420px;
+}
+
+.about-portrait-stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 15%, rgba(34, 211, 238, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.about-portrait-img {
+  width: auto;
+  max-width: 90%;
+  max-height: 380px;
+  object-fit: contain;
+  object-position: bottom center;
+  z-index: 2;
+  filter: drop-shadow(0 12px 25px rgba(0, 0, 0, 0.75));
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover .about-portrait-img {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* ==========================================================================
+   INTERACTIVE SKILL BADGES & CARDS
+   ========================================================================== */
+.skill-card-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: left;
+  user-select: none;
+}
+
+.skill-card-btn:hover {
+  background: rgba(168, 85, 247, 0.10);
+  border-color: rgba(34, 211, 238, 0.5);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 15px rgba(6, 182, 212, 0.25);
+}
+
+.skill-card-btn:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.skill-card-btn:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   SERVICES ENHANCED VISUALS & FAQ ACCORDIONS
+   ========================================================================== */
+.service-visual-banner {
+  width: 100%;
+  height: 140px;
+  border-radius: 0.9rem;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 1.25rem;
+  background: rgba(12, 13, 23, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-visual-banner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(12, 13, 23, 0.85) 100%);
+  pointer-events: none;
+}
+
+.faq-accordion-item {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.02);
+  margin-bottom: 0.65rem;
+  overflow: hidden;
+  transition: border-color 0.22s ease, background 0.22s ease;
+}
+
+.faq-accordion-item:hover {
+  border-color: rgba(168, 85, 247, 0.35);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.faq-accordion-item.active {
+  border-color: rgba(34, 211, 238, 0.45);
+  background: rgba(6, 182, 212, 0.04);
+}
+
+.faq-trigger {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #F8FAFC;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.faq-trigger:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: -2px;
+}
+
+.faq-chevron {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.22s ease;
+  color: #94A3B8;
+  flex-shrink: 0;
+}
+
+.faq-accordion-item.active .faq-chevron {
+  transform: rotate(180deg);
+  color: #22D3EE;
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  opacity: 0;
+  padding: 0 1.25rem;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #CBD5E1;
+}
+
+.faq-accordion-item.active .faq-content {
+  max-height: 250px;
+  opacity: 1;
+  padding-bottom: 1.15rem;
+}
+
+/* ==========================================================================
+   CONTACT VS HIRE ME DISTINCT EXPERIENCES
+   ========================================================================== */
+.contact-mode-toggle {
+  display: inline-flex;
+  padding: 0.35rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  gap: 0.25rem;
+}
+
+.contact-mode-tab {
+  padding: 0.55rem 1.35rem;
+  border-radius: 9999px;
+  font-family: var(--font-heading);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #94A3B8;
+  transition: all 0.22s ease;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
+.contact-mode-tab:hover {
+  color: #F8FAFC;
+}
+
+.contact-mode-tab.active {
+  background: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
+  color: #FFFFFF;
+  box-shadow: 0 2px 14px rgba(124, 58, 237, 0.45);
+}
+
+.social-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #E2E8F0;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-icon-btn:hover {
+  background: rgba(168, 85, 247, 0.15);
+  border-color: var(--accent-cyan);
+  color: #22D3EE;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(6, 182, 212, 0.3);
+}

@@ -417,7 +417,12 @@
       modalContent.innerHTML = renderCaseStudyHTML(data);
       modalBackdrop.classList.add('open');
       modalBackdrop.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      if (typeof window.lockModalScroll === 'function') {
+        window.lockModalScroll();
+      } else {
+        document.documentElement.classList.add('modal-open');
+        document.body.classList.add('modal-open');
+      }
 
       if (modalCloseBtn) {
         modalCloseBtn.focus();
@@ -449,10 +454,84 @@
       if (!modalBackdrop) return;
       modalBackdrop.classList.remove('open');
       modalBackdrop.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      if (typeof window.unlockModalScroll === 'function') {
+        window.unlockModalScroll();
+      } else {
+        document.documentElement.classList.remove('modal-open');
+        document.body.classList.remove('modal-open');
+      }
       if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === 'function') {
         lastFocusedTrigger.focus();
       }
+    }
+
+    // -------------------------------------------------------------------------
+    // Featured Projects Carousel Controller (Home Page)
+    // -------------------------------------------------------------------------
+    const carouselTrack = document.getElementById('projects-carousel-track');
+    const carouselPrevBtn = document.getElementById('carousel-prev-btn');
+    const carouselNextBtn = document.getElementById('carousel-next-btn');
+
+    if (carouselTrack && (carouselPrevBtn || carouselNextBtn)) {
+      function getScrollStep() {
+        const firstCard = carouselTrack.querySelector('.project-card');
+        if (firstCard) {
+          const cardWidth = firstCard.getBoundingClientRect().width;
+          const style = window.getComputedStyle(carouselTrack);
+          const gap = parseFloat(style.gap) || 28;
+          return cardWidth + gap;
+        }
+        return 380;
+      }
+
+      function updateCarouselControls() {
+        const scrollLeft = carouselTrack.scrollLeft;
+        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+
+        if (carouselPrevBtn) {
+          const isAtStart = scrollLeft <= 8;
+          carouselPrevBtn.disabled = isAtStart;
+          carouselPrevBtn.setAttribute('aria-disabled', isAtStart ? 'true' : 'false');
+        }
+
+        if (carouselNextBtn) {
+          const isAtEnd = scrollLeft >= maxScroll - 8;
+          carouselNextBtn.disabled = isAtEnd;
+          carouselNextBtn.setAttribute('aria-disabled', isAtEnd ? 'true' : 'false');
+        }
+      }
+
+      if (carouselNextBtn) {
+        carouselNextBtn.addEventListener('click', () => {
+          const step = getScrollStep();
+          carouselTrack.scrollBy({ left: step, behavior: 'smooth' });
+        });
+      }
+
+      if (carouselPrevBtn) {
+        carouselPrevBtn.addEventListener('click', () => {
+          const step = getScrollStep();
+          carouselTrack.scrollBy({ left: -step, behavior: 'smooth' });
+        });
+      }
+
+      let carouselTicking = false;
+      carouselTrack.addEventListener(
+        'scroll',
+        () => {
+          if (!carouselTicking) {
+            requestAnimationFrame(() => {
+              updateCarouselControls();
+              carouselTicking = false;
+            });
+            carouselTicking = true;
+          }
+        },
+        { passive: true }
+      );
+
+      window.addEventListener('resize', updateCarouselControls, { passive: true });
+      setTimeout(updateCarouselControls, 100);
     }
 
     document.querySelectorAll('[data-open-case]').forEach((btn) => {

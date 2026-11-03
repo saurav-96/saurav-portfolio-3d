@@ -115,191 +115,441 @@
 
     <main id="main-content" class="pt-28 sm:pt-32 pb-20">
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        <!-- Distinct Mode Toggle: Hire Me (Fast-Track) vs General Contact -->
+        <div class="flex flex-col items-center text-center mb-10" data-hero-reveal>
+          <div class="contact-mode-toggle mb-3" role="tablist" aria-label="Contact or Hire mode selection">
+            <button
+              type="button"
+              id="tab-hire"
+              class="contact-mode-tab active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="view-hire"
+            >
+              🚀 Hire Me (Fast-Track Projects)
+            </button>
+            <button
+              type="button"
+              id="tab-contact"
+              class="contact-mode-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="view-contact"
+            >
+              💬 General Contact &amp; Inquiries
+            </button>
+          </div>
+          <p class="text-xs text-slate-400 font-mono">
+            Switch between fast-track project inquiry channels and general message communication
+          </p>
+        </div>
 
-          <!-- Left Column (5 Cols): Freelance Profiles & Professional Links -->
-          <div class="lg:col-span-5 space-y-6">
-            <div data-hero-reveal>
-              <span class="eyebrow-badge">
-                <span class="eyebrow-dot"></span>
-                <span>GET IN TOUCH</span>
-              </span>
-            </div>
-
-            <h1 data-hero-reveal class="font-heading text-4xl sm:text-5xl font-bold text-white leading-[1.12]">
-              Let's Work <span class="text-gradient">Together</span>
+        <!-- ===================================================================
+             EXPERIENCE 1: HIRE ME (FAST-TRACK PROJECT INQUIRY PORTAL)
+             =================================================================== -->
+        <div id="view-hire" class="space-y-10" role="tabpanel" aria-labelledby="tab-hire">
+          <div class="text-center max-w-3xl mx-auto space-y-4" data-hero-reveal>
+            <span class="eyebrow-badge">
+              <span class="eyebrow-dot"></span>
+              <span>FAST-TRACK COLLABORATION</span>
+            </span>
+            <h1 class="font-heading text-4xl sm:text-5xl font-bold text-white leading-tight">
+              Ready to Build Something <span class="text-gradient">Extraordinary?</span>
             </h1>
-
-            <p data-hero-reveal class="text-slate-300 text-base sm:text-lg leading-relaxed">
-              Have a project in mind? I'm just a message away. Connect with me directly through verified freelance marketplaces or send a structured project brief using the form.
+            <p class="text-slate-300 text-base sm:text-lg leading-relaxed">
+              Prioritize the fastest, most direct channels to hire me for frontend engineering, interactive 3D web design, or UI/UX prototyping. Available for remote worldwide contracts.
             </p>
+          </div>
 
-            <!-- Verified Creator Identity Card -->
-            <div data-hero-reveal class="glass-card p-4 sm:p-5 flex items-center gap-4" data-tilt>
-              <div class="relative w-20 h-20 rounded-2xl overflow-hidden bg-gradient-to-br from-cyan-500/25 to-purple-600/30 border border-cyan-400/40 shrink-0">
-                <img
-                  src="assets/images/saurav-cutout.png"
-                  alt="Saurav Bhusal"
-                  class="w-full h-full object-cover object-top"
-                  width="80"
-                  height="80"
-                  loading="eager"
-                />
-              </div>
+          <!-- Instant Direct Communication Channels Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-reveal-group>
+            <!-- WhatsApp Direct Card -->
+            <a
+              href="https://wa.me/9779766271244?text=Hi%20Saurav,%20I%20have%20a%20project%20inquiry%20and%20would%20love%20to%20discuss%20it."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glass-card p-6 flex flex-col justify-between group block border-emerald-500/30 hover:border-emerald-400 transition"
+              data-reveal-item
+              data-tilt
+            >
               <div>
-                <div class="font-heading text-base font-bold text-white flex items-center gap-2">
-                  <span>Saurav Bhusal</span>
-                  <span class="status-badge status-live text-[10px] py-0.5 px-2">Remote Ready</span>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-2xl font-bold">
+                    💬
+                  </div>
+                  <span class="status-badge status-live">Instant Chat</span>
                 </div>
-                <div class="text-xs text-cyan-300 font-mono mt-0.5">Creative Technologist • Nepal &amp; Worldwide</div>
-                <div class="text-[11px] text-slate-400 mt-1">Direct Communication • Rapid Turnaround • Authentic Craft</div>
+                <h3 class="font-heading text-xl font-bold text-white group-hover:text-emerald-300 transition mb-1">
+                  WhatsApp Direct
+                </h3>
+                <p class="text-xs font-mono text-emerald-400 mb-2">+977 9766271244</p>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                  Fastest way to get in touch. One-click message to discuss your timeline, idea, or emergency deliverables.
+                </p>
               </div>
-            </div>
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-emerald-300">
+                <span>Start WhatsApp Chat</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </a>
 
-            <!-- Verified Freelance Marketplace Profiles -->
-            <div data-hero-reveal class="space-y-3.5 pt-2">
-              <h2 class="font-mono text-xs uppercase tracking-widest text-purple-300">
-                Verified Freelance Marketplaces
-              </h2>
-
-              <!-- Upwork Card -->
-              <a
-                href="https://www.upwork.com/freelancers/~010a6e73c111779a15"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="glass-card p-4 sm:p-5 flex items-center justify-between gap-4 group block"
-                data-tilt
-              >
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/40 flex items-center justify-center text-emerald-400 font-heading font-bold text-lg shrink-0">
+            <!-- Upwork Escrow Card -->
+            <a
+              href="https://www.upwork.com/freelancers/~010a6e73c111779a15"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glass-card p-6 flex flex-col justify-between group block border-cyan-500/30 hover:border-cyan-400 transition"
+              data-reveal-item
+              data-tilt
+            >
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300 font-heading font-bold text-xl">
                     Up
                   </div>
-                  <div>
-                    <div class="font-heading text-lg font-bold text-white group-hover:text-emerald-300 transition">Upwork</div>
-                    <div class="text-xs text-slate-400">Direct contracts, escrow protection &amp; milestones</div>
-                  </div>
+                  <span class="status-badge status-live">Milestone Escrow</span>
                 </div>
-                <span class="btn-secondary text-xs py-2 px-4 shrink-0">
-                  <span>Hire Me</span>
-                  <span aria-hidden="true">→</span>
-                </span>
-              </a>
+                <h3 class="font-heading text-xl font-bold text-white group-hover:text-cyan-300 transition mb-1">
+                  Upwork Profile
+                </h3>
+                <p class="text-xs font-mono text-cyan-300 mb-2">Verified Freelancer</p>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                  Direct contracts with 100% milestone protection, escrow security, tracked hours, and formal invoices.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-cyan-300">
+                <span>Hire on Upwork</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </a>
 
-              <!-- Fiverr Card -->
-              <a
-                href="https://www.fiverr.com/sellers/saurav_bhusal"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="glass-card p-4 sm:p-5 flex items-center justify-between gap-4 group block"
-                data-tilt
-              >
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 rounded-2xl bg-[#1DBF73]/15 border border-[#1DBF73]/40 flex items-center justify-center text-[#1DBF73] font-heading font-bold text-lg shrink-0">
+            <!-- Direct Email Inquiry Card -->
+            <a
+              href="mailto:sauravbhusal369@gmail.com?subject=Project%20Inquiry%20for%20Saurav%20Bhusal"
+              class="glass-card p-6 flex flex-col justify-between group block border-purple-500/30 hover:border-purple-400 transition"
+              data-reveal-item
+              data-tilt
+            >
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300 text-2xl">
+                    ✉️
+                  </div>
+                  <span class="status-badge status-concept">&lt; 24h Reply</span>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-white group-hover:text-purple-300 transition mb-1">
+                  Email Dispatch
+                </h3>
+                <p class="text-xs font-mono text-purple-300 mb-2">sauravbhusal369@gmail.com</p>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                  Send project briefs, RFP specifications, Figma file links, or architectural proposals directly to my inbox.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-purple-300">
+                <span>Send Direct Email</span>
+                <span aria-hidden="true">→</span>
+              </div>
+            </a>
+
+            <!-- Fiverr Gig Packages -->
+            <a
+              href="https://www.fiverr.com/sellers/saurav_bhusal"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glass-card p-6 flex flex-col justify-between group block border-[#1DBF73]/30 hover:border-[#1DBF73] transition"
+              data-reveal-item
+              data-tilt
+            >
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-[#1DBF73]/20 border border-[#1DBF73]/40 flex items-center justify-center text-[#1DBF73] font-heading font-bold text-xl">
                     fi
                   </div>
-                  <div>
-                    <div class="font-heading text-lg font-bold text-white group-hover:text-[#1DBF73] transition">Fiverr</div>
-                    <div class="text-xs text-slate-400">@saurav_bhusal • Tailored Gig Packages &amp; Fast Delivery</div>
-                  </div>
+                  <span class="status-badge status-live">Gig Packages</span>
                 </div>
-                <span class="btn-secondary text-xs py-2 px-4 shrink-0">
-                  <span>Hire Me</span>
-                  <span aria-hidden="true">→</span>
-                </span>
-              </a>
+                <h3 class="font-heading text-xl font-bold text-white group-hover:text-[#1DBF73] transition mb-1">
+                  Fiverr Seller Profile
+                </h3>
+                <p class="text-xs font-mono text-[#1DBF73] mb-2">@saurav_bhusal</p>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                  Tailored fixed-price packages for frontend landing pages, bug fixes, UI/UX audits, and custom scripts.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-[#1DBF73]">
+                <span>Order via Fiverr</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </a>
 
-              <!-- Freelancer.com Card -->
-              <a
-                href="https://www.freelancer.com/u/sauravb369"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="glass-card p-4 sm:p-5 flex items-center justify-between gap-4 group block"
-                data-tilt
-              >
-                <div class="flex items-center gap-4">
-                  <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/40 flex items-center justify-center text-cyan-300 font-heading font-bold text-lg shrink-0">
+            <!-- Freelancer.com Profile -->
+            <a
+              href="https://www.freelancer.com/u/sauravb369"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glass-card p-6 flex flex-col justify-between group block border-sky-500/30 hover:border-sky-400 transition"
+              data-reveal-item
+              data-tilt
+            >
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-sky-500/20 border border-sky-500/40 flex items-center justify-center text-sky-300 font-heading font-bold text-xl">
                     FL
                   </div>
-                  <div>
-                    <div class="font-heading text-lg font-bold text-white group-hover:text-cyan-300 transition">Freelancer.com</div>
-                    <div class="text-xs text-slate-400">@sauravb369 • Verified Freelancer Profile</div>
-                  </div>
+                  <span class="status-badge status-live">Global Escrow</span>
                 </div>
-                <span class="btn-secondary text-xs py-2 px-4 shrink-0">
-                  <span>Hire Me</span>
-                  <span aria-hidden="true">→</span>
-                </span>
-              </a>
+                <h3 class="font-heading text-xl font-bold text-white group-hover:text-sky-300 transition mb-1">
+                  Freelancer.com
+                </h3>
+                <p class="text-xs font-mono text-sky-300 mb-2">@sauravb369</p>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                  Direct project awards with milestone-based payment release and verified international identity.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-sky-300">
+                <span>View Freelancer Profile</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </a>
+
+            <!-- Telegram Instant Chat -->
+            <a
+              href="https://t.me/+9779766271244"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="glass-card p-6 flex flex-col justify-between group block border-blue-500/30 hover:border-blue-400 transition"
+              data-reveal-item
+              data-tilt
+            >
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-2xl bg-blue-500/20 border border-blue-500/40 flex items-center justify-center text-blue-300 text-2xl">
+                    ✈️
+                  </div>
+                  <span class="status-badge status-live">Fast Ping</span>
+                </div>
+                <h3 class="font-heading text-xl font-bold text-white group-hover:text-blue-300 transition mb-1">
+                  Telegram Direct
+                </h3>
+                <p class="text-xs font-mono text-blue-300 mb-2">@saurav_bhusal • 9766271244</p>
+                <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                  Encrypted, rapid messaging for quick technical questions, asset transfers, or live design feedback.
+                </p>
+              </div>
+              <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-semibold text-blue-300">
+                <span>Open in Telegram</span>
+                <span aria-hidden="true">↗</span>
+              </div>
+            </a>
+          </div>
+
+          <!-- Concise 4-Step Hiring Process -->
+          <div class="glass-card p-6 sm:p-8" data-reveal-item>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+              <div>
+                <span class="font-mono text-xs uppercase tracking-wider text-cyan-300">COLLABORATION WORKFLOW</span>
+                <h2 class="font-heading text-2xl sm:text-3xl font-bold text-white mt-1">
+                  How We Work Together
+                </h2>
+              </div>
+              <span class="status-badge status-live">Clear Milestones • 0 Surprises</span>
             </div>
 
-            <!-- Professional Profiles & Links -->
-            <div data-hero-reveal class="glass-card p-5 space-y-4">
-              <h2 class="font-mono text-xs uppercase tracking-widest text-cyan-300">
-                Professional Links &amp; Profiles
-              </h2>
-
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <a
-                  href="https://github.com/saurav-96"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="p-3.5 rounded-xl bg-white/[0.03] hover:bg-purple-500/15 border border-white/10 hover:border-purple-500/40 flex items-center gap-3 transition"
-                >
-                  <i data-lucide="github" class="w-5 h-5 text-white shrink-0"></i>
-                  <div>
-                    <div class="font-heading text-xs font-bold text-white">GitHub</div>
-                    <div class="font-mono text-[10px] text-slate-400">@saurav-96</div>
-                  </div>
-                </a>
-
-                <a
-                  href="https://www.linkedin.com/in/saurav-b-502352415/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="p-3.5 rounded-xl bg-white/[0.03] hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-500/40 flex items-center gap-3 transition"
-                >
-                  <i data-lucide="linkedin" class="w-5 h-5 text-sky-400 shrink-0"></i>
-                  <div>
-                    <div class="font-heading text-xs font-bold text-white">LinkedIn</div>
-                    <div class="font-mono text-[10px] text-slate-400">Connect ↗</div>
-                  </div>
-                </a>
-
-                <a
-                  href="https://sauravbhusal.free.nf/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="p-3.5 rounded-xl bg-white/[0.03] hover:bg-indigo-500/15 border border-white/10 hover:border-indigo-500/40 flex items-center gap-3 transition overflow-hidden"
-                >
-                  <i data-lucide="globe" class="w-5 h-5 text-purple-300 shrink-0"></i>
-                  <div class="min-w-0">
-                    <div class="font-heading text-xs font-bold text-white">Portfolio</div>
-                    <div class="font-mono text-[10px] text-slate-400 truncate">Live Domain ↗</div>
-                  </div>
-                </a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div class="p-4 rounded-xl bg-white/[0.025] border border-white/10">
+                <span class="font-mono text-xs text-cyan-400 font-bold">01 / DISCOVERY</span>
+                <h3 class="font-heading text-base font-bold text-white mt-1">Brief &amp; Goals</h3>
+                <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  We align on project objectives, deliverables, timeline, and design aesthetic within 24 hours.
+                </p>
               </div>
-
-              <div class="pt-3 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-300">
-                <span class="inline-flex items-center gap-2">
-                  <i data-lucide="map-pin" class="w-4 h-4 text-cyan-400"></i>
-                  <span>Kapilvastu &amp; Butwal, Nepal (Remote Worldwide)</span>
-                </span>
-                <span class="font-mono text-[11px] text-emerald-300">● Typical reply: &lt; 24h</span>
+              <div class="p-4 rounded-xl bg-white/[0.025] border border-white/10">
+                <span class="font-mono text-xs text-purple-300 font-bold">02 / SCOPE</span>
+                <h3 class="font-heading text-base font-bold text-white mt-1">Milestones &amp; Quote</h3>
+                <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Clear scope breakdown, transparent fixed-price or hourly quote, and escrow milestone creation.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-white/[0.025] border border-white/10">
+                <span class="font-mono text-xs text-indigo-300 font-bold">03 / SPRINT</span>
+                <h3 class="font-heading text-base font-bold text-white mt-1">Build &amp; Live Review</h3>
+                <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Iterative engineering with interactive preview links, regular progress pings, and revisions.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-white/[0.025] border border-white/10">
+                <span class="font-mono text-xs text-emerald-400 font-bold">04 / LAUNCH</span>
+                <h3 class="font-heading text-base font-bold text-white mt-1">QA &amp; Handover</h3>
+                <p class="text-xs text-slate-300 mt-1.5 leading-relaxed">
+                  Rigorous cross-device testing, 0 errors, clean code repository handover, and post-launch support.
+                </p>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Right Column (7 Cols): Interactive Contact Form -->
-          <div class="lg:col-span-7" data-hero-reveal>
-            <div class="glass-card p-6 sm:p-9">
-              <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
-                <div>
-                  <h2 class="font-heading text-2xl font-bold text-white">Send a Project Inquiry</h2>
-                  <p class="text-xs sm:text-sm text-slate-300 mt-1">
-                    Fill out the details below. All fields are validated for clarity.
-                  </p>
+        <!-- ===================================================================
+             EXPERIENCE 2: GENERAL CONTACT & SOCIAL CONNECT HUB
+             =================================================================== -->
+        <div id="view-contact" class="hidden" role="tabpanel" aria-labelledby="tab-contact">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+            <!-- Left Column: Social Media Connect Hub & Creator Identity -->
+            <div class="lg:col-span-5 space-y-6">
+              <div>
+                <span class="eyebrow-badge">
+                  <span class="eyebrow-dot"></span>
+                  <span>GENERAL INQUIRIES</span>
+                </span>
+                <h1 class="font-heading text-4xl sm:text-5xl font-bold text-white leading-tight mt-3">
+                  Let's Start a <span class="text-gradient">Conversation</span>
+                </h1>
+                <p class="text-slate-300 text-base leading-relaxed mt-3">
+                  Have a question about my work, want to discuss design trends, share feedback, or just say hello? Connect across social platforms or send a direct inquiry.
+                </p>
+              </div>
+
+              <!-- Creator Card -->
+              <div class="glass-card p-4 sm:p-5 flex items-center gap-4" data-tilt>
+                <div class="relative w-16 h-16 rounded-2xl overflow-hidden bg-gradient-to-br from-cyan-500/25 to-purple-600/30 border border-cyan-400/40 shrink-0">
+                  <img
+                    src="assets/images/saurav-cutout.png"
+                    alt="Saurav Bhusal"
+                    class="w-full h-full object-cover object-top"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                  />
                 </div>
-                <span class="tech-pill text-purple-300 border-purple-500/30">Direct Brief</span>
+                <div>
+                  <div class="font-heading text-base font-bold text-white flex items-center gap-2">
+                    <span>Saurav Bhusal</span>
+                    <span class="status-badge status-live text-[10px] py-0.5 px-2">Online</span>
+                  </div>
+                  <div class="text-xs text-cyan-300 font-mono mt-0.5">Kapilvastu &amp; Butwal, Nepal</div>
+                  <div class="text-[11px] text-slate-400 mt-1">CS Student • Creative Developer • UI/UX Designer</div>
+                </div>
+              </div>
+
+              <!-- Social Media Hub -->
+              <div class="glass-card p-5 space-y-4">
+                <div class="flex items-center justify-between">
+                  <h2 class="font-mono text-xs uppercase tracking-widest text-purple-300">
+                    Social Media Profiles
+                  </h2>
+                  <span class="text-[11px] font-mono text-slate-400">Direct Links</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <!-- Instagram -->
+                  <a
+                    href="https://www.instagram.com/sauravbhusal_96/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 rounded-xl bg-white/[0.03] hover:bg-pink-500/15 border border-white/10 hover:border-pink-500/40 flex items-center gap-3 transition group"
+                  >
+                    <div class="w-8 h-8 rounded-lg bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-sm">
+                      IG
+                    </div>
+                    <div>
+                      <div class="font-heading text-xs font-bold text-white group-hover:text-pink-300 transition">Instagram</div>
+                      <div class="font-mono text-[10px] text-slate-400">@sauravbhusal_96</div>
+                    </div>
+                  </a>
+
+                  <!-- Facebook -->
+                  <a
+                    href="https://www.facebook.com/saurav.bhusal.148"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 rounded-xl bg-white/[0.03] hover:bg-blue-500/15 border border-white/10 hover:border-blue-500/40 flex items-center gap-3 transition group"
+                  >
+                    <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm">
+                      FB
+                    </div>
+                    <div>
+                      <div class="font-heading text-xs font-bold text-white group-hover:text-blue-300 transition">Facebook</div>
+                      <div class="font-mono text-[10px] text-slate-400">@saurav.bhusal.148</div>
+                    </div>
+                  </a>
+
+                  <!-- X (Twitter) -->
+                  <a
+                    href="https://x.com/all_saurav"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 rounded-xl bg-white/[0.03] hover:bg-slate-700/30 border border-white/10 hover:border-white/30 flex items-center gap-3 transition group"
+                  >
+                    <div class="w-8 h-8 rounded-lg bg-white/10 text-white flex items-center justify-center font-bold text-sm">
+                      𝕏
+                    </div>
+                    <div>
+                      <div class="font-heading text-xs font-bold text-white group-hover:text-cyan-300 transition">X (Twitter)</div>
+                      <div class="font-mono text-[10px] text-slate-400">@all_saurav</div>
+                    </div>
+                  </a>
+
+                  <!-- WhatsApp -->
+                  <a
+                    href="https://wa.me/9779766271244"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 rounded-xl bg-white/[0.03] hover:bg-emerald-500/15 border border-white/10 hover:border-emerald-500/40 flex items-center gap-3 transition group"
+                  >
+                    <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">
+                      WA
+                    </div>
+                    <div>
+                      <div class="font-heading text-xs font-bold text-white group-hover:text-emerald-300 transition">WhatsApp</div>
+                      <div class="font-mono text-[10px] text-slate-400">9766271244</div>
+                    </div>
+                  </a>
+
+                  <!-- Telegram -->
+                  <a
+                    href="https://t.me/+9779766271244"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 rounded-xl bg-white/[0.03] hover:bg-sky-500/15 border border-white/10 hover:border-sky-500/40 flex items-center gap-3 transition group"
+                  >
+                    <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold text-sm">
+                      TG
+                    </div>
+                    <div>
+                      <div class="font-heading text-xs font-bold text-white group-hover:text-sky-300 transition">Telegram</div>
+                      <div class="font-mono text-[10px] text-slate-400">@saurav_bhusal</div>
+                    </div>
+                  </a>
+
+                  <!-- GitHub -->
+                  <a
+                    href="https://github.com/saurav-96"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="p-3 rounded-xl bg-white/[0.03] hover:bg-purple-500/15 border border-white/10 hover:border-purple-500/40 flex items-center gap-3 transition group"
+                  >
+                    <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold text-sm">
+                      GH
+                    </div>
+                    <div>
+                      <div class="font-heading text-xs font-bold text-white group-hover:text-purple-300 transition">GitHub</div>
+                      <div class="font-mono text-[10px] text-slate-400">@saurav-96</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Interactive Contact Form -->
+            <div class="lg:col-span-7">
+              <div class="glass-card p-6 sm:p-9">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
+                  <div>
+                    <h2 class="font-heading text-2xl font-bold text-white">Send a Direct Message</h2>
+                    <p class="text-xs sm:text-sm text-slate-300 mt-1">
+                      Fill out the form below. All fields are verified with client-side validation.
+                    </p>
+                  </div>
+                  <span class="tech-pill text-purple-300 border-purple-500/30">General Message</span>
+                </div>
               </div>
 
               <form id="portfolio-contact-form" novalidate class="space-y-5">
@@ -471,10 +721,17 @@
           <li><a href="assets/documents/Saurav-Bhusal-CV.html" class="text-cyan-400 hover:underline">Resume / CV</a></li>
         </ul>
 
-        <div class="flex items-center gap-4 text-xs text-slate-400">
+        <div class="flex flex-wrap items-center gap-3.5 text-xs text-slate-400">
           <a href="https://github.com/saurav-96" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">GitHub</a>
-          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition">LinkedIn</a>
+          <a href="https://www.instagram.com/sauravbhusal_96/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 transition">Instagram</a>
+          <a href="https://www.facebook.com/saurav.bhusal.148" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">Facebook</a>
+          <a href="https://x.com/all_saurav" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">X</a>
+          <a href="https://wa.me/9779766271244" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">WhatsApp</a>
+          <a href="https://t.me/+9779766271244" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition">Telegram</a>
+          <span class="text-white/20">|</span>
           <a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition">Upwork</a>
+          <a href="https://www.fiverr.com/sellers/saurav_bhusal" target="_blank" rel="noopener noreferrer" class="hover:text-[#1DBF73] transition">Fiverr</a>
           <a href="https://www.freelancer.com/u/sauravb369" target="_blank" rel="noopener noreferrer" class="hover:text-purple-300 transition">Freelancer</a>
         </div>
       </div>

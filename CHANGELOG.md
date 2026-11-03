@@ -4,6 +4,35 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.4.0] — 2026-11-03 (Featured Projects Carousel, Profile Photo Stage, Skills Deep-Dive, Service FAQ Accordions, and Dual Hire/Contact Experience)
+
+### Added & Enhanced
+- **Featured Projects Interactive Carousel (`index.html`, `css/style.css`, `js/projects.js`):**
+  - Transformed the static 3-project showcase into a horizontally scrollable carousel featuring all 7 projects: KeyFlow, SwasthyaSutra, Mindful You, TubeKit, Butwal SmartGov, Nepali Recipe Book, and Portfolio v2.
+  - Implemented left and right glassmorphic navigation buttons with dynamic disabled state management based on scroll boundaries and snap positions.
+  - Added snap-mandatory alignment, hidden scrollbar ergonomics, responsive card widths, and keyboard arrow accessibility.
+- **About Profile Portrait Stage Enhancement (`about.html`, `css/style.css`):**
+  - Replaced tight card clipping with `.about-portrait-stage`, granting natural headroom and full visibility of Saurav's head, hair, and shoulders.
+  - Replaced flat black backing with a luminous cybernetic radial backdrop glow (`radial-gradient(circle at 50% 40%, rgba(139, 92, 246, 0.28) 0%, rgba(6, 182, 212, 0.20) 45%, transparent 75%)`) seamlessly blending into the WebGL scene.
+- **Skills & Technologies Interactive Deep-Dive Modals (`about.html`, `css/style.css`, `js/skills-modal.js`):**
+  - Converted all 20 skill cards across 4 categories (Frontend Development, UI/UX & Design, Programming & CS, Tools & Workflow) into interactive modal triggers.
+  - Built comprehensive data dictionaries for each skill detailing core engineering philosophy, verified credentials, key capabilities, practical applications in Saurav's projects, related ecosystem tools, and direct project inquiry action.
+- **Harvard CS50x Official Certificate Integration & Universal Modal Scroll Locking (`about.html`, `js/main.js`, `css/style.css`):**
+  - Integrated authentic high-resolution Harvard CS50x certificate scan (`assets/certificates/cs50x-certificate.png`) with verified credential ID `c95716f9-c771-4c7b-91b5-c0e45c322f56` and direct validation link to Harvard's portal.
+  - Implemented universal scroll lock system (`window.lockModalScroll()` / `window.unlockModalScroll()`) with `data-lenis-prevent` and `overflow: hidden`, stopping background scroll chaining while ensuring independent, smooth scrolling inside all modals.
+- **Services Visual Reference Banners & Interactive FAQ Accordions (`services.html`, `css/style.css`, `js/services-modal.js`):**
+  - Added visual reference mockup banners to all 4 service cards (Web Development, UI/UX Design, AI & Automation, Graphic Design).
+  - Built rich service detail popups containing scope breakdown, typical deliverables, 4-step workflow, tech stack, and interactive accordion FAQs with accessible ARIA attributes and smooth height transitions.
+- **Dual Experience Mode Switcher: Hire Me vs General Contact (`contact.html`, `css/style.css`, `js/contact.js`):**
+  - Created segmented mode toggle allowing visitors to choose between fast-track hiring and general communication.
+  - **Hire Me Portal:** Instant WhatsApp 1-on-1 chat, Upwork / Fiverr / Freelancer milestone escrow contracts, and 4-step agile engagement roadmap.
+  - **General Contact Hub:** Centralized social media channels, comprehensive contact form with accessible error summaries, and direct email fallback.
+  - Integrated URL query parameter routing (`?mode=hire`, `?mode=contact`, `?service=...`, `?skill=...`) for contextual deep linking across all pages.
+- **Verified Social Media Wiring Across All Pages (`index.html`, `about.html`, `projects.html`, `services.html`, `contact.html`, `404.html`):**
+  - Standardized all social links to Saurav's authentic profiles: Facebook (`saurav.bhusal.148`), Instagram (`sauravbhusal_96`), WhatsApp (`+9779766271244`), Telegram (`+9779766271244`), X (`all_saurav`), GitHub (`saurav-96`), and LinkedIn.
+
+---
+
 ## [v3.3.0] — 2026-11-03 (Strict Zero-Design-Change Performance Hardening & Reflow Prevention)
 
 ### Optimized (Zero Design, Content, or Animation Changes)

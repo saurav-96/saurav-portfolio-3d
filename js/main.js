@@ -6,6 +6,23 @@
 (function () {
   'use strict';
 
+  // Universal Modal Scroll Lock Helpers (Synchronized with Lenis & CSS)
+  window.lockModalScroll = function () {
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    if (window.portfolioLenis && typeof window.portfolioLenis.stop === 'function') {
+      window.portfolioLenis.stop();
+    }
+  };
+
+  window.unlockModalScroll = function () {
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
+    if (window.portfolioLenis && typeof window.portfolioLenis.start === 'function') {
+      window.portfolioLenis.start();
+    }
+  };
+
   function initApp() {
     // 1. Ensure all decorative <i data-lucide> icons carry aria-hidden="true"
     document.querySelectorAll('[data-lucide]').forEach((iconEl) => {
@@ -82,7 +99,7 @@
 
       certModal.classList.add('open');
       certModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+      window.lockModalScroll();
       if (certModalClose) certModalClose.focus();
     }
 
@@ -90,7 +107,7 @@
       if (!certModal) return;
       certModal.classList.remove('open');
       certModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
+      window.unlockModalScroll();
       if (lastCertTrigger && typeof lastCertTrigger.focus === 'function') {
         lastCertTrigger.focus();
       }

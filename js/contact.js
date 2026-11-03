@@ -17,12 +17,70 @@
    * 2. When neither is configured, the form validates all fields, shows transparent status,
    *    prepares a formatted inquiry summary, and triggers your email client or one-click copy.
    */
+  /**
+   * CENTRALIZED CONTACT & SOCIAL MEDIA CONFIGURATION
+   * ------------------------------------------------------------------------
+   * All verified URLs, social profiles, and messaging channels for Saurav Bhusal.
+   */
   const CONTACT_CONFIG = {
     formspreeEndpoint: '', // e.g., 'https://formspree.io/f/your_form_id'
     web3FormsAccessKey: '', // e.g., 'your-web3forms-access-key'
     recipientEmail: 'sauravbhusal369@gmail.com',
-    upworkUrl: 'https://www.upwork.com/freelancers/~010a6e73c111779a15'
+    whatsappNumber: '+9779766271244',
+    whatsappUrl: 'https://wa.me/9779766271244',
+    telegramUrl: 'https://t.me/+9779766271244',
+    facebookUrl: 'https://www.facebook.com/saurav.bhusal.148',
+    instagramUrl: 'https://www.instagram.com/sauravbhusal_96/',
+    xTwitterUrl: 'https://x.com/all_saurav',
+    upworkUrl: 'https://www.upwork.com/freelancers/~010a6e73c111779a15',
+    fiverrUrl: 'https://www.fiverr.com/sellers/saurav_bhusal',
+    freelancerUrl: 'https://www.freelancer.com/u/sauravb369',
+    githubUrl: 'https://github.com/saurav-96',
+    linkedinUrl: 'https://www.linkedin.com/in/saurav-b-502352415/'
   };
+
+  // Expose configuration globally for modular access
+  window.PORTFOLIO_CONTACT_CONFIG = CONTACT_CONFIG;
+
+  function initContactModeTabs() {
+    const tabHire = document.getElementById('tab-hire');
+    const tabContact = document.getElementById('tab-contact');
+    const viewHire = document.getElementById('view-hire');
+    const viewContact = document.getElementById('view-contact');
+
+    if (!tabHire || !tabContact || !viewHire || !viewContact) return;
+
+    function switchMode(mode) {
+      if (mode === 'hire') {
+        tabHire.classList.add('active');
+        tabHire.setAttribute('aria-selected', 'true');
+        tabContact.classList.remove('active');
+        tabContact.setAttribute('aria-selected', 'false');
+
+        viewHire.classList.remove('hidden');
+        viewContact.classList.add('hidden');
+      } else {
+        tabContact.classList.add('active');
+        tabContact.setAttribute('aria-selected', 'true');
+        tabHire.classList.remove('active');
+        tabHire.setAttribute('aria-selected', 'false');
+
+        viewContact.classList.remove('hidden');
+        viewHire.classList.add('hidden');
+      }
+    }
+
+    tabHire.addEventListener('click', () => switchMode('hire'));
+    tabContact.addEventListener('click', () => switchMode('contact'));
+
+    const params = new URLSearchParams(window.location.search);
+    const mode = params.get('mode');
+    if (mode === 'contact' || params.get('service') || params.get('project') || params.get('skill')) {
+      switchMode('contact');
+    } else {
+      switchMode('hire');
+    }
+  }
 
   function initContactForm() {
     const form = document.getElementById('portfolio-contact-form');
@@ -285,9 +343,14 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initContactForm);
-  } else {
+  function initContactPage() {
+    initContactModeTabs();
     initContactForm();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContactPage);
+  } else {
+    initContactPage();
   }
 })();
