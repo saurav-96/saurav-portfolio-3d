@@ -74,15 +74,27 @@ let targets;
 for (let i = 0; i < 50; i++) {
   try {
     targets = await (await fetch(`http://127.0.0.1:${DEBUG_PORT}/json`)).json();
-    break;
+    if (targets && targets.some((t) => t.type === 'page')) break;
   } catch {
     await sleep(200);
   }
 }
 
-const page = targets.find((t) => t.type === 'page');
+const page = targets ? targets.find((t) => t.type === 'page') : null;
+if (!page) {
+  console.error('Failed to find page target');
+  chromeProc.kill();
+  server.close();
+  process.exit(1);
+}
+console.log('Connecting to page:', page.webSocketDebuggerUrl);
 const ws = new WebSocket(page.webSocketDebuggerUrl);
-await new Promise((r) => (ws.onopen = r));
+await new Promise((r, rej) => {
+  ws.onopen = r;
+  ws.onerror = rej;
+  setTimeout(() => rej(new Error('WebSocket timeout')), 5000);
+});
+console.log('WebSocket connected successfully');
 
 let msgId = 0;
 const pending = new Map();
@@ -119,6 +131,7 @@ const pagesToTest = [
   { file: 'projects.html', out: 'scratch/qa-projects-desktop.png', w: 1440, h: 950 },
   { file: 'services.html', out: 'scratch/qa-services-desktop.png', w: 1440, h: 950 },
   { file: 'contact.html', out: 'scratch/qa-contact-desktop.png', w: 1440, h: 950 },
+  { file: 'hire.html', out: 'scratch/qa-hire-desktop.png', w: 1440, h: 950 },
   { file: 'index.html', out: 'scratch/qa-home-mobile.png', w: 390, h: 844 }
 ];
 
@@ -207,16 +220,43 @@ const contactTestRes = await send('Runtime.evaluate', {
 
     document.getElementById('contact-name').value = 'Sarah Jenkins';
     document.getElementById('contact-email').value = 'sarah@studio.io';
-    document.getElementById('contact-type').value = 'UI/UX Design';
-    document.getElementById('contact-budget').value = '$500 – $1,500 (Full Website / Web App)';
-    document.getElementById('contact-message').value = 'Looking to design and build an interactive product landing page.';
+    document.getElementById('contact-type').value = 'General Inquiry';
+    document.getElementById('contact-budget').value = 'General Discussion / No Budget';
+    document.getElementById('contact-message').value = 'Looking to discuss an upcoming interactive web project collaboration.';
     submitBtn.click();
-    await new Promise(r => setTimeout(r, 500));
-    const statusVisible = !document.getElementById('contact-form-status').classList.contains('hidden');
+    await new Promise(r => setTimeout(r, 600));
+    const statusBox = document.getElementById('contact-form-status');
+    const statusVisible = statusBox && !statusBox.classList.contains('hidden');
     return { emptyInvalidCount, statusVisible };
   })()`
 });
 console.log('[Functional Test: Contact Form] ->', JSON.stringify(contactTestRes.result?.value));
+
+// Functional Test 3: Fast-Track Project Inquiry Form on hire.html
+await send('Page.navigate', { url: `http://127.0.0.1:${PORT}/hire.html` });
+await sleep(2500);
+const hireTestRes = await send('Runtime.evaluate', {
+  awaitPromise: true,
+  returnByValue: true,
+  expression: `(async () => {
+    const submitBtn = document.getElementById('contact-submit-btn');
+    submitBtn.click();
+    await new Promise(r => setTimeout(r, 100));
+    const emptyInvalidCount = document.querySelectorAll('.input-error').length;
+
+    document.getElementById('contact-name').value = 'David Miller (Nexus Corp)';
+    document.getElementById('contact-email').value = 'david@nexuscorp.com';
+    document.getElementById('contact-type').value = 'Interactive 3D / WebGL Experience';
+    document.getElementById('contact-budget').value = '$1,500 – $3,000 (Comprehensive 3D Platform)';
+    document.getElementById('contact-message').value = 'Need an immersive 3D landing page with Three.js and GSAP.';
+    submitBtn.click();
+    await new Promise(r => setTimeout(r, 600));
+    const statusBox = document.getElementById('contact-form-status');
+    const statusVisible = statusBox && !statusBox.classList.contains('hidden');
+    return { emptyInvalidCount, statusVisible };
+  })()`
+});
+console.log('[Functional Test: Hire Form] ->', JSON.stringify(hireTestRes.result?.value));
 
 console.log('Console Errors Count:', consoleErrors.length);
 if (consoleErrors.length > 0) {

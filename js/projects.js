@@ -468,19 +468,25 @@
     // -------------------------------------------------------------------------
     // Featured Projects Carousel Controller (Home Page)
     // -------------------------------------------------------------------------
+    // FEATURED PROJECTS CAROUSEL (GSAP Smooth Motion & Inertial Drag System)
+    // -------------------------------------------------------------------------
     const carouselTrack = document.getElementById('projects-carousel-track');
     const carouselPrevBtn = document.getElementById('carousel-prev-btn');
     const carouselNextBtn = document.getElementById('carousel-next-btn');
+    const progressIndicator = document.getElementById('carousel-progress-indicator');
+    const currentIndexLabel = document.getElementById('carousel-current-index');
 
-    if (carouselTrack && (carouselPrevBtn || carouselNextBtn)) {
+    if (carouselTrack) {
       let activeSlideTween = null;
+      const allCards = Array.from(carouselTrack.querySelectorAll('.project-card'));
+      const totalCards = allCards.length || 7;
 
       function getSingleCardStep() {
-        const firstCard = carouselTrack.querySelector('.project-card');
+        const firstCard = allCards[0] || carouselTrack.querySelector('.project-card');
         if (firstCard) {
           const cardWidth = firstCard.getBoundingClientRect().width;
           const style = window.getComputedStyle(carouselTrack);
-          const gap = parseFloat(style.gap) || 28;
+          const gap = parseFloat(style.columnGap || style.gap || '28') || 28;
           return cardWidth + gap;
         }
         return 380;
@@ -490,7 +496,7 @@
         const trackWidth = carouselTrack.clientWidth;
         const singleStep = getSingleCardStep();
         if (trackWidth >= 1050) {
-          // Slide full view of 3 cards on desktop
+          // Slide 3 cards on desktop
           return singleStep * 3;
         } else if (trackWidth >= 680) {
           // Slide 2 cards on tablet
@@ -500,70 +506,232 @@
         return singleStep;
       }
 
+      function updateCardSpatialDepth() {
+        if (allCards.length === 0) return;
+        const trackRect = carouselTrack.getBoundingClientRect();
+        const trackCenter = trackRect.left + trackRect.width / 2;
+
+        allCards.forEach((card) => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.left + cardRect.width / 2;
+          const dist = Math.abs(trackCenter - cardCenter);
+          const maxDist = trackRect.width * 0.75;
+          const normDist = Math.min(1, dist / maxDist);
+
+          // Subtle cinematic scaling & opacity drop for flanking cards
+          const scale = 1 - normDist * 0.04;
+          const opacity = 1 - normDist * 0.12;
+
+          card.style.transform = `scale(${scale.toFixed(3)})`;
+          card.style.opacity = opacity.toFixed(2);
+        });
+      }
+
       function updateCarouselControls() {
         const scrollLeft = carouselTrack.scrollLeft;
-        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+        const maxScroll = Math.max(0, carouselTrack.scrollWidth - carouselTrack.clientWidth);
+        const singleStep = getSingleCardStep();
 
+        // Update Prev / Next button disabled states
         if (carouselPrevBtn) {
-          const isAtStart = scrollLeft <= 10;
+          const isAtStart = scrollLeft <= 8;
           carouselPrevBtn.disabled = isAtStart;
           carouselPrevBtn.setAttribute('aria-disabled', isAtStart ? 'true' : 'false');
         }
 
         if (carouselNextBtn) {
-          const isAtEnd = scrollLeft >= maxScroll - 10;
+          const isAtEnd = scrollLeft >= maxScroll - 8;
           carouselNextBtn.disabled = isAtEnd;
           carouselNextBtn.setAttribute('aria-disabled', isAtEnd ? 'true' : 'false');
+        }
+
+        // Update Live Progress Bar Indicator
+        if (progressIndicator) {
+          const progress = maxScroll > 0 ? scrollLeft / maxScroll : 0;
+          const minWidthPct = (1 / totalCards) * 100;
+          const currentWidthPct = minWidthPct + progress * (100 - minWidthPct);
+          progressIndicator.style.width = `${Math.min(100, Math.max(minWidthPct, currentWidthPct)).toFixed(1)}%`;
+        }
+
+        // Update Current Project Number Counter (e.g., 01, 02, ..., 07)
+        if (currentIndexLabel) {
+          const activeIndex = Math.min(totalCards, Math.max(1, Math.round(scrollLeft / singleStep) + 1));
+          currentIndexLabel.textContent = String(activeIndex).padStart(2, '0');
+        }
+
+        // Update depth perspective on cards
+        updateCardSpatialDepth();
+      }
+
+      function smoothSlideTo(target, duration = 0.95) {
+        const maxScroll = Math.max(0, carouselTrack.scrollWidth - carouselTrack.clientWidth);
+        const clampedTarget = Math.max(0, Math.min(maxScroll, target));
+
+        if (typeof window.gsap !== 'undefined') {
+          if (activeSlideTween) activeSlideTween.kill();
+
+          carouselTrack.classList.add('is-animating');
+
+          activeSlideTween = gsap.to(carouselTrack, {
+            scrollLeft: clampedTarget,
+            duration,
+            ease: 'power3.out',
+            onUpdate: updateCarouselControls,
+            onComplete: () => {
+              carouselTrack.classList.remove('is-animating');
+              updateCarouselControls();
+              activeSlideTween = null;
+            }
+          });
+        } else {
+          carouselTrack.scrollTo({ left: clampedTarget, behavior: 'smooth' });
         }
       }
 
       function smoothSlide(direction) {
-        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
         const step = getSlideStep();
         const singleStep = getSingleCardStep();
 
-        // Calculate current baseline (even if in middle of tween)
         let current = carouselTrack.scrollLeft;
         if (activeSlideTween && activeSlideTween.isActive()) {
           current = activeSlideTween.vars.scrollLeft;
         }
 
         let target = current + direction * step;
-        // Snap target to nearest multiple of singleStep
         target = Math.round(target / singleStep) * singleStep;
-        target = Math.max(0, Math.min(maxScroll, target));
-
-        if (typeof window.gsap !== 'undefined') {
-          if (activeSlideTween) activeSlideTween.kill();
-
-          // Continuous fluid easing with power2.out
-          activeSlideTween = gsap.to(carouselTrack, {
-            scrollLeft: target,
-            duration: 0.85,
-            ease: 'power2.out',
-            onUpdate: updateCarouselControls,
-            onComplete: () => {
-              updateCarouselControls();
-              activeSlideTween = null;
-            }
-          });
-        } else {
-          carouselTrack.scrollTo({ left: target, behavior: 'smooth' });
-        }
+        smoothSlideTo(target, 0.95);
       }
 
       if (carouselNextBtn) {
-        carouselNextBtn.addEventListener('click', () => {
+        carouselNextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
           smoothSlide(1);
         });
       }
 
       if (carouselPrevBtn) {
-        carouselPrevBtn.addEventListener('click', () => {
+        carouselPrevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
           smoothSlide(-1);
         });
       }
 
+      // -----------------------------------------------------------------------
+      // Interactive Pointer & Touch Drag with Momentum Physics
+      // -----------------------------------------------------------------------
+      let isPointerDown = false;
+      let startX = 0;
+      let startScrollLeft = 0;
+      let lastX = 0;
+      let lastTime = 0;
+      let velocityX = 0;
+      let hasDraggedSignificantly = false;
+
+      carouselTrack.addEventListener('pointerdown', (e) => {
+        // Only primary mouse button or touch
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
+        isPointerDown = true;
+        hasDraggedSignificantly = false;
+        startX = e.clientX;
+        lastX = e.clientX;
+        lastTime = performance.now();
+        startScrollLeft = carouselTrack.scrollLeft;
+        velocityX = 0;
+
+        if (activeSlideTween) activeSlideTween.kill();
+        carouselTrack.classList.add('is-dragging');
+        carouselTrack.setPointerCapture(e.pointerId);
+      });
+
+      carouselTrack.addEventListener('pointermove', (e) => {
+        if (!isPointerDown) return;
+        const now = performance.now();
+        const dt = now - lastTime;
+        const currentX = e.clientX;
+        const deltaX = currentX - startX;
+
+        if (Math.abs(deltaX) > 6) {
+          hasDraggedSignificantly = true;
+        }
+
+        if (dt > 10) {
+          velocityX = (currentX - lastX) / dt;
+          lastX = currentX;
+          lastTime = now;
+        }
+
+        carouselTrack.scrollLeft = startScrollLeft - deltaX;
+        updateCarouselControls();
+      });
+
+      function handleDragRelease(e) {
+        if (!isPointerDown) return;
+        isPointerDown = false;
+        carouselTrack.classList.remove('is-dragging');
+
+        try {
+          if (carouselTrack.hasPointerCapture(e.pointerId)) {
+            carouselTrack.releasePointerCapture(e.pointerId);
+          }
+        } catch (_) {}
+
+        if (hasDraggedSignificantly) {
+          // Suppress accidental click navigation immediately after drag release
+          const singleStep = getSingleCardStep();
+          // Momentum throw distance
+          const momentumOffset = -velocityX * 160;
+          let target = carouselTrack.scrollLeft + momentumOffset;
+          target = Math.round(target / singleStep) * singleStep;
+          smoothSlideTo(target, 0.85);
+
+          // Suppress child clicks for 180ms
+          const suppressHandler = (clickEvent) => {
+            clickEvent.stopPropagation();
+            clickEvent.preventDefault();
+          };
+          carouselTrack.addEventListener('click', suppressHandler, { capture: true, once: true });
+          setTimeout(() => {
+            carouselTrack.removeEventListener('click', suppressHandler, { capture: true });
+          }, 180);
+        } else {
+          // Subtle snap to nearest card if released without velocity
+          const singleStep = getSingleCardStep();
+          const target = Math.round(carouselTrack.scrollLeft / singleStep) * singleStep;
+          smoothSlideTo(target, 0.45);
+        }
+      }
+
+      carouselTrack.addEventListener('pointerup', handleDragRelease);
+      carouselTrack.addEventListener('pointercancel', handleDragRelease);
+
+      // -----------------------------------------------------------------------
+      // Wheel & Trackpad Horizontal Smooth Deflection
+      // -----------------------------------------------------------------------
+      let wheelTimeout = null;
+      carouselTrack.addEventListener(
+        'wheel',
+        (e) => {
+          // Only intercept when horizontal intent is present or shift key held
+          const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : (e.shiftKey ? e.deltaY : 0);
+          if (delta !== 0) {
+            e.preventDefault();
+            carouselTrack.classList.add('is-animating');
+            carouselTrack.scrollLeft += delta * 0.9;
+            updateCarouselControls();
+
+            clearTimeout(wheelTimeout);
+            wheelTimeout = setTimeout(() => {
+              carouselTrack.classList.remove('is-animating');
+              const singleStep = getSingleCardStep();
+              const target = Math.round(carouselTrack.scrollLeft / singleStep) * singleStep;
+              smoothSlideTo(target, 0.5);
+            }, 120);
+          }
+        },
+        { passive: false }
+      );
+
+      // Scroll event synchronization
       let carouselTicking = false;
       carouselTrack.addEventListener(
         'scroll',

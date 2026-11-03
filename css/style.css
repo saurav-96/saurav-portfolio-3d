@@ -995,11 +995,27 @@ p {
   gap: 1.75rem;
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-behavior: smooth;
+  scroll-behavior: auto !important;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding: 0.75rem 0.25rem 1.75rem 0.25rem;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y pinch-zoom;
+}
+
+.projects-carousel-track:not(.is-animating):not(.is-dragging) {
+  scroll-snap-type: x mandatory;
+}
+
+.projects-carousel-track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none !important;
+}
+
+.projects-carousel-track.is-dragging a,
+.projects-carousel-track.is-dragging button {
+  pointer-events: none;
 }
 
 .projects-carousel-track::-webkit-scrollbar {
@@ -1010,6 +1026,9 @@ p {
   flex: 0 0 100%;
   max-width: 100%;
   scroll-snap-align: start;
+  transform-origin: center center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
 @media (min-width: 640px) {
@@ -1024,6 +1043,28 @@ p {
     flex: 0 0 calc(33.333% - 1.2rem);
     max-width: calc(33.333% - 1.2rem);
   }
+}
+
+/* Elegant Live Carousel Progress Bar */
+.carousel-progress-track {
+  position: relative;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.carousel-progress-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 14.28%;
+  background: linear-gradient(90deg, #A855F7 0%, #06B6D4 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.6);
+  transition: transform 0.15s ease-out, width 0.15s ease-out;
 }
 
 .carousel-nav-btn {

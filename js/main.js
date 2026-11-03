@@ -189,6 +189,34 @@
         closeCertLightbox();
       }
     });
+
+    // 6. Interactive Developer Console Specs Copy (services.html)
+    const copySpecsBtn = document.getElementById('copy-specs-btn');
+    if (copySpecsBtn) {
+      copySpecsBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const specsText = [
+          'Saurav Bhusal — Full-Stack & UI/UX Developer Specs:',
+          '- Primary Stack: Vanilla JS (ES6+), React, Tailwind CSS, Three.js, GSAP',
+          '- Architecture: WebGL Canvas, Lenis Smooth Scroll, Accessible Semantic HTML5',
+          '- Performance Guarantee: 95+ Lighthouse Target across Desktop & Mobile',
+          '- Location / Timezone: Nepal (UTC+5:45) — Available Remote / WFH',
+          '- CS50x Harvard Verified Alum | Web Design Hackathon 2026 Winner',
+          '- Collaboration: 1-on-1 WhatsApp, Upwork Escrow, Fast-Track Portal',
+          '- Portfolio: https://github.com/saurav-96'
+        ].join('\n');
+        try {
+          await navigator.clipboard.writeText(specsText);
+          const originalHtml = copySpecsBtn.innerHTML;
+          copySpecsBtn.innerHTML = '<span class="text-emerald-300 font-mono text-xs font-semibold">✓ Dev Specs Copied!</span>';
+          setTimeout(() => {
+            copySpecsBtn.innerHTML = originalHtml;
+          }, 2200);
+        } catch {
+          // fallback
+        }
+      });
+    }
   }
 
   if (document.readyState === 'loading') {

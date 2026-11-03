@@ -224,7 +224,8 @@
     );
 
     scrollComponents.forEach((card, index) => {
-      if (card.closest('[data-hero-reveal]')) return;
+      // Exclude hero elements and carousel cards (which receive dedicated smooth choreography below)
+      if (card.closest('[data-hero-reveal]') || card.closest('.projects-carousel-track')) return;
 
       gsap.fromTo(
         card,
@@ -258,6 +259,55 @@
         }
       );
     });
+
+    // 8B. DEDICATED FEATURED PROJECTS CAROUSEL SMOOTH SCROLL REVEAL
+    const projectsCarouselTrack = document.getElementById('projects-carousel-track');
+    if (projectsCarouselTrack) {
+      const carouselSection = projectsCarouselTrack.closest('section');
+      const sectionHeader = carouselSection ? carouselSection.querySelector('[data-reveal-item]') : null;
+      const initialCards = Array.from(projectsCarouselTrack.querySelectorAll('.project-card')).slice(0, 3);
+      const remainingCards = Array.from(projectsCarouselTrack.querySelectorAll('.project-card')).slice(3);
+
+      gsap.set(remainingCards, { opacity: 1, y: 0, scale: 1 });
+
+      const carouselTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: carouselSection || projectsCarouselTrack,
+          start: 'top 82%',
+          toggleActions: 'play none none none'
+        }
+      });
+
+      if (sectionHeader) {
+        carouselTl.fromTo(
+          sectionHeader,
+          { opacity: 0, y: 36 },
+          { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' }
+        );
+      }
+
+      carouselTl.fromTo(
+        initialCards,
+        {
+          opacity: 0,
+          y: 52,
+          scale: 0.94,
+          rotationX: -10,
+          transformPerspective: 1200
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          rotationX: 0,
+          duration: 0.95,
+          stagger: 0.09,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity'
+        },
+        '-=0.45'
+      );
+    }
 
     // 9. Section Headings & Badges 3D Scroll Entrance
     const sectionHeaders = document.querySelectorAll(

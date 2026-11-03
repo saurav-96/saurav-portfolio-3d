@@ -111,11 +111,11 @@
           <li><a href="about.html" class="nav-link" data-nav-page="about.html">About</a></li>
           <li><a href="projects.html" class="nav-link" data-nav-page="projects.html">Projects</a></li>
           <li><a href="services.html" class="nav-link" data-nav-page="services.html">Services</a></li>
-          <li><a href="contact.html?mode=hire" class="nav-link" data-nav-page="contact.html">Contact</a></li>
+          <li><a href="contact.html" class="nav-link" data-nav-page="contact.html">Contact</a></li>
         </ul>
 
         <div class="flex items-center gap-3">
-          <a href="contact.html?mode=hire" class="btn-primary btn-nav-cta nav-cta-desktop" data-magnetic>
+          <a href="hire.html" class="btn-primary btn-nav-cta nav-cta-desktop" data-magnetic>
             <span>Hire Me</span>
             <span aria-hidden="true">↗</span>
           </a>
@@ -138,9 +138,9 @@
           <li><a href="about.html" class="nav-link w-full" data-nav-page="about.html">About</a></li>
           <li><a href="projects.html" class="nav-link w-full" data-nav-page="projects.html">Projects</a></li>
           <li><a href="services.html" class="nav-link w-full" data-nav-page="services.html">Services</a></li>
-          <li><a href="contact.html?mode=hire" class="nav-link w-full" data-nav-page="contact.html">Contact</a></li>
+          <li><a href="contact.html" class="nav-link w-full" data-nav-page="contact.html">Contact</a></li>
         </ul>
-        <a href="contact.html?mode=hire" class="btn-primary w-full justify-center">
+        <a href="hire.html" class="btn-primary w-full justify-center">
           <span>Hire Me</span>
           <span aria-hidden="true">↗</span>
         </a>
@@ -176,7 +176,7 @@
                 <span>Explore My Work</span>
                 <span aria-hidden="true">→</span>
               </a>
-              <a href="contact.html?mode=contact" class="btn-secondary" data-magnetic>
+              <a href="contact.html" class="btn-secondary" data-magnetic>
                 <span>Let's Work Together</span>
                 <span aria-hidden="true">↗</span>
               </a>
@@ -246,7 +246,7 @@
             </div>
           </a>
 
-          <a href="contact.html?mode=contact" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
+          <a href="contact.html" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
             <div class="icon-box w-12 h-12 bg-gradient-to-br from-emerald-500/25 to-teal-600/15 border border-emerald-400/40 text-emerald-300 shrink-0">
               <i data-lucide="globe-2" class="w-5 h-5"></i>
             </div>
@@ -634,6 +634,25 @@
             </div>
           </article>
         </div>
+
+        <!-- Live Carousel Progress & Interactive Indicators -->
+        <div class="flex items-center justify-between mt-6 px-1">
+          <div class="carousel-counter font-mono text-xs text-slate-400 flex items-center gap-2">
+            <span class="text-[10px] uppercase tracking-wider text-purple-300">PROJECT</span>
+            <span id="carousel-current-index" class="text-white font-bold font-mono">01</span>
+            <span class="text-slate-500">/</span>
+            <span class="text-slate-400 font-mono">07</span>
+          </div>
+
+          <div class="carousel-progress-track mx-4 flex-1 max-w-xs">
+            <div id="carousel-progress-indicator" class="carousel-progress-indicator"></div>
+          </div>
+
+          <div class="text-[11px] font-mono text-slate-400 hidden sm:flex items-center gap-1.5">
+            <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span>Drag, swipe, or click arrows</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -826,7 +845,7 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-4">
-              <a href="contact.html?mode=hire" class="btn-primary text-base px-7 py-3.5" data-magnetic>
+              <a href="hire.html" class="btn-primary text-base px-7 py-3.5" data-magnetic>
                 <span>Contact Me</span>
                 <span aria-hidden="true">→</span>
               </a>
@@ -874,7 +893,7 @@
           <li><a href="about.html" class="hover:text-white transition">About</a></li>
           <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
           <li><a href="services.html" class="hover:text-white transition">Services</a></li>
-          <li><a href="contact.html?mode=contact" class="hover:text-white transition">Contact</a></li>
+          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
           <li><a href="assets/documents/Saurav-Bhusal-CV.html" class="text-cyan-400 hover:underline">Resume / CV</a></li>
         </ul>
 

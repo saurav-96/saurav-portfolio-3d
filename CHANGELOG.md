@@ -4,6 +4,28 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.6.0] — 2026-11-03 (Complete Hire/Contact Page Separation, Buttery-Smooth Carousel Scroll Motion System, and Balanced Services UI Layout)
+
+### Added & Enhanced
+- **Dedicated Independent Contact & Fast-Track Hire Me Pages (`contact.html`, `hire.html`):**
+  - **`contact.html` (General Contacts & Inquiries):** Completely unbundled from the combined tabbed system. Restored clean, high-contrast 2-column layout (5 cols / 7 cols) with Saurav Bhusal Creator Card, authentic vector brand SVGs (WhatsApp, Telegram, Email, LinkedIn, GitHub, Instagram, Facebook, X), Nepal location, and dedicated General Inquiry form.
+  - **`hire.html` (Fast-Track Client Onboarding Portal):** Created standalone client conversion hub featuring 3 instant engagement channels (WhatsApp 1-on-1, Upwork Escrow, Fiverr & Freelancer), a 4-step agile engagement roadmap, and a fast-track project brief form.
+  - **Navbar Navigation Synchronization:** Updated all navigation headers and footers across all 7 pages (`index.html`, `about.html`, `projects.html`, `services.html`, `contact.html`, `hire.html`, `404.html`) — clicking "Contact" opens `contact.html`, while clicking "Hire Me" opens `hire.html`.
+- **Cinematic Buttery-Smooth Carousel Scroll Motion System (`index.html`, `js/projects.js`, `css/style.css`, `js/animations.js`):**
+  - Eliminated the jitter conflict between native CSS `scroll-behavior: smooth` and JavaScript frame animation by enforcing `scroll-behavior: auto !important` and disabling CSS snap during animation (`.is-animating`).
+  - Integrated high-performance GSAP `power3.out` tween controller (0.95s duration) with edge-boundary bouncing protection.
+  - Added pointer/touch drag tracking with velocity inertia release (`velocityX * 160`) and child click suppression (180ms) to prevent accidental opens during drag.
+  - Added horizontal wheel scroll interpolation, card spatial depth scaling (`scale` and `opacity` dynamic calculation based on viewport distance), live progress track indicator (`#carousel-progress-indicator`), and project counter (`01 / 07`).
+  - Added dedicated staggered entrance ScrollTrigger for the carousel cards.
+- **Engaging Services Sidebar Expansion (`services.html`, `js/main.js`):**
+  - Filled the empty void on the right side of `services.html` with 4 engaging, interactive cyberpunk glassmorphic cards:
+    1. **Client Quality Standards & Engineering Guarantees:** 95+ Lighthouse Target, Milestone Escrow, Figma Architecture Handover, and 100% Code Ownership & QA.
+    2. **Live Cyberpunk Developer Console Widget (`saurav@portfolio:~$ --specs`):** Real-time online status, UTC+5:45 timezone, SLA response times, daily staging demo cycle, and interactive "Copy Dev Specs" button with clipboard integration.
+    3. **Verified Achievements Spotlight:** Highlighting First Runner-Up — Web Design Hackathon 2026 Winner and Harvard University CS50x Alum, linking to `about.html#certifications`.
+    4. **Instant Consultation Callout Banner:** High-converting gradient-bordered card with direct WhatsApp chat and Fast-Track Hire Me portal buttons.
+
+---
+
 ## [v3.5.0] — 2026-11-03 (Interactive 3D Profile Card, Buttery-Smooth Loading System, Animated Carousel Slide, Graphic Design Skill, Hackathon Trophy Gallery, and Isolated Contact & Hire Flows)
 
 ### Added & Enhanced
