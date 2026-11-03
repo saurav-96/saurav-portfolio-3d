@@ -105,6 +105,18 @@
 
     window.addEventListener('scroll', onScroll, { passive: true });
     renderScrollUI();
+
+    // 5. Universal Back-to-Top Handler (Lenis-synchronized)
+    document.querySelectorAll('[data-back-to-top]').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (window.portfolioLenis && typeof window.portfolioLenis.scrollTo === 'function') {
+          window.portfolioLenis.scrollTo(0, { duration: 1.1 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    });
   }
 
   if (document.readyState === 'loading') {

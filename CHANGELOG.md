@@ -4,6 +4,26 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.8.0] — 2026-11-03 (Universal 100% Zoom-Consistent Navbar & Master Footer, Duplicate Button Resolution, and Cyberpunk Status Beacon)
+
+### Added & Enhanced
+- **Duplicate "Hire Me" Button Resolution (`about.html`):**
+  - Removed the orphaned duplicate `<span>Hire Me</span>` element in the `about.html` desktop navigation bar, restoring a single glowing magnetic CTA button.
+- **Universal 100% Zoom-Consistent Architecture (`css/style.css`, all HTML pages):**
+  - Enforced `scrollbar-gutter: stable;` on `html` root, guaranteeing identical viewport width across all routes regardless of dynamic page heights and eliminating horizontal navbar jumping between pages.
+  - Aligned `.navbar-glass` to `max-width: 1280px;`, achieving pixel-perfect alignment with the site's `max-w-7xl` content grid at 100% zoom.
+  - Added dual-layer cybernetic border illumination (`rgba(168, 85, 247, 0.28)`) and high-density glassmorphic blur (`blur(28px) saturate(180%)`).
+- **Live Cyberpunk "AVAILABLE" Beacon (`all HTML pages`):**
+  - Integrated an interactive pulsing emerald availability pill (`🟢 AVAILABLE`) directly inside the brand monogram on all desktop/tablet viewports, instantly signaling active contracting availability to clients.
+- **Universal Master "WOW" Footer (`all HTML pages`, `css/style.css`, `js/navigation.js`):**
+  - Synchronized a universal master footer across all 7 pages (`index.html`, `about.html`, `projects.html`, `services.html`, `contact.html`, `hire.html`, `404.html`).
+  - Added an interactive **"Back to Top ↑"** button with Lenis-interpolated smooth scrolling.
+  - Added a dynamic **"Fast-Track Hire ↗"** shortcut button and live timezone status indicator (`UTC+5:45 Nepal`).
+  - Unified all 10 social, messaging, and freelance escrow channels (GitHub, LinkedIn, Instagram, Facebook, X, WhatsApp, Telegram, Upwork, Fiverr, Freelancer) with authentic brand hover states.
+  - Modern bottom legal bar with dynamic copyright year and technology stack credits.
+
+---
+
 ## [v3.7.0] — 2026-11-03 (Cross-Browser Performance Engine, Brave Farbling Immunity, Zero-Lag Motion, Mobile Ergonomics & Clean Repository)
 
 ### Performance & Cross-Browser Optimization

@@ -77,7 +77,8 @@
   <div class="bg-grid-overlay" aria-hidden="true"></div>
 
   <div class="site-wrapper">
-    <!-- Shared Floating Glassmorphic Navigation Bar -->
+        <!-- Shared Floating Glassmorphic Navigation Bar -->
+        <!-- Shared Floating Glassmorphic Navigation Bar -->
     <header class="navbar-wrap">
       <nav class="navbar-glass" aria-label="Primary Navigation">
         <a href="index.html" class="brand-logo" aria-label="Saurav Bhusal Home">
@@ -85,11 +86,15 @@
             <img src="assets/images/saurav-logo.png" alt="Saurav Bhusal Logo" class="brand-logo-img" width="38" height="38" />
           </div>
           <span>SAURAV<span class="text-purpleNeon">.</span></span>
+          <span class="hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium tracking-wide bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            AVAILABLE
+          </span>
         </a>
 
         <ul class="nav-links">
           <li><a href="index.html" class="nav-link" data-nav-page="index.html">Home</a></li>
-          <li><a href="about.html" class="nav-link active" data-nav-page="about.html">About</a></li>
+          <li><a href="about.html" class="nav-link" data-nav-page="about.html">About</a></li>
           <li><a href="projects.html" class="nav-link" data-nav-page="projects.html">Projects</a></li>
           <li><a href="services.html" class="nav-link" data-nav-page="services.html">Services</a></li>
           <li><a href="contact.html" class="nav-link" data-nav-page="contact.html">Contact</a></li>
@@ -97,9 +102,6 @@
 
         <div class="flex items-center gap-3">
           <a href="hire.html" class="btn-primary btn-nav-cta nav-cta-desktop" data-magnetic>
-            <span>Hire Me</span>
-            <span aria-hidden="true">↗</span>
-          </a>
             <span>Hire Me</span>
             <span aria-hidden="true">↗</span>
           </a>
@@ -115,6 +117,7 @@
         </div>
       </nav>
 
+      <!-- Responsive Mobile Drawer -->
       <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-label="Mobile Navigation">
         <ul class="flex flex-col gap-1.5 mb-4">
           <li><a href="index.html" class="nav-link w-full" data-nav-page="index.html">Home</a></li>
@@ -1026,21 +1029,43 @@
       </div>
     </div>
 
-    <!-- Shared Footer -->
-    <footer class="site-footer py-10 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        <!-- Shared Universal Master Footer -->
+    <footer class="site-footer py-12 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
         <div class="flex items-center gap-3">
           <a href="index.html" class="brand-logo text-base">
-            <div class="brand-logo-frame w-8 h-8">
-              <img src="assets/images/saurav-logo.png" alt="Saurav Bhusal Logo" class="brand-logo-img" width="32" height="32" />
+            <div class="brand-logo-frame w-9 h-9">
+              <img src="assets/images/saurav-logo.png" alt="Saurav Bhusal Logo" class="brand-logo-img" width="36" height="36" />
             </div>
             <span>SAURAV<span class="text-purpleNeon">.</span></span>
           </a>
           <span class="text-slate-600">|</span>
-          <span class="text-xs text-slate-400">Design. Develop. Innovate.</span>
+          <span class="text-xs text-slate-400 font-mono">Design • Develop • Innovate</span>
         </div>
 
-        <ul class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
+        <div class="flex items-center gap-3">
+          <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Active &amp; Ready for Contracts (UTC+5:45)</span>
+          </div>
+
+          <a href="hire.html" class="btn-primary text-xs py-2 px-4" data-magnetic>
+            <span>Fast-Track Hire</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <button type="button" data-back-to-top class="flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-mono text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-400/40 transition cursor-pointer" aria-label="Back to top">
+            <span>Top</span>
+            <span class="text-cyan-400" aria-hidden="true">↑</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto pt-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400">
+        <ul class="flex flex-wrap items-center justify-center md:justify-start gap-6 font-medium">
           <li><a href="index.html" class="hover:text-white transition">Home</a></li>
           <li><a href="about.html" class="hover:text-white transition">About</a></li>
           <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
@@ -1049,23 +1074,24 @@
           <li><a href="assets/documents/Saurav-Bhusal-CV.html" class="text-cyan-400 hover:underline">Resume / CV</a></li>
         </ul>
 
-        <div class="flex flex-wrap items-center gap-3.5 text-xs text-slate-400">
-          <a href="https://github.com/saurav-96" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">GitHub</a>
-          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition">LinkedIn</a>
-          <a href="https://www.instagram.com/sauravbhusal_96/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-400 transition">Instagram</a>
-          <a href="https://www.facebook.com/saurav.bhusal.148" target="_blank" rel="noopener noreferrer" class="hover:text-blue-400 transition">Facebook</a>
-          <a href="https://x.com/all_saurav" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">X</a>
-          <a href="https://wa.me/9779766271244" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-400 transition">WhatsApp</a>
-          <a href="https://t.me/+9779766271244" target="_blank" rel="noopener noreferrer" class="hover:text-sky-400 transition">Telegram</a>
+        <div class="flex flex-wrap items-center justify-center gap-3.5 text-xs text-slate-400">
+          <a href="https://github.com/saurav-96" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-white transition">GitHub</a>
+          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-cyan-300 transition">LinkedIn</a>
+          <a href="https://www.instagram.com/sauravbhusal_96/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-pink-400 transition">Instagram</a>
+          <a href="https://www.facebook.com/saurav.bhusal.148" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-blue-400 transition">Facebook</a>
+          <a href="https://x.com/all_saurav" target="_blank" rel="noopener noreferrer" aria-label="X Twitter" class="hover:text-white transition">X</a>
+          <a href="https://wa.me/9779766271244" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="hover:text-emerald-400 transition">WhatsApp</a>
+          <a href="https://t.me/+9779766271244" target="_blank" rel="noopener noreferrer" aria-label="Telegram" class="hover:text-sky-400 transition">Telegram</a>
           <span class="text-white/20">|</span>
-          <a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener noreferrer" class="hover:text-cyan-300 transition">Upwork</a>
-          <a href="https://www.fiverr.com/sellers/saurav_bhusal" target="_blank" rel="noopener noreferrer" class="hover:text-[#1DBF73] transition">Fiverr</a>
-          <a href="https://www.freelancer.com/u/sauravb369" target="_blank" rel="noopener noreferrer" class="hover:text-purple-300 transition">Freelancer</a>
+          <a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener noreferrer" aria-label="Upwork" class="hover:text-cyan-300 transition">Upwork</a>
+          <a href="https://www.fiverr.com/sellers/saurav_bhusal" target="_blank" rel="noopener noreferrer" aria-label="Fiverr" class="hover:text-[#1DBF73] transition">Fiverr</a>
+          <a href="https://www.freelancer.com/u/sauravb369" target="_blank" rel="noopener noreferrer" aria-label="Freelancer" class="hover:text-purple-300 transition">Freelancer</a>
         </div>
       </div>
+
       <div class="max-w-7xl mx-auto mt-6 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
         <p>© <span data-current-year>2026</span> Saurav Bhusal. Crafted with semantic HTML5, Three.js &amp; GSAP.</p>
-        <p class="font-mono text-[11px] text-slate-400">Kapilvastu &amp; Butwal, Nepal • Available Worldwide (Remote)</p>
+        <p class="font-mono text-[11px] text-slate-400">Kapilvastu &amp; Butwal, Nepal 🇳🇵 • Available Worldwide (Remote)</p>
       </div>
     </footer>
   </div>
