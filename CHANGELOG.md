@@ -4,6 +4,25 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.1.0] — 2026-11-03 (3D Stacking Context Resolution, 3D Spatial Card Pop & Vibrant Holographic Mesh)
+
+### Fixed & Enhanced
+- **WebGL Background Stacking Context Resolution (`css/style.css`):**
+  - Resolved a critical CSS stacking issue where `.ambient-backdrop` sat above `#webgl-canvas` with an opaque `rgb(6, 6, 11)` background, which was completely obscuring the 3D scene from view.
+  - Set `#webgl-canvas` to `z-index: 1; opacity: 1; pointer-events: none;` and `.ambient-backdrop` to `z-index: 0; background: transparent;`, revealing the full 3D interactive WebGL sculpture and cosmic particle field with crystal clarity.
+- **Enhanced 3D Spatial Depth & Component Layering (`css/style.css` & `js/animations.js`):**
+  - Added `transform-style: preserve-3d; perspective: 1200px;` to all `.glass-card` elements.
+  - Elevated card contents along the Z-axis: project thumbnails and icon boxes pop forward by `translateZ(28px)` (hover `translateZ(40px) scale(1.02)`), and badges/tags float at `translateZ(22px)`, creating unmistakable physical depth when tilting.
+  - Upgraded card hover tilt translation to `translate3d(0, -8px, 24px)`.
+- **Three.js Visual Luminescence & 3D Satellites Upgrade (`js/three-scene.js`):**
+  - Increased wireframe icosahedron opacity to `0.65` with emissive intensity `0.85`.
+  - Scaled glowing cyan vertex nodes to `0.14` with `0.95` opacity.
+  - Thickened cyber cyan (`0.038`) and neon purple (`0.032`) gyroscopic orbital rings with enhanced luminescence (`0.72` and `0.62` opacity).
+  - Expanded floating 3D satellite polyhedra to 10 orbiting nodes (octahedrons, tetrahedrons, icosahedrons, dodecahedrons) distributed across the entire viewport.
+  - Scaled living starfield particle size to `0.11` with forward continuous velocity drift and boundary wrapping.
+
+---
+
 ## [v3.0.0] — 2026-11-03 (Ultimate 3D Transformation, Lenis Smooth Motion, Masked Word Reveals & Performance Engine)
 
 ### Added & Transformed

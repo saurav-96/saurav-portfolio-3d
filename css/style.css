@@ -148,9 +148,9 @@ body {
   inset: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 0;
+  z-index: 1;
   pointer-events: none;
-  opacity: 0.92;
+  opacity: 1;
 }
 
 /* Vibrant Living Atmospheric Aurora Backdrops with Continuous Motion */
@@ -160,7 +160,7 @@ body {
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
-  background: #06060b;
+  background: transparent;
 }
 
 .ambient-backdrop::before,
@@ -540,7 +540,7 @@ p {
   font-size: 0.85rem;
 }
 
-/* Luxury Editorial Glassmorphism Cards */
+/* Luxury Editorial Glassmorphism Cards with 3D Spatial Depth */
 .glass-card {
   position: relative;
   background: linear-gradient(165deg, rgba(255, 255, 255, 0.055) 0%, rgba(12, 13, 23, 0.84) 100%);
@@ -550,7 +550,27 @@ p {
   -webkit-backdrop-filter: blur(22px) saturate(150%);
   box-shadow: var(--shadow-glass);
   overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 1200px;
   transition: border-color 0.28s ease, box-shadow 0.28s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-card .project-thumb-wrap,
+.glass-card .icon-box {
+  transform: translateZ(28px);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glass-card:hover .project-thumb-wrap,
+.glass-card:hover .icon-box {
+  transform: translateZ(40px) scale(1.02);
+}
+
+.glass-card .tech-pill,
+.glass-card .status-badge,
+.glass-card .btn-primary,
+.glass-card .btn-secondary {
+  transform: translateZ(22px);
 }
 
 /* Top Specular Rim Highlight Line */

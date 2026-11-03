@@ -60,7 +60,7 @@
                 const relY = y / rect.height - 0.5;
                 const rotX = (-relY * maxTilt * 2).toFixed(2);
                 const rotY = (relX * maxTilt * 2).toFixed(2);
-                card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -6px, 14px)`;
+                card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -8px, 24px)`;
               }
             });
           },

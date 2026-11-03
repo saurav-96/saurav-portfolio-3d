@@ -106,10 +106,10 @@
     const icoMat = new THREE.MeshStandardMaterial({
       color: 0xc084fc,
       emissive: 0x7c3aed,
-      emissiveIntensity: 0.58,
+      emissiveIntensity: 0.85,
       wireframe: true,
       transparent: true,
-      opacity: isSmallScreen ? 0.22 : 0.42
+      opacity: isSmallScreen ? 0.35 : 0.65
     });
     const icosahedron = new THREE.Mesh(icoGeo, icoMat);
     mainGroup.add(icosahedron);
@@ -117,9 +117,9 @@
     // 2. Outer Vertex Glow Points on the Icosahedron
     const icoPointsMat = new THREE.PointsMaterial({
       color: 0x22d3ee,
-      size: isSmallScreen ? 0.07 : 0.095,
+      size: isSmallScreen ? 0.095 : 0.14,
       transparent: true,
-      opacity: 0.88
+      opacity: 0.95
     });
     const icoVertexPoints = new THREE.Points(icoGeo, icoPointsMat);
     mainGroup.add(icoVertexPoints);
@@ -129,12 +129,12 @@
     const coreGeo = new THREE.OctahedronGeometry(coreRadius, 1);
     const coreMat = new THREE.MeshPhysicalMaterial({
       color: 0x0d0e17,
-      emissive: 0x6d28d9,
-      emissiveIntensity: 0.42,
+      emissive: 0x8b5cf6,
+      emissiveIntensity: 0.65,
       roughness: 0.12,
       metalness: 0.9,
       transparent: true,
-      opacity: isSmallScreen ? 0.28 : 0.52,
+      opacity: isSmallScreen ? 0.38 : 0.65,
       flatShading: true
     });
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
@@ -147,17 +147,17 @@
       color: 0x22d3ee,
       wireframe: true,
       transparent: true,
-      opacity: isSmallScreen ? 0.18 : 0.32
+      opacity: isSmallScreen ? 0.28 : 0.48
     });
     const torusKnot = new THREE.Mesh(knotGeo, knotMat);
     mainGroup.add(torusKnot);
 
     // 5. Primary Cyber Cyan Gyroscopic Orbital Ring
-    const torusGeo1 = new THREE.TorusGeometry(pageType === 'home' ? 4.1 : 3.6, 0.026, 16, 128);
+    const torusGeo1 = new THREE.TorusGeometry(pageType === 'home' ? 4.1 : 3.6, 0.038, 16, 128);
     const torusMat1 = new THREE.MeshBasicMaterial({
       color: 0x06b6d4,
       transparent: true,
-      opacity: isSmallScreen ? 0.28 : 0.54
+      opacity: isSmallScreen ? 0.45 : 0.72
     });
     const orbitalRing1 = new THREE.Mesh(torusGeo1, torusMat1);
     orbitalRing1.rotation.x = Math.PI * 0.38;
@@ -165,11 +165,11 @@
     mainGroup.add(orbitalRing1);
 
     // 6. Secondary Neon Purple Gyroscopic Orbital Ring
-    const torusGeo2 = new THREE.TorusGeometry(pageType === 'home' ? 4.7 : 4.2, 0.02, 16, 128);
+    const torusGeo2 = new THREE.TorusGeometry(pageType === 'home' ? 4.7 : 4.2, 0.032, 16, 128);
     const torusMat2 = new THREE.MeshBasicMaterial({
       color: 0xa855f7,
       transparent: true,
-      opacity: isSmallScreen ? 0.2 : 0.42
+      opacity: isSmallScreen ? 0.38 : 0.62
     });
     const orbitalRing2 = new THREE.Mesh(torusGeo2, torusMat2);
     orbitalRing2.rotation.x = -Math.PI * 0.32;
@@ -177,11 +177,11 @@
     mainGroup.add(orbitalRing2);
 
     // 7. Tertiary Deep Indigo Equatorial Halo Ring
-    const torusGeo3 = new THREE.TorusGeometry(pageType === 'home' ? 5.3 : 4.8, 0.015, 12, 128);
+    const torusGeo3 = new THREE.TorusGeometry(pageType === 'home' ? 5.3 : 4.8, 0.024, 12, 128);
     const torusMat3 = new THREE.MeshBasicMaterial({
       color: 0x4f46e5,
       transparent: true,
-      opacity: isSmallScreen ? 0.15 : 0.3
+      opacity: isSmallScreen ? 0.25 : 0.45
     });
     const orbitalRing3 = new THREE.Mesh(torusGeo3, torusMat3);
     orbitalRing3.rotation.x = Math.PI * 0.48;
@@ -191,10 +191,10 @@
     const satellitesGroup = new THREE.Group();
     scene.add(satellitesGroup);
     const satGeos = [
-      new THREE.OctahedronGeometry(0.34, 0),
-      new THREE.TetrahedronGeometry(0.38, 0),
-      new THREE.IcosahedronGeometry(0.32, 0),
-      new THREE.DodecahedronGeometry(0.3, 0)
+      new THREE.OctahedronGeometry(0.36, 0),
+      new THREE.TetrahedronGeometry(0.4, 0),
+      new THREE.IcosahedronGeometry(0.34, 0),
+      new THREE.DodecahedronGeometry(0.32, 0)
     ];
     const satPositions = [
       [-6.2, 3.1, -3.2],
@@ -202,29 +202,31 @@
       [6.6, -2.5, -3.5],
       [-2.3, 3.9, -4.0],
       [1.6, -3.4, -3.1],
-      [-7.0, -0.2, -4.4]
+      [-7.0, -0.2, -4.4],
+      [4.2, 3.8, -3.8],
+      [-5.5, 1.2, -2.8],
+      [7.2, 1.5, -4.2],
+      [-1.2, -4.2, -3.6]
     ];
     const satellites = [];
-    if (!isSmallScreen) {
-      satPositions.forEach((pos, idx) => {
-        const mat = new THREE.MeshStandardMaterial({
-          color: idx % 2 === 0 ? 0x22d3ee : 0xc084fc,
-          emissive: idx % 2 === 0 ? 0x06b6d4 : 0x7c3aed,
-          emissiveIntensity: 0.6,
-          wireframe: true,
-          transparent: true,
-          opacity: 0.52
-        });
-        const mesh = new THREE.Mesh(satGeos[idx % satGeos.length], mat);
-        mesh.position.set(pos[0], pos[1], pos[2]);
-        mesh.userData = { baseY: pos[1], baseX: pos[0], speedOffset: idx * 0.7 };
-        satellitesGroup.add(mesh);
-        satellites.push(mesh);
+    satPositions.forEach((pos, idx) => {
+      const mat = new THREE.MeshStandardMaterial({
+        color: idx % 2 === 0 ? 0x22d3ee : 0xc084fc,
+        emissive: idx % 2 === 0 ? 0x06b6d4 : 0x7c3aed,
+        emissiveIntensity: 0.75,
+        wireframe: true,
+        transparent: true,
+        opacity: isSmallScreen ? 0.38 : 0.65
       });
-    }
+      const mesh = new THREE.Mesh(satGeos[idx % satGeos.length], mat);
+      mesh.position.set(pos[0], pos[1], pos[2]);
+      mesh.userData = { baseY: pos[1], baseX: pos[0], speedOffset: idx * 0.7 };
+      satellitesGroup.add(mesh);
+      satellites.push(mesh);
+    });
 
     // 9. Vibrant 3D Living Starfield Particle System with Continuous Forward Drift & Wrap
-    const particleCount = isSmallScreen ? 180 : isLowPower ? 280 : 520;
+    const particleCount = isSmallScreen ? 220 : isLowPower ? 320 : 540;
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -255,10 +257,10 @@
     particlesGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particlesMat = new THREE.PointsMaterial({
-      size: isSmallScreen ? 0.056 : 0.076,
+      size: isSmallScreen ? 0.075 : 0.11,
       vertexColors: true,
       transparent: true,
-      opacity: 0.88
+      opacity: 0.95
     });
 
     const particleSystem = new THREE.Points(particlesGeo, particlesMat);
