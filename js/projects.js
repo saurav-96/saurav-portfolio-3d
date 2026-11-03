@@ -473,7 +473,9 @@
     const carouselNextBtn = document.getElementById('carousel-next-btn');
 
     if (carouselTrack && (carouselPrevBtn || carouselNextBtn)) {
-      function getScrollStep() {
+      let activeSlideTween = null;
+
+      function getSingleCardStep() {
         const firstCard = carouselTrack.querySelector('.project-card');
         if (firstCard) {
           const cardWidth = firstCard.getBoundingClientRect().width;
@@ -484,34 +486,81 @@
         return 380;
       }
 
+      function getSlideStep() {
+        const trackWidth = carouselTrack.clientWidth;
+        const singleStep = getSingleCardStep();
+        if (trackWidth >= 1050) {
+          // Slide full view of 3 cards on desktop
+          return singleStep * 3;
+        } else if (trackWidth >= 680) {
+          // Slide 2 cards on tablet
+          return singleStep * 2;
+        }
+        // Slide 1 card on mobile
+        return singleStep;
+      }
+
       function updateCarouselControls() {
         const scrollLeft = carouselTrack.scrollLeft;
         const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
 
         if (carouselPrevBtn) {
-          const isAtStart = scrollLeft <= 8;
+          const isAtStart = scrollLeft <= 10;
           carouselPrevBtn.disabled = isAtStart;
           carouselPrevBtn.setAttribute('aria-disabled', isAtStart ? 'true' : 'false');
         }
 
         if (carouselNextBtn) {
-          const isAtEnd = scrollLeft >= maxScroll - 8;
+          const isAtEnd = scrollLeft >= maxScroll - 10;
           carouselNextBtn.disabled = isAtEnd;
           carouselNextBtn.setAttribute('aria-disabled', isAtEnd ? 'true' : 'false');
         }
       }
 
+      function smoothSlide(direction) {
+        const maxScroll = carouselTrack.scrollWidth - carouselTrack.clientWidth;
+        const step = getSlideStep();
+        const singleStep = getSingleCardStep();
+
+        // Calculate current baseline (even if in middle of tween)
+        let current = carouselTrack.scrollLeft;
+        if (activeSlideTween && activeSlideTween.isActive()) {
+          current = activeSlideTween.vars.scrollLeft;
+        }
+
+        let target = current + direction * step;
+        // Snap target to nearest multiple of singleStep
+        target = Math.round(target / singleStep) * singleStep;
+        target = Math.max(0, Math.min(maxScroll, target));
+
+        if (typeof window.gsap !== 'undefined') {
+          if (activeSlideTween) activeSlideTween.kill();
+
+          // Continuous fluid easing with power2.out
+          activeSlideTween = gsap.to(carouselTrack, {
+            scrollLeft: target,
+            duration: 0.85,
+            ease: 'power2.out',
+            onUpdate: updateCarouselControls,
+            onComplete: () => {
+              updateCarouselControls();
+              activeSlideTween = null;
+            }
+          });
+        } else {
+          carouselTrack.scrollTo({ left: target, behavior: 'smooth' });
+        }
+      }
+
       if (carouselNextBtn) {
         carouselNextBtn.addEventListener('click', () => {
-          const step = getScrollStep();
-          carouselTrack.scrollBy({ left: step, behavior: 'smooth' });
+          smoothSlide(1);
         });
       }
 
       if (carouselPrevBtn) {
         carouselPrevBtn.addEventListener('click', () => {
-          const step = getScrollStep();
-          carouselTrack.scrollBy({ left: -step, behavior: 'smooth' });
+          smoothSlide(-1);
         });
       }
 

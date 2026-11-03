@@ -1322,3 +1322,366 @@ body.modal-open {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(6, 182, 212, 0.3);
 }
+
+/* ==========================================================================
+   BUTTERY-SMOOTH SITE PRELOADER & COORDINATED TRANSITIONS
+   ========================================================================== */
+.site-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #06060B;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: all;
+}
+
+.site-preloader.is-loaded {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.preloader-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.preloader-logo-ring {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 14, 23, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 35px rgba(168, 85, 247, 0.35);
+}
+
+.preloader-logo-ring::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #22D3EE;
+  border-right-color: #A855F7;
+  animation: spinSlow 1.6s linear infinite;
+}
+
+.preloader-brand-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+}
+
+.preloader-bar-wrap {
+  width: 220px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 99px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.preloader-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #A855F7, #22D3EE, #10B981);
+  border-radius: 99px;
+  box-shadow: 0 0 12px #22D3EE;
+  transition: width 0.12s linear;
+}
+
+.preloader-status {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: #94A3B8;
+  text-transform: uppercase;
+}
+
+/* FOUC & Synchronized Hero Reveal */
+body:not(.page-ready) [data-hero-reveal] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+body.page-ready [data-hero-reveal] {
+  visibility: visible !important;
+}
+
+body.page-transitioning {
+  opacity: 0.88;
+  filter: blur(1.5px);
+  transition: opacity 0.22s ease, filter 0.22s ease;
+}
+
+/* ==========================================================================
+   INTERACTIVE 3D PROFILE PICTURE (360° ORBITAL CARD & FOIL DEPTH)
+   ========================================================================== */
+.profile-3d-scene {
+  position: relative;
+  width: 100%;
+  min-height: 440px;
+  perspective: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+
+.profile-3d-scene.is-dragging {
+  cursor: grabbing;
+}
+
+.profile-3d-card {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  height: 460px;
+  transform-style: preserve-3d;
+  transition: transform 0.06s linear;
+  will-change: transform, filter;
+  border-radius: 1.5rem;
+}
+
+.profile-card-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75);
+}
+
+/* Front Face: Authentic Portrait & Cyber Glow */
+.profile-card-front {
+  background: radial-gradient(circle at 50% 35%, rgba(139, 92, 246, 0.28) 0%, rgba(6, 182, 212, 0.18) 42%, #07070C 82%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  transform: rotateY(0deg) translateZ(4px);
+}
+
+.profile-front-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  pointer-events: none;
+  filter: drop-shadow(0 14px 28px rgba(0, 0, 0, 0.85));
+}
+
+.profile-front-badge {
+  position: relative;
+  z-index: 10;
+  transform: translateZ(28px);
+  padding: 0.85rem 1rem;
+  border-radius: 1rem;
+  background: rgba(7, 7, 12, 0.88);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Realistic Specular Glare Layer */
+.profile-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.5rem;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(34, 211, 238, 0.12) 30%,
+    transparent 65%
+  );
+  mix-blend-mode: overlay;
+  z-index: 15;
+}
+
+/* Reverse Face: Cyberpunk Holographic Identity Card */
+.profile-card-back {
+  background: linear-gradient(135deg, #090913 0%, #06060B 50%, #0E0F1D 100%);
+  transform: rotateY(180deg) translateZ(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid rgba(168, 85, 247, 0.35);
+  box-shadow: 0 0 35px rgba(124, 58, 237, 0.25) inset;
+}
+
+.profile-back-circuit {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background-image:
+    radial-gradient(circle at 20% 20%, #A855F7 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, #06B6D4 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.profile-back-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-back-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.profile-back-footer {
+  position: relative;
+  z-index: 2;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Floating 3D Interaction Hint Badge */
+.profile-3d-hint {
+  position: absolute;
+  top: -12px;
+  right: 12px;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(124, 58, 237, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.5);
+  animation: pulseGlow 2.8s ease-in-out infinite;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.profile-3d-hint.has-interacted {
+  opacity: 0.65;
+  animation: none;
+}
+
+/* ==========================================================================
+   FIRST RUNNER-UP TROPHY GALLERY STYLES (Achievement Lightbox Extension)
+   ========================================================================== */
+.cert-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.gallery-thumb-card {
+  position: relative;
+  border-radius: 0.85rem;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-thumb-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  border-color: #22D3EE;
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.35);
+}
+
+.gallery-thumb-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.gallery-thumb-card:hover .gallery-thumb-img {
+  transform: scale(1.06);
+}
+
+.gallery-thumb-caption {
+  padding: 0.6rem 0.75rem;
+  background: rgba(7, 7, 12, 0.9);
+  font-size: 0.75rem;
+  color: #E2E8F0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   SEND MESSAGE GLASSMORPHISM HIGH-CONTRAST CARD
+   ========================================================================== */
+.send-message-card {
+  background: rgba(13, 14, 23, 0.84) !important;
+  backdrop-filter: blur(28px) saturate(170%) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(170%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow:
+    0 24px 60px -12px rgba(0, 0, 0, 0.82),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18) !important;
+  border-radius: 1.5rem !important;
+}
+
+.send-message-card .form-input,
+.send-message-card .form-select,
+.send-message-card .form-textarea {
+  background: rgba(6, 6, 11, 0.78) !important;
+  border-color: rgba(255, 255, 255, 0.18) !important;
+  color: #F8FAFC !important;
+}
+
+.send-message-card .form-input:focus,
+.send-message-card .form-select:focus,
+.send-message-card .form-textarea:focus {
+  background: rgba(6, 6, 11, 0.95) !important;
+  border-color: #A855F7 !important;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.4) !important;
+}
+
+.send-message-card .form-label {
+  color: #F1F5F9 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+}

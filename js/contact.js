@@ -75,10 +75,11 @@
 
     const params = new URLSearchParams(window.location.search);
     const mode = params.get('mode');
-    if (mode === 'contact' || params.get('service') || params.get('project') || params.get('skill')) {
-      switchMode('contact');
-    } else {
+    // Default to General Contact and Inquiries unless ?mode=hire is explicitly requested (Requirement 7)
+    if (mode === 'hire') {
       switchMode('hire');
+    } else {
+      switchMode('contact');
     }
   }
 

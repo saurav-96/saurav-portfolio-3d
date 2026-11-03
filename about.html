@@ -55,6 +55,20 @@
   <link rel="stylesheet" href="css/responsive.css" />
 </head>
 <body data-page="about">
+  <!-- Coordinated Buttery-Smooth Preloader Curtain -->
+  <div id="site-preloader" class="site-preloader" aria-live="polite" aria-atomic="true">
+    <div class="preloader-core">
+      <div class="preloader-logo-ring">
+        <img src="assets/images/saurav-logo.png" alt="Saurav Logo" class="w-10 h-10 rounded-full object-cover" width="40" height="40" />
+      </div>
+      <div class="preloader-brand-title">SAURAV<span class="text-purpleNeon">.</span></div>
+      <div class="preloader-bar-wrap">
+        <div id="preloader-progress-bar" class="preloader-progress-bar"></div>
+      </div>
+      <div id="preloader-status-text" class="preloader-status">Initializing...</div>
+    </div>
+  </div>
+
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
 
@@ -78,11 +92,14 @@
           <li><a href="about.html" class="nav-link active" data-nav-page="about.html">About</a></li>
           <li><a href="projects.html" class="nav-link" data-nav-page="projects.html">Projects</a></li>
           <li><a href="services.html" class="nav-link" data-nav-page="services.html">Services</a></li>
-          <li><a href="contact.html" class="nav-link" data-nav-page="contact.html">Contact</a></li>
+          <li><a href="contact.html?mode=hire" class="nav-link" data-nav-page="contact.html">Contact</a></li>
         </ul>
 
         <div class="flex items-center gap-3">
-          <a href="contact.html" class="btn-primary btn-nav-cta nav-cta-desktop" data-magnetic>
+          <a href="contact.html?mode=hire" class="btn-primary btn-nav-cta nav-cta-desktop" data-magnetic>
+            <span>Hire Me</span>
+            <span aria-hidden="true">↗</span>
+          </a>
             <span>Hire Me</span>
             <span aria-hidden="true">↗</span>
           </a>
@@ -104,9 +121,9 @@
           <li><a href="about.html" class="nav-link w-full" data-nav-page="about.html">About</a></li>
           <li><a href="projects.html" class="nav-link w-full" data-nav-page="projects.html">Projects</a></li>
           <li><a href="services.html" class="nav-link w-full" data-nav-page="services.html">Services</a></li>
-          <li><a href="contact.html" class="nav-link w-full" data-nav-page="contact.html">Contact</a></li>
+          <li><a href="contact.html?mode=hire" class="nav-link w-full" data-nav-page="contact.html">Contact</a></li>
         </ul>
-        <a href="contact.html" class="btn-primary w-full justify-center">
+        <a href="contact.html?mode=hire" class="btn-primary w-full justify-center">
           <span>Hire Me</span>
           <span aria-hidden="true">↗</span>
         </a>
@@ -160,7 +177,7 @@
                   <i data-lucide="file-text" class="w-4 h-4"></i>
                   <span>View / Download CV</span>
                 </a>
-                <a href="contact.html" class="btn-secondary text-sm">
+                <a href="contact.html?mode=hire" class="btn-secondary text-sm">
                   <span>Work With Me</span>
                   <span aria-hidden="true">↗</span>
                 </a>
@@ -170,22 +187,77 @@
 
           <!-- Right Column: Framed Portrait Card & Discipline Highlights -->
           <div class="lg:col-span-5" data-hero-reveal>
-            <div class="glass-card p-5 sm:p-6 relative" data-tilt>
-              <div class="about-portrait-stage pt-6 px-4">
-                <img
-                  src="assets/images/saurav-cutout.png"
-                  alt="Portrait of Saurav Bhusal — Creative Web Developer and UI/UX Designer"
-                  class="about-portrait-img"
-                  loading="eager"
-                  width="400"
-                  height="450"
-                />
-                <div class="absolute bottom-3 left-3 right-3 p-3.5 rounded-xl bg-[#07070C]/85 backdrop-blur-md border border-white/10 flex items-center justify-between z-10">
-                  <div>
-                    <div class="font-heading text-sm font-bold text-white">Saurav Bhusal</div>
-                    <div class="font-mono text-[11px] text-cyan-300">Creative Technologist • Nepal</div>
+            <div class="glass-card p-5 sm:p-6 relative overflow-visible">
+              <!-- Interactive 3D Orbit Hint Pill -->
+              <div id="profile-3d-hint" class="profile-3d-hint">
+                <span>✦ Drag to rotate 3D (360°)</span>
+                <button id="profile-3d-reset-btn" type="button" class="underline hover:text-cyan-300 ml-1 cursor-pointer pointer-events-auto" title="Reset view">Reset</button>
+              </div>
+
+              <div id="interactive-profile-stage" class="profile-3d-scene" role="region" aria-label="Interactive 3D profile picture. Click and drag with mouse or touch to rotate 360 degrees. Double click to reset.">
+                <div id="profile-3d-card" class="profile-3d-card">
+                  <!-- FRONT FACE: Authentic Portrait & Cyber Glow -->
+                  <div class="profile-card-face profile-card-front">
+                    <div class="profile-glare"></div>
+                    <img
+                      src="assets/images/saurav-cutout.png"
+                      alt="Portrait of Saurav Bhusal — Creative Web Developer and UI/UX Designer"
+                      class="profile-front-img"
+                      loading="eager"
+                      width="400"
+                      height="450"
+                    />
+                    <div class="profile-front-badge">
+                      <div>
+                        <div class="font-heading text-sm font-bold text-white">Saurav Bhusal</div>
+                        <div class="font-mono text-[11px] text-cyan-300">Creative Technologist • Nepal</div>
+                      </div>
+                      <span class="status-badge status-live">Remote Ready</span>
+                    </div>
                   </div>
-                  <span class="status-badge status-live">Remote Ready</span>
+
+                  <!-- REVERSE FACE: Cyberpunk Holographic Developer Identity Card -->
+                  <div class="profile-card-face profile-card-back">
+                    <div class="profile-glare"></div>
+                    <div class="profile-back-circuit"></div>
+
+                    <div class="profile-back-header">
+                      <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full p-0.5 bg-gradient-to-r from-cyan-400 to-purple-500 flex items-center justify-center">
+                          <img src="assets/images/saurav-logo.png" alt="Saurav Logo" class="w-full h-full rounded-full object-cover" />
+                        </div>
+                        <div>
+                          <div class="font-heading text-xs font-bold text-white tracking-wider">SAURAV BHUSAL</div>
+                          <div class="font-mono text-[10px] text-purple-300">ID: SB-NEPAL-2026</div>
+                        </div>
+                      </div>
+                      <span class="font-mono text-[10px] px-2 py-0.5 rounded-full bg-cyan-950/70 border border-cyan-400/40 text-cyan-300">VERIFIED DEV</span>
+                    </div>
+
+                    <div class="profile-back-body">
+                      <div class="p-2.5 rounded-xl bg-white/[0.04] border border-white/10 space-y-1">
+                        <div class="font-mono text-[10px] text-slate-400 uppercase tracking-widest">CREDENTIALS</div>
+                        <div class="font-heading text-xs font-semibold text-white">Harvard CS50x Alum</div>
+                        <div class="text-[11px] text-slate-300 leading-tight">Software &amp; Web Developer • UI/UX Specialist</div>
+                      </div>
+
+                      <div class="grid grid-cols-2 gap-2 text-[11px]">
+                        <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5">
+                          <span class="font-mono text-[9px] text-slate-400">LOCATION</span>
+                          <div class="text-slate-200 font-medium">Kapilvastu &amp; Butwal</div>
+                        </div>
+                        <div class="p-2 rounded-lg bg-white/[0.02] border border-white/5">
+                          <span class="font-mono text-[9px] text-slate-400">AVAILABILITY</span>
+                          <div class="text-emerald-400 font-medium">Worldwide Remote</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="profile-back-footer">
+                      <span class="font-mono text-[10px] text-slate-400">360° Interactive 3D Card</span>
+                      <span class="font-mono text-[10px] text-purple-300">Double-click to reset ↻</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -299,6 +371,10 @@
               <div role="button" tabindex="0" class="skill-card-btn group" data-skill-id="canva" aria-label="Inspect Canva details">
                 <i data-lucide="palette" class="w-4 h-4 text-cyan-300 shrink-0"></i>
                 <span class="text-sm font-medium text-white group-hover:text-cyan-300 transition">Canva</span>
+              </div>
+              <div role="button" tabindex="0" class="skill-card-btn group" data-skill-id="graphic-design" aria-label="Inspect Graphic Design details">
+                <i data-lucide="sparkles" class="w-4 h-4 text-pink-400 shrink-0"></i>
+                <span class="text-sm font-medium text-white group-hover:text-cyan-300 transition">Graphic Design</span>
               </div>
               <div role="button" tabindex="0" class="skill-card-btn group" data-skill-id="responsive-design" aria-label="Inspect Responsive Design details">
                 <i data-lucide="smartphone" class="w-4 h-4 text-emerald-300 shrink-0"></i>
@@ -417,6 +493,7 @@
                 data-cert-src="assets/certificates/nit-legend-hackathon-2026.jpg"
                 data-cert-title="First Runner-Up — Web Design Competition (Hackathon) 2026"
                 data-cert-meta="Issued by NIT LEGEND (Team of IT Experts) & Butwal Sub-Metropolitan City • Date: 16th Jestha, 2083 (May 30, 2026) • Signed by Kamal Nyaupane & Mayor Khelraj Pandey"
+                data-has-gallery="true"
               >
                 <img
                   src="assets/certificates/nit-legend-hackathon-2026.jpg"
@@ -441,7 +518,7 @@
                 NIT LEGEND &amp; Butwal Sub-Metropolitan City • 16th Jestha, 2083 (May 30, 2026)
               </p>
               <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
-                Awarded for outstanding innovation, technical mastery, and creative brilliance in the Web Design Hackathon 2026. Signed by Program Co-Ordinator <strong>Kamal Nyaupane</strong> and Chief Guest <strong>Khelraj Pandey</strong> (Mayor, Butwal Sub-Metropolitan City).
+                Awarded for outstanding innovation, technical mastery, and creative brilliance in the Web Design Hackathon 2026. Signed by Program Co-Ordinator <strong>Kamal Nyaupane</strong> and Chief Guest <strong>Khelraj Pandey</strong> (Mayor, Butwal Sub-Metropolitan City). Includes trophy award moments gallery.
               </p>
             </div>
 
@@ -453,9 +530,10 @@
                 data-cert-src="assets/certificates/nit-legend-hackathon-2026.jpg"
                 data-cert-title="First Runner-Up — Web Design Competition (Hackathon) 2026"
                 data-cert-meta="Issued by NIT LEGEND (Team of IT Experts) & Butwal Sub-Metropolitan City • Date: 16th Jestha, 2083 (May 30, 2026)"
+                data-has-gallery="true"
               >
                 <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i>
-                <span>View Certificate</span>
+                <span>View Certificate &amp; Trophy</span>
               </button>
             </div>
           </article>
@@ -846,7 +924,7 @@
                 <span>Explore Projects</span>
                 <span aria-hidden="true">→</span>
               </a>
-              <a href="contact.html" class="btn-secondary text-sm">
+              <a href="contact.html?mode=hire" class="btn-secondary text-sm">
                 <span>Hire Me</span>
                 <span aria-hidden="true">↗</span>
               </a>
@@ -882,8 +960,39 @@
             id="cert-lightbox-img"
             src="assets/certificates/nit-legend-hackathon-2026.jpg"
             alt="Certificate preview"
-            class="max-h-[70vh] w-auto object-contain rounded-lg"
+            class="max-h-[60vh] w-auto object-contain rounded-lg transition-opacity duration-200"
           />
+        </div>
+
+        <!-- Trophy Gallery Extension for Hackathon Award (Requirement 6) -->
+        <div id="cert-gallery-section" class="mt-5 pt-5 border-t border-white/10 hidden">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="font-mono text-xs text-amber-300 uppercase tracking-wider">🏆 Award Moments &amp; Trophy Gallery</span>
+              <span class="text-xs text-slate-400 font-mono">(Click image to view in main frame)</span>
+            </div>
+            <button id="cert-show-cert-btn" type="button" class="btn-secondary text-xs py-1 px-3">
+              <span>View Certificate</span>
+            </button>
+          </div>
+
+          <div class="cert-gallery-grid">
+            <div class="gallery-thumb-card" role="button" tabindex="0" data-gallery-src="assets/certificates/saurav-hackathon-runnerup.jpg" data-gallery-title="Saurav Bhusal receiving First Runner-Up Trophy &amp; Rs. 10,000/- Check" aria-label="View Saurav holding trophy photograph">
+              <img src="assets/certificates/saurav-hackathon-runnerup.jpg" alt="Saurav Bhusal on stage receiving the First Runner-Up Trophy and Rs. 10,000 Award Check" class="gallery-thumb-img" loading="lazy" />
+              <div class="gallery-thumb-caption">
+                <span>Award Presentation on Stage</span>
+                <span class="text-cyan-400 font-mono">⤢ Inspect</span>
+              </div>
+            </div>
+
+            <div class="gallery-thumb-card" role="button" tabindex="0" data-gallery-src="assets/certificates/hackathon-trophy.jpg" data-gallery-title="Official First Runner-Up Web Design Competition Trophy" aria-label="View close-up of Web Design Competition trophy">
+              <img src="assets/certificates/hackathon-trophy.jpg" alt="Close-up photograph of the First Runner-Up Web Design Competition Trophy" class="gallery-thumb-img" loading="lazy" />
+              <div class="gallery-thumb-caption">
+                <span>Official Winner Trophy</span>
+                <span class="text-cyan-400 font-mono">⤢ Inspect</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
@@ -936,7 +1045,7 @@
           <li><a href="about.html" class="hover:text-white transition">About</a></li>
           <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
           <li><a href="services.html" class="hover:text-white transition">Services</a></li>
-          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+          <li><a href="contact.html?mode=contact" class="hover:text-white transition">Contact</a></li>
           <li><a href="assets/documents/Saurav-Bhusal-CV.html" class="text-cyan-400 hover:underline">Resume / CV</a></li>
         </ul>
 
@@ -971,6 +1080,8 @@
   <script src="js/navigation.js" defer></script>
   <script src="js/three-scene.js" defer></script>
   <script src="js/animations.js" defer></script>
+  <script src="js/loading-orchestrator.js" defer></script>
+  <script src="js/profile-3d.js" defer></script>
   <script src="js/main.js" defer></script>
   <script src="js/skills-modal.js" defer></script>
 </body>

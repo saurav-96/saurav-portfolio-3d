@@ -4,6 +4,37 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.5.0] — 2026-11-03 (Interactive 3D Profile Card, Buttery-Smooth Loading System, Animated Carousel Slide, Graphic Design Skill, Hackathon Trophy Gallery, and Isolated Contact & Hire Flows)
+
+### Added & Enhanced
+- **Interactive 3D Profile Card (`about.html`, `js/profile-3d.js`, `css/style.css`):**
+  - Engineered an interactive 3D card controller with full 360-degree pointer drag rotation (pitch and yaw), damping/inertia physics, and mobile touch drag with automatic page scroll locking during interaction.
+  - Double-face architecture with high-contrast front portrait and a cybernetic holographic developer ID badge on the reverse face (Harvard CS50x Alum, Nepal coordinates, NFC chip aesthetic).
+  - Dynamic specular glare tracking (`--glare-x`, `--glare-y`), multi-layer depth elevation, floating "Drag to rotate 3D" hint pill, and double-click / double-tap spring reset.
+- **Buttery-Smooth Loading System (`js/loading-orchestrator.js`, `css/style.css`, all HTML pages):**
+  - Coordinated preloader curtain (`#site-preloader`) featuring glowing brand monogram ring, precision progress bar, and status indicator.
+  - Font readiness synchronization via `document.fonts.ready` preventing layout shifts and FOUC.
+  - Seamless page-exit link transitions and coordinated hero entrance animations.
+- **Featured Projects Smooth Animated Sliding Carousel (`js/projects.js`):**
+  - Upgraded arrow navigation from jumpy native scrollBy to a continuous GSAP-powered horizontal sliding animation with a cinematic easing curve (`power2.out`, 0.85s).
+  - Multi-card slide calculations (3 cards on desktop, 2 on tablet, 1 on mobile) with dynamic edge detection and rapid-click queuing.
+- **Skills Section — Graphic Design Modal (`about.html`, `js/skills-modal.js`):**
+  - Added new skill card for "Graphic Design" in Category 2 (UI/UX & Design).
+  - Comprehensive detail modal covering Canva, Figma, visual composition, YouTube thumbnails, branding, and social media graphics.
+- **Achievements & Awards — First Runner-Up Trophy & Moments Gallery (`about.html`, `js/main.js`, `css/style.css`):**
+  - Integrated authentic high-resolution photographs into the NIT Legend Hackathon certificate preview modal:
+    1. Saurav on stage holding the First Runner-Up Trophy and Rs. 10,000/- award check.
+    2. Close-up photograph of the official Web Design Competition Winner Trophy.
+  - Interactive gallery grid with thumbnail selection to inspect award moments in the main modal frame, and quick toggle back to the original certificate.
+- **Strict Separation of Contact and Hire Me Navigation Flows (All HTML pages, `js/contact.js`):**
+  - Navbar "Contact" links route directly to General Contact and Inquiries (`contact.html?mode=contact`), defaulting to the contact message card and direct channels.
+  - Navbar "Hire Me" buttons route to Fast-Track Project Inquiry (`contact.html?mode=hire`), defaulting to instant chat and escrow freelance channels.
+- **Direct Channels Authentic Brand SVGs & Glassmorphism Card (`contact.html`, `css/style.css`):**
+  - Replaced all text abbreviation badges and emojis with crisp, recognizable vector SVGs (Instagram, Facebook, X, WhatsApp, Telegram, LinkedIn, GitHub, Upwork, Fiverr, Freelancer).
+  - Unified message form into `.send-message-card` featuring deep 28px backdrop blur, elevated contrast, and border glow for readability over 3D backgrounds.
+
+---
+
 ## [v3.4.0] — 2026-11-03 (Featured Projects Carousel, Profile Photo Stage, Skills Deep-Dive, Service FAQ Accordions, and Dual Hire/Contact Experience)
 
 ### Added & Enhanced

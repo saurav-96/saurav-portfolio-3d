@@ -234,6 +234,30 @@
       proficiencyLevel: 'Advanced Visual Communication'
     },
 
+    'graphic-design': {
+      id: 'graphic-design',
+      name: 'Graphic Design',
+      category: 'UI/UX & Design',
+      badgeClass: 'status-live',
+      icon: 'sparkles',
+      iconColor: 'text-pink-400',
+      tagline: 'Visual composition, brand identities, social media creatives, and marketing layouts.',
+      description:
+        'Creating clear, compelling visual designs that communicate value and elevate digital products. Focusing on visual balance, typography hierarchy, high-contrast focal points, and cohesive brand systems for online audiences.',
+      capabilities: [
+        'Visual composition and optical balance across digital touchpoints',
+        'Brand identity guidelines, logo design, and vector assets',
+        'Social media graphics optimized for Instagram, Facebook, and LinkedIn',
+        'High-CTR YouTube thumbnail design with emotional visual hooks',
+        'Promotional poster design, digital banners, and creative layouts',
+        'Typography pairing, scale systems, and cohesive palette curation'
+      ],
+      practicalApplications:
+        'Crafted the brand identity, logo, and social media creative suite for TubeKit, civic banners for Butwal SmartGov, and promotional graphics across web development projects.',
+      ecosystem: ['Canva', 'Figma', 'Vector Layouts', 'Brand Architecture', 'Typography Hierarchy', 'Color Theory'],
+      proficiencyLevel: 'Practical Design & Visual Branding (2+ Years Real-World Production)'
+    },
+
     'responsive-design': {
       id: 'responsive-design',
       name: 'Responsive Design',

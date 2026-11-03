@@ -74,6 +74,19 @@
   </script>
 </head>
 <body data-page="home">
+  <!-- Coordinated Buttery-Smooth Preloader Curtain -->
+  <div id="site-preloader" class="site-preloader" aria-live="polite" aria-atomic="true">
+    <div class="preloader-core">
+      <div class="preloader-logo-ring">
+        <img src="assets/images/saurav-logo.png" alt="Saurav Logo" class="w-10 h-10 rounded-full object-cover" width="40" height="40" />
+      </div>
+      <div class="preloader-brand-title">SAURAV<span class="text-purpleNeon">.</span></div>
+      <div class="preloader-bar-wrap">
+        <div id="preloader-progress-bar" class="preloader-progress-bar"></div>
+      </div>
+      <div id="preloader-status-text" class="preloader-status">Initializing...</div>
+    </div>
+  </div>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
 
@@ -98,11 +111,11 @@
           <li><a href="about.html" class="nav-link" data-nav-page="about.html">About</a></li>
           <li><a href="projects.html" class="nav-link" data-nav-page="projects.html">Projects</a></li>
           <li><a href="services.html" class="nav-link" data-nav-page="services.html">Services</a></li>
-          <li><a href="contact.html" class="nav-link" data-nav-page="contact.html">Contact</a></li>
+          <li><a href="contact.html?mode=hire" class="nav-link" data-nav-page="contact.html">Contact</a></li>
         </ul>
 
         <div class="flex items-center gap-3">
-          <a href="contact.html" class="btn-primary btn-nav-cta nav-cta-desktop" data-magnetic>
+          <a href="contact.html?mode=hire" class="btn-primary btn-nav-cta nav-cta-desktop" data-magnetic>
             <span>Hire Me</span>
             <span aria-hidden="true">↗</span>
           </a>
@@ -125,9 +138,9 @@
           <li><a href="about.html" class="nav-link w-full" data-nav-page="about.html">About</a></li>
           <li><a href="projects.html" class="nav-link w-full" data-nav-page="projects.html">Projects</a></li>
           <li><a href="services.html" class="nav-link w-full" data-nav-page="services.html">Services</a></li>
-          <li><a href="contact.html" class="nav-link w-full" data-nav-page="contact.html">Contact</a></li>
+          <li><a href="contact.html?mode=hire" class="nav-link w-full" data-nav-page="contact.html">Contact</a></li>
         </ul>
-        <a href="contact.html" class="btn-primary w-full justify-center">
+        <a href="contact.html?mode=hire" class="btn-primary w-full justify-center">
           <span>Hire Me</span>
           <span aria-hidden="true">↗</span>
         </a>
@@ -163,7 +176,7 @@
                 <span>Explore My Work</span>
                 <span aria-hidden="true">→</span>
               </a>
-              <a href="contact.html" class="btn-secondary" data-magnetic>
+              <a href="contact.html?mode=contact" class="btn-secondary" data-magnetic>
                 <span>Let's Work Together</span>
                 <span aria-hidden="true">↗</span>
               </a>
@@ -233,7 +246,7 @@
             </div>
           </a>
 
-          <a href="contact.html" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
+          <a href="contact.html?mode=contact" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
             <div class="icon-box w-12 h-12 bg-gradient-to-br from-emerald-500/25 to-teal-600/15 border border-emerald-400/40 text-emerald-300 shrink-0">
               <i data-lucide="globe-2" class="w-5 h-5"></i>
             </div>
@@ -813,7 +826,7 @@
             </div>
 
             <div class="flex flex-wrap items-center gap-4">
-              <a href="contact.html" class="btn-primary text-base px-7 py-3.5" data-magnetic>
+              <a href="contact.html?mode=hire" class="btn-primary text-base px-7 py-3.5" data-magnetic>
                 <span>Contact Me</span>
                 <span aria-hidden="true">→</span>
               </a>
@@ -861,7 +874,7 @@
           <li><a href="about.html" class="hover:text-white transition">About</a></li>
           <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
           <li><a href="services.html" class="hover:text-white transition">Services</a></li>
-          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+          <li><a href="contact.html?mode=contact" class="hover:text-white transition">Contact</a></li>
           <li><a href="assets/documents/Saurav-Bhusal-CV.html" class="text-cyan-400 hover:underline">Resume / CV</a></li>
         </ul>
 
@@ -898,6 +911,7 @@
   <script src="js/three-scene.js" defer></script>
   <script src="js/animations.js" defer></script>
   <script src="js/projects.js" defer></script>
+  <script src="js/loading-orchestrator.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
