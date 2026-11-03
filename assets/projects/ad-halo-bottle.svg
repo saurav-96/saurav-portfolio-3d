@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1000" width="1200" height="1000" role="img" aria-labelledby="t d">
+  <title id="t">Product advertising concept: Halo Bottle</title>
+  <desc id="d">Self-initiated creative advertisement for a fictional reusable water bottle brand.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9D6"/><stop offset="1" stop-color="#FFC9A8"/></linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0F766E"/><stop offset=".45" stop-color="#14B8A6"/><stop offset="1" stop-color="#0B5B55"/></linearGradient>
+    <linearGradient id="cap" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1F2937"/><stop offset=".5" stop-color="#4B5563"/><stop offset="1" stop-color="#111827"/></linearGradient>
+    <filter id="blur"><feGaussianBlur stdDeviation="14"/></filter>
+  </defs>
+  <rect width="1200" height="1000" fill="url(#bg)"/>
+  <!-- big ring -->
+  <circle cx="780" cy="470" r="330" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width="40"/>
+  <circle cx="780" cy="470" r="250" fill="#FFB38A" opacity=".55"/>
+  <!-- droplets -->
+  <g fill="#14B8A6" opacity=".85"><path d="M1010 200 q30 40 0 60 q-30 -20 0 -60z"/><path d="M1090 330 q18 26 0 38 q-18 -12 0 -38z"/><path d="M930 130 q14 20 0 30 q-14 -10 0 -30z"/></g>
+  <!-- shadow -->
+  <ellipse cx="780" cy="905" rx="190" ry="26" fill="#7C2D12" opacity=".35" filter="url(#blur)"/>
+  <!-- bottle -->
+  <g transform="translate(780 0)">
+    <rect x="-70" y="120" width="140" height="70" rx="16" fill="url(#cap)"/>
+    <rect x="-34" y="92" width="68" height="36" rx="14" fill="#111827"/>
+    <rect x="-84" y="186" width="168" height="28" rx="10" fill="#E5E7EB"/>
+    <path d="M-100 214 H100 V860 a46 46 0 0 1 -46 46 H-54 a46 46 0 0 1 -46 -46 Z" fill="url(#body)"/>
+    <rect x="-82" y="240" width="20" height="600" rx="10" fill="#fff" opacity=".28"/>
+    <circle cx="0" cy="520" r="62" fill="#FFF7ED"/>
+    <circle cx="0" cy="520" r="62" fill="none" stroke="#0B5B55" stroke-width="6" stroke-dasharray="3 12"/>
+    <text x="0" y="538" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="52" font-weight="800" fill="#0B5B55">H</text>
+    <text x="0" y="640" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="700" letter-spacing="8" fill="#fff">HALO</text>
+  </g>
+  <!-- copy -->
+  <g font-family="'Segoe UI', Arial, sans-serif" fill="#0F172A">
+    <text x="70" y="90" font-size="18" font-weight="700" letter-spacing="5" fill="#9A3412">PRODUCT AD CONCEPT · FICTIONAL BRAND</text>
+    <text x="70" y="330" font-size="130" font-weight="800" letter-spacing="-5">Refill.</text>
+    <text x="70" y="460" font-size="130" font-weight="800" letter-spacing="-5" fill="#0F766E">Repeat.</text>
+    <text x="70" y="560" font-size="130" font-weight="800" letter-spacing="-5">Forever.</text>
+    <text x="70" y="650" font-size="30" fill="#431407">One bottle. Zero single-use plastic.</text>
+    <rect x="70" y="710" width="260" height="72" rx="36" fill="#0F172A"/>
+    <text x="200" y="756" font-size="27" font-weight="700" fill="#fff" text-anchor="middle">Meet Halo →</text>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 600" width="1800" height="600" role="img" aria-labelledby="t d">
+  <title id="t">Social media campaign concept: three coordinated posts</title>
+  <desc id="d">Self-initiated concept: a three-post Instagram carousel for a fictional focus-timer app called Deepwork Daily.</desc>
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1E1B4B"/><stop offset="1" stop-color="#4338CA"/></linearGradient>
+    <linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4338CA"/><stop offset="1" stop-color="#7C3AED"/></linearGradient>
+    <linearGradient id="c" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C3AED"/><stop offset="1" stop-color="#F472B6"/></linearGradient>
+  </defs>
+  <!-- continuous ribbon across posts -->
+  <rect width="600" height="600" fill="url(#a)"/><rect x="600" width="600" height="600" fill="url(#b)"/><rect x="1200" width="600" height="600" fill="url(#c)"/>
+  <path d="M-20 470 C 300 330 600 620 900 470 S 1500 330 1820 470" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="3"/>
+  <path d="M-20 510 C 300 370 600 660 900 510 S 1500 370 1820 510" fill="none" stroke="#fff" stroke-opacity=".12" stroke-width="3"/>
+  <g stroke="#fff" stroke-opacity=".5" stroke-width="2"><path d="M600 0V600M1200 0V600" stroke-dasharray="6 8"/></g>
+
+  <g font-family="'Segoe UI', Arial, sans-serif" fill="#fff">
+    <!-- post 1 -->
+    <text x="48" y="70" font-size="18" font-weight="700" letter-spacing="4" fill="#C7D2FE">DEEPWORK DAILY · 01/03</text>
+    <text x="48" y="260" font-size="86" font-weight="800" letter-spacing="-3">Your</text>
+    <text x="48" y="345" font-size="86" font-weight="800" letter-spacing="-3">focus</text>
+    <text x="48" y="430" font-size="86" font-weight="800" letter-spacing="-3" fill="#FDE68A">is a</text>
+    <text x="48" y="515" font-size="86" font-weight="800" letter-spacing="-3" fill="#FDE68A">habit.</text>
+    <text x="552" y="570" font-size="40" text-anchor="end">→</text>
+
+    <!-- post 2 -->
+    <text x="648" y="70" font-size="18" font-weight="700" letter-spacing="4" fill="#DDD6FE">02/03</text>
+    <circle cx="900" cy="270" r="140" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="22"/>
+    <circle cx="900" cy="270" r="140" fill="none" stroke="#FDE68A" stroke-width="22" stroke-linecap="round" stroke-dasharray="620 880" transform="rotate(-90 900 270)"/>
+    <text x="900" y="290" font-size="76" font-weight="800" text-anchor="middle" letter-spacing="-2">25:00</text>
+    <text x="900" y="470" font-size="40" font-weight="700" text-anchor="middle">One timer.</text>
+    <text x="900" y="518" font-size="40" font-weight="700" text-anchor="middle">One task. Go.</text>
+    <text x="1152" y="570" font-size="40" text-anchor="end">→</text>
+
+    <!-- post 3 -->
+    <text x="1248" y="70" font-size="18" font-weight="700" letter-spacing="4" fill="#FBCFE8">03/03</text>
+    <text x="1248" y="230" font-size="64" font-weight="800" letter-spacing="-2">Start your</text>
+    <text x="1248" y="300" font-size="64" font-weight="800" letter-spacing="-2">first block</text>
+    <text x="1248" y="370" font-size="64" font-weight="800" letter-spacing="-2">today.</text>
+    <rect x="1248" y="420" width="300" height="70" rx="35" fill="#fff"/>
+    <text x="1398" y="464" font-size="26" font-weight="700" text-anchor="middle" fill="#4C1D95">Try it free</text>
+    <text x="1752" y="570" font-size="15" text-anchor="end" fill-opacity=".85">Concept · fictional app</text>
+  </g>
+</svg>

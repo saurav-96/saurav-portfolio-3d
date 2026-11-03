@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="1200" height="900" role="img" aria-labelledby="t d">
+  <title id="t">Nodeloop brand identity concept</title>
+  <desc id="d">Self-initiated concept: logo, colour palette, type and app icon for a fictional workflow startup called Nodeloop.</desc>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6D5EF5"/><stop offset="1" stop-color="#22D3EE"/></linearGradient>
+    <g id="mark">
+      <path d="M0 -60 A60 60 0 1 1 -52 30" fill="none" stroke="url(#g)" stroke-width="22" stroke-linecap="round"/>
+      <circle cx="0" cy="-60" r="17" fill="#0F0E2A"/><circle cx="0" cy="-60" r="9" fill="#22D3EE"/>
+      <circle cx="-52" cy="30" r="17" fill="#0F0E2A"/><circle cx="-52" cy="30" r="9" fill="#6D5EF5"/>
+    </g>
+  </defs>
+  <rect width="1200" height="900" fill="#F4F2EC"/>
+  <text x="60" y="80" font-family="'Segoe UI', Arial, sans-serif" font-size="18" letter-spacing="4" fill="#6B6A7B" font-weight="700">BRAND IDENTITY CONCEPT · FICTIONAL STARTUP</text>
+
+  <!-- primary logo card -->
+  <rect x="60" y="110" width="700" height="400" rx="28" fill="#0F0E2A"/>
+  <use href="#mark" transform="translate(240 310) scale(1.35)"/>
+  <text x="340" y="340" font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif" font-size="84" font-weight="700" fill="#fff" letter-spacing="-2">nodeloop</text>
+  <text x="344" y="384" font-family="'Segoe UI', Arial, sans-serif" font-size="22" fill="#A5A3C9" letter-spacing="3">WORKFLOWS THAT CLOSE THE LOOP</text>
+
+  <!-- light logo card -->
+  <rect x="790" y="110" width="350" height="190" rx="28" fill="#fff"/>
+  <use href="#mark" transform="translate(860 205) scale(.6)"/>
+  <text x="905" y="218" font-family="'Segoe UI', Arial, sans-serif" font-size="40" font-weight="700" fill="#0F0E2A" letter-spacing="-1">nodeloop</text>
+
+  <!-- app icon -->
+  <rect x="790" y="320" width="170" height="190" rx="28" fill="#E7E4F7"/>
+  <rect x="815" y="350" width="120" height="120" rx="30" fill="#0F0E2A"/>
+  <use href="#mark" transform="translate(875 415) scale(.55)"/>
+  <!-- favicon -->
+  <rect x="980" y="320" width="160" height="190" rx="28" fill="url(#g)"/>
+  <circle cx="1060" cy="415" r="38" fill="none" stroke="#fff" stroke-width="12" stroke-dasharray="190 50" stroke-linecap="round"/>
+  <circle cx="1060" cy="377" r="9" fill="#fff"/>
+
+  <!-- palette -->
+  <g font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="600">
+    <rect x="60" y="540" width="170" height="150" rx="22" fill="#0F0E2A"/><text x="80" y="660" fill="#fff">Midnight</text><text x="80" y="680" fill="#A5A3C9" font-weight="400">#0F0E2A</text>
+    <rect x="245" y="540" width="170" height="150" rx="22" fill="#6D5EF5"/><text x="265" y="660" fill="#fff">Loop Violet</text><text x="265" y="680" fill="#E0DCFF" font-weight="400">#6D5EF5</text>
+    <rect x="430" y="540" width="170" height="150" rx="22" fill="#22D3EE"/><text x="450" y="660" fill="#0F0E2A">Signal Cyan</text><text x="450" y="680" fill="#0F0E2A" font-weight="400">#22D3EE</text>
+    <rect x="615" y="540" width="145" height="150" rx="22" fill="#fff" stroke="#DAD7EA"/><text x="635" y="660" fill="#0F0E2A">Paper</text><text x="635" y="680" fill="#6B6A7B" font-weight="400">#FFFFFF</text>
+  </g>
+
+  <!-- type specimen -->
+  <rect x="790" y="540" width="350" height="150" rx="22" fill="#fff"/>
+  <text x="815" y="615" font-family="'Segoe UI', Arial, sans-serif" font-size="68" font-weight="700" fill="#0F0E2A">Aa</text>
+  <text x="920" y="590" font-family="'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700" fill="#0F0E2A">Headlines · Bold</text>
+  <text x="920" y="618" font-family="'Segoe UI', Arial, sans-serif" font-size="18" fill="#6B6A7B">Body copy · Regular</text>
+  <text x="815" y="665" font-family="Consolas, 'Courier New', monospace" font-size="15" fill="#6D5EF5">trigger → action → done</text>
+
+  <!-- tagline strip -->
+  <rect x="60" y="720" width="1080" height="110" rx="28" fill="url(#g)"/>
+  <text x="100" y="790" font-family="'Segoe UI', Arial, sans-serif" font-size="40" font-weight="700" fill="#fff" letter-spacing="-1">Less busywork. More loop-closing.</text>
+  <text x="1100" y="790" text-anchor="end" font-family="'Segoe UI', Arial, sans-serif" font-size="16" fill="#fff" fill-opacity=".85" font-weight="600">Concept · not a real company</text>
+</svg>

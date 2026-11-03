@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" width="900" height="1200" role="img" aria-labelledby="t d">
+  <title id="t">BUILD/NEXT 2026 event poster concept</title>
+  <desc id="d">Self-initiated poster concept for a fictional technology event.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF5A36"/><stop offset=".55" stop-color="#F43F7A"/><stop offset="1" stop-color="#5B21B6"/></linearGradient>
+    <clipPath id="c"><rect width="900" height="1200"/></clipPath>
+  </defs>
+  <g clip-path="url(#c)">
+    <rect width="900" height="1200" fill="url(#bg)"/>
+    <!-- sun / halftone circles -->
+    <circle cx="450" cy="560" r="300" fill="#FFD166"/>
+    <g fill="#0E0B26" opacity=".9">
+      <rect x="150" y="610" width="600" height="14"/><rect x="170" y="650" width="560" height="22"/>
+      <rect x="200" y="700" width="500" height="30"/><rect x="230" y="760" width="440" height="40"/>
+      <rect x="260" y="830" width="380" height="50"/>
+    </g>
+    <!-- grid floor -->
+    <g stroke="#fff" stroke-opacity=".35" stroke-width="2">
+      <path d="M0 900 H900 M0 940 H900 M0 990 H900 M0 1050 H900 M0 1125 H900"/>
+      <path d="M450 880 L450 1200 M300 880 L-150 1200 M600 880 L1050 1200 M150 880 L-600 1200 M750 880 L1500 1200"/>
+    </g>
+    <rect y="880" width="900" height="320" fill="#0E0B26" opacity=".55"/>
+
+    <text x="60" y="110" font-family="'Segoe UI', Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="8" fill="#fff">FICTIONAL EVENT · POSTER CONCEPT</text>
+    <g font-family="Impact, 'Arial Black', sans-serif" fill="#0E0B26">
+      <text x="54" y="300" font-size="210" letter-spacing="-4">BUILD</text>
+      <text x="54" y="450" font-size="150" fill="#fff" letter-spacing="-2">/NEXT</text>
+    </g>
+    <text x="64" y="1010" font-family="Impact, 'Arial Black', sans-serif" font-size="96" fill="#fff" letter-spacing="2">2026</text>
+    <g font-family="'Segoe UI', Arial, sans-serif" fill="#fff">
+      <text x="64" y="1070" font-size="28" font-weight="700">Web · AI · Design — one day, three tracks</text>
+      <text x="64" y="1112" font-size="24" font-weight="400">12 DEC  ·  Butwal, Nepal  ·  Free community meetup</text>
+    </g>
+    <g transform="translate(640 940)">
+      <rect width="200" height="200" rx="100" fill="#FFD166"/>
+      <text x="100" y="95" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="46" fill="#0E0B26">JOIN</text>
+      <text x="100" y="145" text-anchor="middle" font-family="Impact, 'Arial Black', sans-serif" font-size="46" fill="#0E0B26">US →</text>
+    </g>
+  </g>
+</svg>

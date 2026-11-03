@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="aibg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#07070C"/>
+      <stop offset="55%" stop-color="#101226"/>
+      <stop offset="100%" stop-color="#091926"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#aibg)"/>
+  <!-- Grid lines -->
+  <g stroke="rgba(168,85,247,0.08)" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="160" y1="0" x2="160" y2="500"/>
+    <line x1="320" y1="0" x2="320" y2="500"/>
+    <line x1="480" y1="0" x2="480" y2="500"/>
+    <line x1="640" y1="0" x2="640" y2="500"/>
+  </g>
+  <!-- Python Code Terminal Window -->
+  <rect x="46" y="54" width="380" height="260" rx="16" fill="#0D0E17" stroke="rgba(168,85,247,0.35)" stroke-width="1.5"/>
+  <circle cx="70" cy="76" r="5" fill="#EF4444"/>
+  <circle cx="86" cy="76" r="5" fill="#F59E0B"/>
+  <circle cx="102" cy="76" r="5" fill="#10B981"/>
+  <text x="122" y="80" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="11">pipeline_runner.py — Python 3.12</text>
+  <text x="68" y="118" fill="#C084FC" font-family="JetBrains Mono, monospace" font-size="12">import <tspan fill="#F8FAFC">asyncio, httpx</tspan></text>
+  <text x="68" y="142" fill="#22D3EE" font-family="JetBrains Mono, monospace" font-size="12">async def <tspan fill="#F8FAFC">run_workflow(task):</tspan></text>
+  <text x="86" y="166" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="12">parsed = <tspan fill="#A855F7">await</tspan> extract_schema(task)</text>
+  <text x="86" y="190" fill="#94A3B8" font-family="JetBrains Mono, monospace" font-size="12">report = synthesize_digest(parsed)</text>
+  <text x="86" y="214" fill="#10B981" font-family="JetBrains Mono, monospace" font-size="12">return <tspan fill="#F8FAFC">{"status": "ok", "items": len(report)}</tspan></text>
+  <rect x="68" y="242" width="330" height="44" rx="10" fill="rgba(6,182,212,0.1)" stroke="rgba(6,182,212,0.3)"/>
+  <text x="84" y="268" fill="#22D3EE" font-family="JetBrains Mono, monospace" font-size="11">✓ [LAB] 3 automation scripts verified locally</text>
+  <!-- Node Graph / AI Pipeline -->
+  <path d="M426 184 C475 184, 475 125, 525 125" stroke="url(#accentGrad)" stroke-width="2.5" fill="none"/>
+  <path d="M426 184 C475 184, 475 255, 525 255" stroke="url(#accentGrad)" stroke-width="2.5" fill="none"/>
+  <path d="M685 125 C715 125, 715 365, 620 365" stroke="#06B6D4" stroke-width="2" stroke-dasharray="5 5" fill="none"/>
+  <!-- Node 1 -->
+  <rect x="525" y="82" width="225" height="86" rx="16" fill="#121426" stroke="rgba(6,182,212,0.45)" stroke-width="1.5"/>
+  <text x="545" y="112" fill="#22D3EE" font-family="JetBrains Mono, monospace" font-size="11">NODE 01 • DATA INGEST</text>
+  <text x="545" y="134" fill="#F8FAFC" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">Web &amp; File Scraper</text>
+  <text x="545" y="152" fill="#94A3B8" font-family="Inter, sans-serif" font-size="11">BeautifulSoup + Async HTTP</text>
+  <!-- Node 2 -->
+  <rect x="525" y="212" width="225" height="86" rx="16" fill="#121426" stroke="rgba(168,85,247,0.45)" stroke-width="1.5"/>
+  <text x="545" y="242" fill="#C084FC" font-family="JetBrains Mono, monospace" font-size="11">NODE 02 • LLM PROMPT CHAIN</text>
+  <text x="545" y="264" fill="#F8FAFC" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">Structured JSON Parser</text>
+  <text x="545" y="282" fill="#94A3B8" font-family="Inter, sans-serif" font-size="11">Prompt Templates &amp; Validation</text>
+  <!-- Bottom Output Bar -->
+  <rect x="46" y="346" width="704" height="102" rx="18" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)"/>
+  <circle cx="92" cy="397" r="24" fill="url(#accentGrad)"/>
+  <text x="81" y="403" fill="#FFFFFF" font-family="JetBrains Mono, monospace" font-size="15" font-weight="700">AI</text>
+  <text x="134" y="388" fill="#F8FAFC" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">Python &amp; AI Workflow Sandbox</text>
+  <text x="134" y="412" fill="#94A3B8" font-family="Inter, sans-serif" font-size="13">Personal R&amp;D scripts for file organization, batch media processing, and LLM-assisted task automation.</text>
+</svg>

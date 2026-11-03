@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0A14"/>
+      <stop offset="50%" stop-color="#15102C"/>
+      <stop offset="100%" stop-color="#091C26"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="75%" cy="30%" r="45%">
+      <stop offset="0%" stop-color="#A855F7" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#A855F7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="25%" cy="75%" r="45%">
+      <stop offset="0%" stop-color="#06B6D4" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect width="800" height="500" fill="url(#glow1)"/>
+  <rect width="800" height="500" fill="url(#glow2)"/>
+  <!-- Desktop Browser Frame -->
+  <rect x="48" y="42" width="520" height="360" rx="18" fill="#0D0E17" stroke="rgba(168,85,247,0.3)" stroke-width="1.5"/>
+  <circle cx="72" cy="64" r="5" fill="#EF4444"/>
+  <circle cx="88" cy="64" r="5" fill="#F59E0B"/>
+  <circle cx="104" cy="64" r="5" fill="#10B981"/>
+  <rect x="130" y="56" width="180" height="16" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <!-- Wellness Hero Mockup -->
+  <rect x="78" y="102" width="110" height="22" rx="11" fill="rgba(6,182,212,0.15)" stroke="rgba(6,182,212,0.4)"/>
+  <text x="92" y="117" fill="#22D3EE" font-family="Inter, sans-serif" font-size="10" font-weight="600">MINDFUL YOU • UI/UX</text>
+  <text x="78" y="156" fill="#F8FAFC" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700">Find clarity in</text>
+  <text x="78" y="190" fill="#C084FC" font-family="Space Grotesk, sans-serif" font-size="28" font-weight="700">every breath.</text>
+  <rect x="78" y="210" width="230" height="8" rx="4" fill="rgba(255,255,255,0.18)"/>
+  <rect x="78" y="226" width="185" height="8" rx="4" fill="rgba(255,255,255,0.12)"/>
+  <rect x="78" y="256" width="128" height="36" rx="18" fill="url(#pill)"/>
+  <text x="102" y="278" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="12" font-weight="600">Start Journey →</text>
+  <!-- Breathing Orb Visualization -->
+  <circle cx="430" cy="215" r="76" fill="rgba(168,85,247,0.1)" stroke="rgba(168,85,247,0.35)" stroke-dasharray="4 4"/>
+  <circle cx="430" cy="215" r="52" fill="rgba(6,182,212,0.15)" stroke="#06B6D4" stroke-width="1.5"/>
+  <circle cx="430" cy="215" r="26" fill="url(#pill)"/>
+  <!-- Stats Strip inside Desktop -->
+  <rect x="78" y="320" width="135" height="56" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+  <text x="94" y="344" fill="#A855F7" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">12 min</text>
+  <text x="94" y="362" fill="#94A3B8" font-family="Inter, sans-serif" font-size="10">Daily Flow Session</text>
+  <rect x="228" y="320" width="135" height="56" rx="12" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+  <text x="244" y="344" fill="#06B6D4" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">Calm 94%</text>
+  <text x="244" y="362" fill="#94A3B8" font-family="Inter, sans-serif" font-size="10">Biometric Balance</text>
+  <!-- Floating Mobile App Prototype -->
+  <rect x="515" y="92" width="235" height="370" rx="28" fill="#111322" stroke="rgba(6,182,212,0.45)" stroke-width="2"/>
+  <rect x="595" y="106" width="75" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+  <text x="542" y="146" fill="#F8FAFC" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">Evening Wind-Down</text>
+  <text x="542" y="164" fill="#94A3B8" font-family="Inter, sans-serif" font-size="11">Guided somatic breathing</text>
+  <rect x="542" y="182" width="181" height="110" rx="16" fill="rgba(124,58,237,0.16)" stroke="rgba(168,85,247,0.3)"/>
+  <path d="M562 248 Q595 205 632 245 T702 232" stroke="#22D3EE" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <circle cx="632" cy="245" r="5" fill="#A855F7"/>
+  <text x="562" y="276" fill="#E2E8F0" font-family="JetBrains Mono, monospace" font-size="11">04:18 / 10:00 • 432Hz</text>
+  <!-- Mood tags -->
+  <rect x="542" y="310" width="84" height="32" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)"/>
+  <text x="560" y="330" fill="#CBD5E1" font-family="Inter, sans-serif" font-size="11">Serenity</text>
+  <rect x="638" y="310" width="84" height="32" rx="10" fill="rgba(6,182,212,0.14)" stroke="rgba(6,182,212,0.4)"/>
+  <text x="655" y="330" fill="#22D3EE" font-family="Inter, sans-serif" font-size="11">Deep Focus</text>
+  <rect x="542" y="362" width="181" height="42" rx="14" fill="url(#pill)"/>
+  <text x="592" y="388" fill="#FFFFFF" font-family="Inter, sans-serif" font-size="12" font-weight="600">Resume Session</text>
+</svg>

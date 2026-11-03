@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="polyA" x1="8" y1="8" x2="56" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#06B6D4"/>
+      <stop offset="50%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="polyB" x1="32" y1="8" x2="56" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#A855F7"/>
+      <stop offset="100%" stop-color="#4F46E5"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#07070C"/>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="14.5" stroke="url(#polyA)" stroke-opacity="0.35" stroke-width="1.5"/>
+  <!-- 3D Faceted Prism Triangle -->
+  <polygon points="32,10 12,50 32,42" fill="url(#polyA)"/>
+  <polygon points="32,10 52,50 32,42" fill="url(#polyB)" opacity="0.88"/>
+  <polygon points="12,50 52,50 32,42" fill="#06B6D4" opacity="0.65"/>
+  <circle cx="32" cy="10" r="2.2" fill="#22D3EE"/>
+</svg>

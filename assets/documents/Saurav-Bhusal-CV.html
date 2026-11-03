@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saurav Bhusal — Curriculum Vitae (CV)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #07070C;
+      --card: #0D0E17;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --violet: #7C3AED;
+      --purple: #A855F7;
+      --cyan: #06B6D4;
+      --border: rgba(168, 85, 247, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2.5rem 1.25rem;
+    }
+    .toolbar {
+      max-width: 850px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      color: #fff;
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+    .sheet {
+      max-width: 850px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+    }
+    header {
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      padding-bottom: 1.75rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.25rem;
+      letter-spacing: -0.02em;
+    }
+    .role {
+      color: var(--cyan);
+      font-weight: 600;
+      font-size: 1rem;
+      margin-top: 0.25rem;
+    }
+    .meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: right;
+    }
+    .meta a { color: #C084FC; text-decoration: none; }
+    section { margin-bottom: 1.85rem; }
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #C084FC;
+      margin-bottom: 0.85rem;
+      border-left: 3px solid var(--cyan);
+      padding-left: 0.65rem;
+    }
+    .item { margin-bottom: 1.1rem; }
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+      font-size: 0.98rem;
+    }
+    .item-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    p, li { font-size: 0.9rem; color: #CBD5E1; }
+    ul { padding-left: 1.2rem; }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .skill-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.9rem;
+      border-radius: 12px;
+    }
+    .skill-box h3 {
+      font-size: 0.82rem;
+      color: var(--cyan);
+      margin-bottom: 0.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    @media print {
+      body { background: #fff; color: #0f172a; padding: 0; }
+      .toolbar { display: none; }
+      .sheet { border: none; box-shadow: none; background: #fff; color: #0f172a; padding: 1.5rem; }
+      p, li, .item-sub, .meta { color: #334155; }
+      h2, .role, .skill-box h3, .meta a { color: #4F46E5; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <a href="../../about.html" class="btn btn-ghost">← Back to Portfolio</a>
+    <button onclick="window.print()" class="btn">Print / Save as PDF</button>
+  </div>
+  <main class="sheet">
+    <header>
+      <div>
+        <h1>Saurav Bhusal</h1>
+        <div class="role">Creative Web Developer | UI/UX Designer | AI Automation Enthusiast</div>
+        <p style="margin-top:0.5rem;max-width:480px;font-size:0.86rem;">
+          "Turning ideas into intuitive, meaningful, and impactful digital experiences."
+        </p>
+      </div>
+      <div class="meta">
+        <div>Kapilvastu &amp; Butwal, Nepal (Remote Worldwide)</div>
+        <div>Portfolio: <a href="https://sauravbhusal.free.nf/">sauravbhusal.free.nf</a></div>
+        <div>GitHub: <a href="https://github.com/saurav-96">github.com/saurav-96</a></div>
+        <div>LinkedIn: <a href="https://www.linkedin.com/in/saurav-b-502352415/">linkedin.com/in/saurav-b-502352415</a></div>
+        <div>Upwork: <a href="https://www.upwork.com/freelancers/~010a6e73c111779a15">Upwork Profile</a></div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Skills &amp; Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill-box">
+          <h3>Frontend Development</h3>
+          <p>HTML5, CSS3, JavaScript (ES6+), React, Tailwind CSS, Three.js, GSAP</p>
+        </div>
+        <div class="skill-box">
+          <h3>UI/UX &amp; Design</h3>
+          <p>Figma, FigJam, Webflow, Canva, Responsive Design, Interactive Prototyping</p>
+        </div>
+        <div class="skill-box">
+          <h3>Programming</h3>
+          <p>Python, C, PHP</p>
+        </div>
+        <div class="skill-box">
+          <h3>Tools &amp; Extensions</h3>
+          <p>Git, GitHub, WordPress, AI Development Tools, Chrome Extensions (Manifest V3)</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Selected Projects</h2>
+      <div class="item">
+        <div class="item-head">
+          <span>SwasthyaSutra — Healthcare Technology Platform</span>
+          <a href="https://saurav-96.github.io/SwasthyaSutra/" style="color:#22D3EE;font-size:0.82rem;">Live Demo ↗</a>
+        </div>
+        <div class="item-sub">HTML5 • CSS3 • JavaScript • Responsive UI/UX</div>
+        <p>A healthcare-focused digital platform designed to make healthcare information, vitals tracking, and digital health services more accessible.</p>
+      </div>
+      <div class="item">
+        <div class="item-head">
+          <span>KeyFlow — Productivity &amp; Shortcut Command Center</span>
+          <a href="https://saurav-96.github.io/KeyFlow/" style="color:#22D3EE;font-size:0.82rem;">Live Demo ↗</a>
+        </div>
+        <div class="item-sub">JavaScript • LocalStorage • Responsive UI Design</div>
+        <p>A productivity-focused web application built around shortcut organization, workflow management, and rapid keyboard-driven lookup.</p>
+      </div>
+      <div class="item">
+        <div class="item-head">
+          <span>E-Government Platform (Butwal SmartGov)</span>
+          <a href="https://saurav-96.github.io/E-Governmet-platform/" style="color:#22D3EE;font-size:0.82rem;">Live Demo ↗</a>
+        </div>
+        <div class="item-sub">Civic Technology • Portal UI Architecture • Frontend Engineering</div>
+        <p>A digital governance platform concept focused on making municipal public services and department metrics accessible through modern web technologies.</p>
+      </div>
+      <div class="item">
+        <div class="item-head">
+          <span>YouTube Power-Tools (TubeKit) — Browser Extension</span>
+          <a href="https://github.com/saurav-96/TubeKit" style="color:#22D3EE;font-size:0.82rem;">GitHub Repo ↗</a>
+        </div>
+        <div class="item-sub">JavaScript • Chrome Extension Manifest V3 • CS50x Final Project</div>
+        <p>Browser extension exploring YouTube productivity features including custom playback controls, frame screenshot capture, thumbnail extraction, and shortcut bindings.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Achievements &amp; Certifications</h2>
+      <div class="item">
+        <div class="item-head">
+          <span>First Runner-Up — Web Design Hackathon 2026</span>
+          <span>May 30, 2026</span>
+        </div>
+        <div class="item-sub">NIT LEGEND</div>
+      </div>
+      <div class="item">
+        <div class="item-head">
+          <span>UX/UI Design Competition</span>
+          <span>2025</span>
+        </div>
+        <div class="item-sub">Sagarmatha Secondary Boarding School</div>
+      </div>
+      <div class="item">
+        <div class="item-head">
+          <span>Harvard CS50x Certificate — Introduction to Computer Science</span>
+          <a href="https://certificates.cs50.io/c95716f9-c771-4c7b-91b5-c0e45c322f56" style="color:#22D3EE;font-size:0.82rem;">Verify Certificate ↗</a>
+        </div>
+        <div class="item-sub">Harvard University (CS50x)</div>
+      </div>
+    </section>
+
+    <section style="margin-bottom:0;">
+      <h2>Education</h2>
+      <div class="item" style="margin-bottom:0;">
+        <div class="item-head">
+          <span>Computer Science Studies</span>
+          <span>Current</span>
+        </div>
+        <div class="item-sub">Oxford Secondary College — Nepal</div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
