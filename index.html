@@ -1,720 +1,563 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saurav Bhusal — Creative Web Developer &amp; UI/UX Designer</title>
-  <meta name="description" content="Portfolio of Saurav Bhusal — Creative Web Developer, UI/UX Designer, and AI Automation Enthusiast turning ideas into intuitive, impactful digital experiences." />
-  <meta name="keywords" content="Saurav Bhusal, Web Developer, UI/UX Designer, Frontend Developer, Website Designer, Freelance Web Developer, Three.js, Nepal" />
-  <meta name="author" content="Saurav Bhusal" />
-  <link rel="canonical" href="https://sauravbhusal.free.nf/" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Saurav Bhusal — Web Developer, AI Automation &amp; Graphic Design</title>
+  <meta name="description" content="Saurav Bhusal is a web developer and CS student from Nepal building responsive websites, practical AI automation workflows and graphic design. Available for remote projects.">
+  <meta name="author" content="Saurav Bhusal">
+  <meta name="theme-color" content="#070816">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
-  <!-- Open Graph / Social -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Saurav Bhusal — Creative Web Developer &amp; UI/UX Designer" />
-  <meta property="og:description" content="Turning ideas into intuitive, meaningful, and impactful digital experiences. Explore web applications, UI/UX case studies, and interactive 3D web experiences." />
-  <meta property="og:url" content="https://sauravbhusal.free.nf/" />
-  <meta property="og:image" content="https://sauravbhusal.free.nf/assets/images/saurav-portrait.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Saurav Bhusal — Web Development, AI Automation & Graphic Design">
+  <meta property="og:description" content="Useful digital experiences, smarter workflows and creative visuals. Portfolio of personal projects, working automation demos and design concepts.">
+  <meta property="og:image" content="https://saurav-96.github.io/assets/img/og.jpg">
+  <meta property="og:image:alt" content="Saurav Bhusal portfolio preview">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Saurav Bhusal — Web Development, AI Automation & Graphic Design">
+  <meta name="twitter:description" content="Useful digital experiences, smarter workflows and creative visuals.">
+  <meta name="twitter:image" content="https://saurav-96.github.io/assets/img/og.jpg">
 
-  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
 
-  <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono, Caveat -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            obsidian: '#07070C',
-            midnight: '#0D0E17',
-            violetAccent: '#7C3AED',
-            purpleNeon: '#A855F7',
-            cyberCyan: '#06B6D4',
-            indigoAccent: '#4F46E5'
-          },
-          fontFamily: {
-            heading: ['Space Grotesk', 'sans-serif'],
-            body: ['Inter', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
-            hand: ['Caveat', 'cursive']
-          }
-        }
-      }
-    };
-  </script>
-
-  <!-- Custom Stylesheets -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/animations.css" />
-  <link rel="stylesheet" href="css/responsive.css" />
-
-  <!-- Structured JSON-LD Metadata -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Saurav Bhusal",
-    "jobTitle": "Creative Web Developer & UI/UX Designer",
-    "url": "https://sauravbhusal.free.nf/",
+    "jobTitle": "Web Developer, AI Automation Builder and Graphic Designer",
+    "description": "Computer Science student and freelancer from Nepal working on web development, practical AI automation and graphic design.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Kapilvastu", "addressCountry": "NP" },
     "sameAs": [
       "https://github.com/saurav-96",
       "https://www.linkedin.com/in/saurav-b-502352415/",
+      "https://www.fiverr.com/saurav_bhusal",
       "https://www.upwork.com/freelancers/~010a6e73c111779a15",
       "https://www.freelancer.com/u/sauravb369"
     ]
   }
   </script>
 </head>
-<body data-page="home">
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-  <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
+<body>
+  <!-- SVG icon sprite -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-ext" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path fill="currentColor" d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.5H3V9.75Zm6.5 0h3.83v1.57h.06c.53-1 1.84-2.07 3.78-2.07 4.04 0 4.78 2.66 4.78 6.1v5.9h-4v-5.23c0-1.25-.02-2.85-1.74-2.85-1.74 0-2 1.36-2 2.76v5.32h-4V9.75Z"/></symbol>
+    <symbol id="i-fiverr" viewBox="0 0 24 24"><path fill="#1DBF73" d="M23 12c0 6.075-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1s11 4.925 11 11Z"/><path fill="#fff" d="M16.8 8.4h-1.3c-.9 0-1.2.4-1.2 1.2v1.1h2.5v2h-2.5V18h-2.2v-5.3h-1.6v-2h1.6V9.2c0-1.7 1-2.6 2.7-2.6h2v1.8Zm-8.4 0H6.2V18h2.2V8.4Zm0-2.6H6.2v2h2.2V5.8Z"/></symbol>
+    <symbol id="i-upwork" viewBox="0 0 24 24"><path fill="currentColor" d="M18.56 13.24c-1.3 0-2.52-.55-3.5-1.44l.26-1.24.01-.05c.23-1.27.95-3.4 3.23-3.4a2.77 2.77 0 0 1 2.77 2.78 2.78 2.78 0 0 1-2.77 2.8Zm0-8.42c-2.9 0-5.14 1.88-6.05 4.97a14 14 0 0 1-1.74-3.65H8.24v4.9a2.04 2.04 0 0 1-4.08 0v-4.9H1.65v4.9a4.55 4.55 0 0 0 9.1 0V8.1c.43.9.96 1.8 1.6 2.6l-1.36 6.4h2.57l1-4.7c.87.56 1.9.97 3.1.97 2.96 0 5.28-2.4 5.28-5.3a5.3 5.3 0 0 0-5.28-5.25Z"/></symbol>
+    <symbol id="i-freelancer" viewBox="0 0 24 24"><path fill="currentColor" d="M18.1 4.2 21 6.5 18.1 4.2Zm-1.6.2 1.1 1.6 3.4.2-4.5-1.8ZM4.5 18.6l-.3-1.8L7 13l-2.5.1-.3-1.7L9.8 10l.6-.4.1.4-1.9 3.4 2.7 5.2H4.5Zm9.2-.2 6.4-1.7.6-5.8L14 6l-4.1 1.2 1.5-2.4L19.5 4l1.9 2.5.5 7.5-1.4 4.6-7.1 1.9-.7-2.1Z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="9.5" r="2.5" fill="currentColor"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </svg>
 
-  <!-- Fixed Full-Viewport Three.js WebGL Background -->
-  <canvas id="webgl-canvas" aria-hidden="true"></canvas>
-  <div class="ambient-backdrop" aria-hidden="true"></div>
-  <div class="bg-grid-overlay" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="scroll-3d-progress" id="scroll-progress" aria-hidden="true"></div>
+  <div class="cursor-ambient" id="cursor-ambient" aria-hidden="true"></div>
 
-  <div class="site-wrapper">
-    <!-- Shared Floating Glassmorphic Navigation Bar -->
-    <header class="navbar-wrap">
-      <nav class="navbar-glass" aria-label="Primary Navigation">
-        <a href="index.html" class="brand-logo" aria-label="Saurav Bhusal Home">
-          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
-            <polygon points="32,8 10,52 32,43" fill="#06B6D4"/>
-            <polygon points="32,8 54,52 32,43" fill="#A855F7"/>
-            <polygon points="10,52 54,52 32,43" fill="#7C3AED"/>
-          </svg>
-          <span>SAURAV<span class="text-purpleNeon">.</span></span>
-        </a>
+  <!-- ============ HEADER ============ -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a class="wordmark" href="#home" aria-label="Saurav Bhusal — home">
+        <span class="wordmark-mark" aria-hidden="true">SB</span>
+        <span class="wordmark-text">Saurav Bhusal</span>
+      </a>
 
-        <ul class="nav-links">
-          <li><a href="index.html" class="nav-link active" data-nav-page="index.html">Home</a></li>
-          <li><a href="about.html" class="nav-link" data-nav-page="about.html">About</a></li>
-          <li><a href="projects.html" class="nav-link" data-nav-page="projects.html">Projects</a></li>
-          <li><a href="services.html" class="nav-link" data-nav-page="services.html">Services</a></li>
-          <li><a href="contact.html" class="nav-link" data-nav-page="contact.html">Contact</a></li>
+      <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#home" data-nav="home">Home</a></li>
+          <li><a href="#web" data-nav="web">Web Development</a></li>
+          <li><a href="#ai" data-nav="ai">AI Automation</a></li>
+          <li><a href="#design" data-nav="design">Graphic Design</a></li>
+          <li><a href="#about" data-nav="about">About</a></li>
+          <li><a href="#contact" data-nav="contact">Contact</a></li>
         </ul>
-
-        <div class="flex items-center gap-3">
-          <a href="contact.html" class="btn-primary btn-nav-cta nav-cta-desktop" data-magnetic>
-            <span>Hire Me</span>
-            <span aria-hidden="true">↗</span>
-          </a>
-
-          <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobile-nav-drawer">
-            <svg class="icon-menu w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-            </svg>
-            <svg class="icon-close w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
-            </svg>
-          </button>
-        </div>
+        <a class="btn btn-primary nav-cta" href="#contact">Let's Work Together <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </nav>
 
-      <!-- Responsive Mobile Drawer -->
-      <div id="mobile-nav-drawer" class="mobile-nav-drawer" role="dialog" aria-label="Mobile Navigation">
-        <ul class="flex flex-col gap-1.5 mb-4">
-          <li><a href="index.html" class="nav-link w-full" data-nav-page="index.html">Home</a></li>
-          <li><a href="about.html" class="nav-link w-full" data-nav-page="about.html">About</a></li>
-          <li><a href="projects.html" class="nav-link w-full" data-nav-page="projects.html">Projects</a></li>
-          <li><a href="services.html" class="nav-link w-full" data-nav-page="services.html">Services</a></li>
-          <li><a href="contact.html" class="nav-link w-full" data-nav-page="contact.html">Contact</a></li>
-        </ul>
-        <a href="contact.html" class="btn-primary w-full justify-center">
-          <span>Hire Me</span>
-          <span aria-hidden="true">↗</span>
-        </a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+        <span class="menu-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow hero-greeting"><span class="wave" aria-hidden="true">👋</span> Hello, I'm Saurav Bhusal</p>
+          <h1 id="hero-title">Crafting Digital Stories—From <span class="grad-text">Engagement</span> to Real Impact.</h1>
+          <p class="lead">I'm a passionate web developer, AI automation builder, and UI/UX designer specializing in building digital experiences with modern technologies.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="#contact">Start a Project <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost btn-lg" href="#work">View My Work</a>
+          </div>
+          <ul class="hero-facts" aria-label="Quick facts">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-pin"/></svg> Kapilvastu &amp; Butwal, Nepal</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Remote-friendly (Work from Home)</li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Harvard CS50x Certified</li>
+          </ul>
+        </div>
+
+        <div class="hero-portrait-stage reveal" id="hero-stage">
+          <div class="portrait-glow-aura" aria-hidden="true">
+            <div class="glow-orb glow-cyan"></div>
+            <div class="glow-orb glow-purple"></div>
+            <div class="glow-ring"></div>
+          </div>
+          <div class="portrait-cutout-wrap" id="portrait-3d-wrap">
+            <img src="assets/img/saurav-cutout.png" width="764" height="1024" alt="Saurav Bhusal — Web Developer, AI Automation & Designer" class="portrait-cutout" fetchpriority="high">
+          </div>
+          <!-- Floating 3D Nepal badge matching user mockup -->
+          <div class="float-badge badge-nepal card-3d" data-depth="40">
+            <svg class="ico-flag" viewBox="0 0 24 28" width="20" height="23" aria-hidden="true">
+              <path d="M2 2v24h2V18l12-3-8-4 12-6L2 2Z" fill="#003893"/>
+              <path d="M4 4.5v9.8l10.2-2.5-7.2-3.6 10.2-4.2L4 4.5Z" fill="#DC143C"/>
+              <circle cx="8" cy="8" r="1.8" fill="#FFF"/>
+              <path d="M7 11.8a2.5 2.5 0 0 0 3.2 0" stroke="#FFF" stroke-width="1.2" fill="none"/>
+              <circle cx="8" cy="15" r="2.2" fill="#FFF"/>
+            </svg>
+            <span>Nepal</span>
+          </div>
+        </div>
       </div>
-    </header>
 
-    <main id="main-content" class="pt-28 sm:pt-32 pb-20">
-      <!-- ===================================================================
-           SECTION 1: HERO SECTION (SPLIT-SCREEN LAYOUT)
-           =================================================================== -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          <!-- Left Column: Value Proposition & CTAs -->
-          <div class="lg:col-span-7 space-y-6">
-            <div data-hero-reveal>
-              <span class="eyebrow-badge">
-                <span class="eyebrow-dot"></span>
-                <span>DESIGN • DEVELOP • INNOVATE</span>
+      <div class="container" id="work">
+        <ul class="service-cards" aria-label="My three service areas">
+          <li>
+            <a class="service-card sc-web card-3d" href="#web">
+              <span class="sc-art sc-art-img" aria-hidden="true">
+                <img src="assets/img/card-web.png" width="180" height="110" alt="Web Development Preview" loading="eager">
               </span>
-            </div>
-
-            <h1 data-hero-reveal class="font-heading text-4xl sm:text-5xl xl:text-[3.55rem] font-bold tracking-tight text-white leading-[1.12]">
-              Hi, I'm Saurav Bhusal.<br />
-              I turn ideas into <span class="text-gradient">intuitive, impactful</span> digital experiences.
-            </h1>
-
-            <p data-hero-reveal class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
-              I design and develop modern digital products, combining thoughtful UI/UX, creative frontend engineering, and emerging AI technologies.
-            </p>
-
-            <div data-hero-reveal class="flex flex-wrap items-center gap-4 pt-2">
-              <a href="projects.html" class="btn-primary" data-magnetic>
-                <span>Explore My Work</span>
-                <span aria-hidden="true">→</span>
-              </a>
-              <a href="contact.html" class="btn-secondary" data-magnetic>
-                <span>Let's Work Together</span>
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
-
-            <!-- Secondary Element: Authentic Availability Indicator -->
-            <div data-hero-reveal class="inline-flex items-center gap-2.5 pt-1 text-xs sm:text-sm text-slate-300 font-medium">
-              <span class="relative flex h-2.5 w-2.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+              <span class="sc-num">01</span>
+              <h2>Web Development</h2>
+              <p>Responsive sites, modern UI/UX dashboards, and React frontends with clean, accessible code.</p>
+              <span class="sc-link">View web projects <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="service-card sc-ai card-3d" href="#ai">
+              <span class="sc-art sc-art-img" aria-hidden="true">
+                <img src="assets/img/card-ai.png" width="180" height="110" alt="AI Automation Preview" loading="eager">
               </span>
-              <span>Available for remote freelance projects &amp; collaborations</span>
-            </div>
-          </div>
+              <span class="sc-num">02</span>
+              <h2>AI Automation</h2>
+              <p>Practical workflows and digital automation that cut repetitive tasks. Interactive demos you can try.</p>
+              <span class="sc-link">Try the demos <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+          </li>
+          <li>
+            <a class="service-card sc-design card-3d" href="#design">
+              <span class="sc-art sc-art-img" aria-hidden="true">
+                <img src="assets/img/card-design.png" width="180" height="110" alt="Graphic Design Preview" loading="eager">
+              </span>
+              <span class="sc-num">03</span>
+              <h2>Graphic Design</h2>
+              <p>UI/UX container design, thumbnails, posters, branding and social graphics with creative vision.</p>
+              <span class="sc-link">Browse the gallery <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
 
-          <!-- Right Column: Portrait Container, Rim Lighting, 3D Elements & Code Card -->
-          <div class="lg:col-span-5" data-hero-reveal>
-            <div class="hero-portrait-stage">
-              <div class="portrait-glow-aura animate-pulse-glow" aria-hidden="true"></div>
+    <!-- ============ WEB DEVELOPMENT ============ -->
+    <section class="niche niche-web" id="web" aria-labelledby="web-title">
+      <div class="container">
+        <header class="niche-head reveal">
+          <p class="niche-kicker"><span>01</span> Web Development</p>
+          <h2 id="web-title">Fast, responsive interfaces that are pleasant to use.</h2>
+          <p class="lead">I build with HTML, CSS and JavaScript, and use React, Vite and Tailwind CSS when a project needs components and state. These are my own projects — each one links to the live site and source so you can inspect the real thing.</p>
+          <ul class="chips" aria-label="Web development services">
+            <li>Responsive websites</li><li>Landing pages</li><li>Frontend interfaces</li><li>Website redesign</li><li>React &amp; Tailwind CSS</li>
+          </ul>
+        </header>
 
-              <!-- Floating 3D Geometric Polyhedron Top-Left -->
-              <svg class="floating-poly animate-float -top-2 left-4 w-14 h-14" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-                <polygon points="40,6 72,26 60,68 20,68 8,26" stroke="#22D3EE" stroke-width="1.5" fill="rgba(6,182,212,0.12)"/>
-                <polyline points="40,6 40,42 72,26" stroke="#A855F7" stroke-width="1.2"/>
-                <polyline points="8,26 40,42 60,68" stroke="#22D3EE" stroke-width="1.2"/>
-                <line x1="40" y1="42" x2="20" y2="68" stroke="#A855F7" stroke-width="1.2"/>
-              </svg>
-
-              <!-- Floating 3D Geometric Polyhedron Bottom-Left -->
-              <svg class="floating-poly animate-float-delayed bottom-10 left-0 w-16 h-16" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-                <polygon points="40,8 74,40 40,72 6,40" stroke="#A855F7" stroke-width="1.6" fill="rgba(168,85,247,0.15)"/>
-                <polygon points="40,18 62,40 40,62 18,40" stroke="#22D3EE" stroke-width="1" fill="none"/>
-                <line x1="40" y1="8" x2="40" y2="72" stroke="#C084FC" stroke-width="1"/>
-                <line x1="6" y1="40" x2="74" y2="40" stroke="#22D3EE" stroke-width="1"/>
-              </svg>
-
-              <!-- Designated Actual Portrait Container -->
-              <div class="portrait-frame">
-                <img
-                  src="assets/images/saurav-cutout.png"
-                  alt="Saurav Bhusal — Creative Web Developer and UI/UX Designer"
-                  class="portrait-img"
-                  width="420"
-                  height="480"
-                />
-              </div>
-
-              <!-- Glowing Purple & Cyan Rim Orbit Ring -->
-              <div class="neon-orbit-ring" aria-hidden="true"></div>
-
-              <!-- Glassmorphic Developer Code Card -->
-              <div class="dev-code-card animate-float" role="region" aria-label="Developer Profile Snippet">
-                <div class="window-dots" aria-hidden="true">
-                  <span class="window-dot bg-rose-500"></span>
-                  <span class="window-dot bg-amber-400"></span>
-                  <span class="window-dot bg-emerald-400"></span>
-                  <span class="ml-2 text-[10px] text-slate-400">developer.config.ts</span>
-                </div>
-                <pre class="text-slate-200 overflow-x-auto"><code><span class="text-purple-400">const</span> <span class="text-cyan-300">developer</span> = {
-  <span class="text-slate-400">name:</span> <span class="text-emerald-300">"Saurav Bhusal"</span>,
-  <span class="text-slate-400">skills:</span> [<span class="text-amber-300">"Web Dev"</span>, <span class="text-amber-300">"UI/UX"</span>,
-           <span class="text-amber-300">"AI &amp; Automation"</span>],
-  <span class="text-slate-400">mission:</span> <span class="text-cyan-300">"Build something
-            extraordinary"</span>
-};</code></pre>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Credibility & Highlights Strip (Matching Reference Mockup) -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-10" data-reveal-group>
-          <a href="projects.html" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-500/35 flex items-center justify-center text-cyan-300 shrink-0">
-              <i data-lucide="folder-git-2" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <div class="font-heading font-bold text-white text-base group-hover:text-cyan-300 transition">7+ Projects</div>
-              <div class="text-xs text-slate-400">Web Apps, UI/UX &amp; Extensions</div>
-            </div>
-          </a>
-
-          <a href="about.html#achievements" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/35 flex items-center justify-center text-purple-300 shrink-0">
-              <i data-lucide="award" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <div class="font-heading font-bold text-white text-base group-hover:text-purple-300 transition">1st Runner-Up</div>
-              <div class="text-xs text-slate-400">Web Design Hackathon (NIT LEGEND)</div>
-            </div>
-          </a>
-
-          <a href="about.html#achievements" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-amber-500/15 border border-amber-500/35 flex items-center justify-center text-amber-300 shrink-0">
-              <i data-lucide="trophy" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <div class="font-heading font-bold text-white text-base group-hover:text-amber-300 transition">Harvard CS50x</div>
-              <div class="text-xs text-slate-400">&amp; UX/UI Competition (2025)</div>
-            </div>
-          </a>
-
-          <a href="contact.html" class="glass-card p-4 flex items-center gap-4 group" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-300 shrink-0">
-              <i data-lucide="globe-2" class="w-5 h-5"></i>
-            </div>
-            <div>
-              <div class="font-heading font-bold text-white text-base group-hover:text-emerald-300 transition">Global Freelancer</div>
-              <div class="text-xs text-slate-400">Upwork &amp; Freelancer.com</div>
-            </div>
-          </a>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           SECTION 2: FEATURED PROJECT SHOWCASE (3 LARGE PROJECT CARDS)
-           =================================================================== -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14" data-reveal-group>
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10" data-reveal-item>
-          <div>
-            <span class="eyebrow-badge mb-3">
-              <span class="eyebrow-dot"></span>
-              <span>SELECTED WORK</span>
-            </span>
-            <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white">
-              Featured <span class="text-gradient">Projects</span>
-            </h2>
-          </div>
-          <a href="projects.html" class="btn-secondary text-sm self-start sm:self-auto">
-            <span>View All 7 Projects</span>
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-7">
-          <!-- Featured Card 1: SwasthyaSutra -->
-          <article class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item data-tilt>
-            <div>
-              <div class="project-thumb-wrap mb-5">
-                <img
-                  src="assets/projects/swasthyasutra.jpg"
-                  alt="SwasthyaSutra Healthcare Technology Web Platform interface"
-                  class="project-thumb"
-                  loading="lazy"
-                  width="640"
-                  height="400"
-                />
-              </div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="font-mono text-xs uppercase tracking-wider text-cyan-400">Healthcare Technology</span>
-                <span class="status-badge status-live">Live Demo</span>
-              </div>
-              <h3 class="font-heading text-xl font-bold text-white mb-2">SwasthyaSutra</h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                A healthcare-focused digital platform designed to make healthcare information and services more accessible.
-              </p>
-            </div>
-
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">JavaScript</span>
-                <span class="tech-pill">Healthcare UI/UX</span>
-              </div>
-              <div class="flex items-center justify-between gap-3">
-                <button type="button" data-open-case="swasthyasutra" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
-                  Case Study + Details
-                </button>
-                <a
-                  href="https://saurav-96.github.io/SwasthyaSutra/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white hover:text-cyan-300 transition"
-                  aria-label="View SwasthyaSutra Live Project"
-                >
-                  <span>View Project</span>
-                  <span class="circle-cta" aria-hidden="true">→</span>
-                </a>
+        <div class="project-grid">
+          <article class="project-card card-3d reveal">
+            <a class="project-media" href="https://saurav-96.github.io/KeyFlow/" target="_blank" rel="noopener" aria-label="Open the KeyFlow live demo in a new tab">
+              <span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <img src="assets/img/keyflow.jpg" width="1440" height="900" loading="lazy" alt="KeyFlow dashboard showing shortcut statistics, quick filters and favourite shortcut cards">
+            </a>
+            <div class="project-body">
+              <p class="badge">Personal project</p>
+              <h3>KeyFlow — Keyboard Shortcut Manager</h3>
+              <p>A local-first web app to discover, organise and memorise keyboard shortcuts, with a key recorder, collections, search and JSON/CSV import-export. Data stays in the browser's localStorage.</p>
+              <p class="contrib"><strong>My contribution:</strong> UI design and complete frontend build.</p>
+              <ul class="tags"><li>React 19</li><li>Tailwind CSS</li><li>Vite</li></ul>
+              <div class="project-links">
+                <a class="link-arrow" href="https://saurav-96.github.io/KeyFlow/" target="_blank" rel="noopener">Live demo <svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg></a>
+                <a class="link-arrow" href="https://github.com/saurav-96/KeyFlow" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg> Source</a>
               </div>
             </div>
           </article>
 
-          <!-- Featured Card 2: KeyFlow -->
-          <article class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item data-tilt>
-            <div>
-              <div class="project-thumb-wrap mb-5">
-                <img
-                  src="assets/projects/keyflow.jpg"
-                  alt="KeyFlow Productivity Web Application dashboard"
-                  class="project-thumb"
-                  loading="lazy"
-                  width="640"
-                  height="400"
-                />
-              </div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="font-mono text-xs uppercase tracking-wider text-purple-300">Productivity Web Application</span>
-                <span class="status-badge status-live">Live Demo</span>
-              </div>
-              <h3 class="font-heading text-xl font-bold text-white mb-2">KeyFlow</h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                A productivity-focused web experience designed around organization, workflow management, and focus.
-              </p>
-            </div>
-
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="tech-pill">JavaScript</span>
-                <span class="tech-pill">LocalStorage</span>
-                <span class="tech-pill">UI System</span>
-                <span class="tech-pill">Workflow UX</span>
-              </div>
-              <div class="flex items-center justify-between gap-3">
-                <button type="button" data-open-case="keyflow" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
-                  Case Study + Details
-                </button>
-                <a
-                  href="https://saurav-96.github.io/KeyFlow/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white hover:text-cyan-300 transition"
-                  aria-label="View KeyFlow Live Project"
-                >
-                  <span>View Project</span>
-                  <span class="circle-cta" aria-hidden="true">→</span>
-                </a>
+          <article class="project-card card-3d reveal">
+            <a class="project-media" href="https://saurav-96.github.io/SwasthyaSutra/" target="_blank" rel="noopener" aria-label="Open the SwasthyaSutra live demo in a new tab">
+              <span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <img src="assets/img/swasthya.jpg" width="1440" height="900" loading="lazy" alt="SwasthyaSutra landing page headline 'Smarter Healthcare Powered by AI and Connected Devices' with dashboard cards">
+            </a>
+            <div class="project-body">
+              <p class="badge">Personal / concept project</p>
+              <h3>SwasthyaSutra — Healthcare Platform UI</h3>
+              <p>A dark-mode healthcare platform concept with a landing page, dashboard, device and booking views and an AI assistant interface. Figures shown inside the demo are sample content.</p>
+              <p class="contrib"><strong>My contribution:</strong> Frontend design and development.</p>
+              <ul class="tags"><li>React</li><li>Vite</li><li>Responsive UI</li></ul>
+              <div class="project-links">
+                <a class="link-arrow" href="https://saurav-96.github.io/SwasthyaSutra/" target="_blank" rel="noopener">Live demo <svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg></a>
+                <a class="link-arrow" href="https://github.com/saurav-96/SwasthyaSutra" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg> Source</a>
               </div>
             </div>
           </article>
 
-          <!-- Featured Card 3: E-Government Platform -->
-          <article class="glass-card project-card p-5 flex flex-col justify-between" data-reveal-item data-tilt>
-            <div>
-              <div class="project-thumb-wrap mb-5">
-                <img
-                  src="assets/projects/egov-platform.jpg"
-                  alt="E-Government Platform Butwal SmartGov civic dashboard"
-                  class="project-thumb"
-                  loading="lazy"
-                  width="640"
-                  height="400"
-                />
+          <article class="project-card card-3d reveal">
+            <a class="project-media" href="https://saurav-96.github.io/E-Governmet-platform/" target="_blank" rel="noopener" aria-label="Open the Butwal SmartGov live demo in a new tab">
+              <span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <img src="assets/img/smartgov.jpg" width="1440" height="900" loading="lazy" alt="Butwal SmartGov city dashboard with department status and city announcements in dark mode">
+            </a>
+            <div class="project-body">
+              <p class="badge">Personal / concept project</p>
+              <h3>Butwal SmartGov — Digital Governance Portal</h3>
+              <p>A civic portal concept for Butwal: services, dashboards and a citizen voice in one place, with a department sidebar, dark mode and language toggle. Dashboard numbers are demo data, not official statistics.</p>
+              <p class="contrib"><strong>My contribution:</strong> Product concept, UI design and frontend build.</p>
+              <ul class="tags"><li>Dashboard UI</li><li>Dark mode</li><li>Responsive</li></ul>
+              <div class="project-links">
+                <a class="link-arrow" href="https://saurav-96.github.io/E-Governmet-platform/" target="_blank" rel="noopener">Live demo <svg class="ico" aria-hidden="true"><use href="#i-ext"/></svg></a>
+                <a class="link-arrow" href="https://github.com/saurav-96/E-Governmet-platform" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg> Source</a>
               </div>
-              <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="font-mono text-xs uppercase tracking-wider text-cyan-400">Civic Technology</span>
-                <span class="status-badge status-live">Live Demo</span>
-              </div>
-              <h3 class="font-heading text-xl font-bold text-white mb-2">E-Government Platform</h3>
-              <p class="text-sm text-slate-300 leading-relaxed mb-4">
-                A digital governance platform concept focused on making public services more accessible through modern web technologies.
-              </p>
             </div>
+          </article>
 
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex flex-wrap gap-1.5 mb-4">
-                <span class="tech-pill">HTML5</span>
-                <span class="tech-pill">CSS3</span>
-                <span class="tech-pill">JavaScript</span>
-                <span class="tech-pill">Civic Portal UI</span>
-              </div>
-              <div class="flex items-center justify-between gap-3">
-                <button type="button" data-open-case="egov" class="text-xs font-mono uppercase tracking-wider text-purple-300 hover:text-cyan-300 transition cursor-pointer">
-                  Case Study + Details
-                </button>
-                <a
-                  href="https://saurav-96.github.io/E-Governmet-platform/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex items-center gap-2 text-sm font-heading font-semibold text-white hover:text-cyan-300 transition"
-                  aria-label="View E-Government Platform Live Project"
-                >
-                  <span>View Project</span>
-                  <span class="circle-cta" aria-hidden="true">→</span>
-                </a>
+          <article class="project-card card-3d reveal">
+            <a class="project-media" href="https://github.com/saurav-96/TubeKit" target="_blank" rel="noopener" aria-label="Open the TubeKit repository on GitHub in a new tab">
+              <span class="browser-bar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <img src="assets/img/tubekit-illustration.svg" width="1440" height="900" loading="lazy" alt="Illustration of a video player timeline with TubeKit's compact controls: speed stepper, frame capture and thumbnail tools">
+            </a>
+            <div class="project-body">
+              <p class="badge">CS50x final project</p>
+              <h3>TubeKit — YouTube Tools Chrome Extension</h3>
+              <p>A Manifest V3 Chrome extension that adds a compact control pill below the YouTube timeline: adjustable playback-speed steps, frame screenshots and a high-resolution thumbnail finder, plus a popup and settings page.</p>
+              <p class="contrib"><strong>My contribution:</strong> Whole extension, built for Harvard's CS50x. <em>Image is an illustration, not a screenshot.</em></p>
+              <ul class="tags"><li>JavaScript (ES6+)</li><li>Chrome MV3</li><li>HTML &amp; CSS</li></ul>
+              <div class="project-links">
+                <a class="link-arrow" href="https://github.com/saurav-96/TubeKit" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg> Source on GitHub</a>
               </div>
             </div>
           </article>
         </div>
-      </section>
+        <p class="honesty-note reveal">All four projects are self-initiated personal or learning projects, not paid client assignments.</p>
+      </div>
+    </section>
 
-      <!-- ===================================================================
-           SECTION 3: MY POTENTIAL / CREATIVE PHILOSOPHY (4-COLUMN BENTO)
-           =================================================================== -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14" data-reveal-group>
-        <div class="max-w-2xl mb-10" data-reveal-item>
-          <span class="eyebrow-badge mb-3">
-            <span class="eyebrow-dot"></span>
-            <span>CREATIVE PHILOSOPHY</span>
-          </span>
-          <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-3">
-            My <span class="text-gradient">Potential</span> &amp; Approach
-          </h2>
-          <p class="text-slate-300 text-sm sm:text-base">
-            "Turning ideas into intuitive, meaningful, and impactful digital experiences."
-          </p>
-        </div>
+    <!-- ============ AI AUTOMATION ============ -->
+    <section class="niche niche-ai" id="ai" aria-labelledby="ai-title">
+      <div class="container">
+        <header class="niche-head reveal">
+          <p class="niche-kicker"><span>02</span> AI Automation</p>
+          <h2 id="ai-title">Practical workflows that remove repetitive work.</h2>
+          <p class="lead">I focus on small, understandable automations: take messy input, run it through clear steps, and hand back something a person can review. Below are three prototypes that run <strong>entirely in your browser</strong> — no data leaves the page and no API key is needed.</p>
+          <ul class="chips" aria-label="Automation focus areas">
+            <li>Workflow automation</li><li>AI-assisted research</li><li>Content workflows</li><li>Browser automation</li><li>API integrations</li>
+          </ul>
+        </header>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <!-- Pillar 1 -->
-          <div class="glass-card p-6 flex flex-col justify-between" data-reveal-item data-tilt>
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-purple-500/15 border border-purple-500/35 flex items-center justify-center text-purple-300 mb-5">
-                <i data-lucide="lightbulb" class="w-6 h-6"></i>
-              </div>
-              <span class="font-mono text-xs text-purple-400">01 / CONCEPT</span>
-              <h3 class="font-heading text-lg font-bold text-white mt-1 mb-2.5">Innovative Design Thinking</h3>
-              <p class="text-sm text-slate-300 leading-relaxed">
-                Approaching every interface with fresh visual exploration—combining clean editorial hierarchy, subtle motion, and purposeful layouts.
-              </p>
+        <div class="demo-shell reveal">
+          <div class="demo-tabs" role="tablist" aria-label="Automation demos">
+            <button class="demo-tab" role="tab" id="tab-research" aria-controls="panel-research" aria-selected="true" type="button">
+              <span class="tab-num">A</span> Research summariser
+            </button>
+            <button class="demo-tab" role="tab" id="tab-content" aria-controls="panel-content" aria-selected="false" tabindex="-1" type="button">
+              <span class="tab-num">B</span> Content review workflow
+            </button>
+            <button class="demo-tab" role="tab" id="tab-cleaner" aria-controls="panel-cleaner" aria-selected="false" tabindex="-1" type="button">
+              <span class="tab-num">C</span> Data clean-up pipeline
+            </button>
+          </div>
+
+          <!-- Demo A -->
+          <div class="demo-panel" role="tabpanel" id="panel-research" aria-labelledby="tab-research">
+            <div class="demo-brief">
+              <h3>Research summariser</h3>
+              <dl>
+                <dt>Problem</dt><dd>Long articles and notes take time to skim. I want the key sentences, recurring topics and any numbers pulled out for a quick first read.</dd>
+                <dt>Workflow</dt><dd class="flow"><span>Paste text</span><span>Score sentences</span><span>Extract topics &amp; figures</span><span>Human review</span></dd>
+                <dt>Technologies</dt><dd>Vanilla JavaScript, term-frequency scoring (extractive summarisation).</dd>
+                <dt>Limitations</dt><dd>It selects existing sentences — it does not understand or rewrite them, and works best on English prose. A real LLM step could be added server-side with a protected API key; that is not included here.</dd>
+              </dl>
             </div>
-            <div class="mt-5 pt-3 border-t border-white/10 text-xs font-mono text-slate-400">
-              Visual Clarity • Aesthetic Direction
+            <div class="demo-tool" data-demo="research">
+              <label for="r-input">Source text</label>
+              <textarea id="r-input" rows="8" placeholder="Paste an article, meeting notes or research text (at least a few sentences)…"></textarea>
+              <div class="tool-row">
+                <label class="inline" for="r-count">Summary length
+                  <select id="r-count"><option value="2">2 sentences</option><option value="3" selected>3 sentences</option><option value="5">5 sentences</option></select>
+                </label>
+                <button class="btn btn-ghost btn-sm" type="button" data-action="sample">Load sample</button>
+                <button class="btn btn-primary btn-sm" type="button" data-action="run">Summarise</button>
+              </div>
+              <div class="tool-output" aria-live="polite" data-out>
+                <p class="placeholder">Results will appear here.</p>
+              </div>
             </div>
           </div>
 
-          <!-- Pillar 2 -->
-          <div class="glass-card p-6 flex flex-col justify-between" data-reveal-item data-tilt>
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/35 flex items-center justify-center text-cyan-300 mb-5">
-                <i data-lucide="users" class="w-6 h-6"></i>
-              </div>
-              <span class="font-mono text-xs text-cyan-400">02 / EMPATHY</span>
-              <h3 class="font-heading text-lg font-bold text-white mt-1 mb-2.5">User-Centered Approach</h3>
-              <p class="text-sm text-slate-300 leading-relaxed">
-                Designing around real human behavior—prioritizing intuitive navigation, accessible contrast, and frictionless journeys across devices.
-              </p>
+          <!-- Demo B -->
+          <div class="demo-panel" role="tabpanel" id="panel-content" aria-labelledby="tab-content" hidden>
+            <div class="demo-brief">
+              <h3>Structured content review</h3>
+              <dl>
+                <dt>Problem</dt><dd>Drafts often go out with long sentences, vague wording or no clear call to action. A repeatable checklist catches the basics before a human edits.</dd>
+                <dt>Workflow</dt><dd class="flow"><span>Paste draft</span><span>Run rule checks</span><span>Score &amp; checklist</span><span>Editor approves</span></dd>
+                <dt>Technologies</dt><dd>Vanilla JavaScript rules engine (readability, length, filler words, structure, CTA).</dd>
+                <dt>Limitations</dt><dd>Rules are heuristics, not a judge of quality, tone or facts. It flags things to look at; a person still decides.</dd>
+              </dl>
             </div>
-            <div class="mt-5 pt-3 border-t border-white/10 text-xs font-mono text-slate-400">
-              Intuitive Flows • Accessibility
+            <div class="demo-tool" data-demo="content">
+              <label for="c-input">Draft copy</label>
+              <textarea id="c-input" rows="8" placeholder="Paste a short blog intro, product description or social post…"></textarea>
+              <div class="tool-row">
+                <button class="btn btn-ghost btn-sm" type="button" data-action="sample">Load sample</button>
+                <button class="btn btn-primary btn-sm" type="button" data-action="run">Review draft</button>
+              </div>
+              <div class="tool-output" aria-live="polite" data-out>
+                <p class="placeholder">Results will appear here.</p>
+              </div>
             </div>
           </div>
 
-          <!-- Pillar 3 -->
-          <div class="glass-card p-6 flex flex-col justify-between" data-reveal-item data-tilt>
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-indigo-500/15 border border-indigo-500/35 flex items-center justify-center text-indigo-300 mb-5">
-                <i data-lucide="code-2" class="w-6 h-6"></i>
+          <!-- Demo C -->
+          <div class="demo-panel" role="tabpanel" id="panel-cleaner" aria-labelledby="tab-cleaner" hidden>
+            <div class="demo-brief">
+              <h3>Data clean-up pipeline</h3>
+              <dl>
+                <dt>Problem</dt><dd>Copy-pasted lists (names, emails, product titles) are full of blanks, duplicates and inconsistent casing. Cleaning them by hand is slow and error-prone.</dd>
+                <dt>Workflow</dt><dd class="flow"><span>Paste list</span><span>Choose steps</span><span>Run in order</span><span>Copy result</span></dd>
+                <dt>Technologies</dt><dd>Vanilla JavaScript; composable transform steps; clipboard API.</dd>
+                <dt>Limitations</dt><dd>Operates on one item per line and on plain text only. Title-casing is simple and does not know names like "McDonald". Always spot-check the output.</dd>
+              </dl>
+            </div>
+            <div class="demo-tool" data-demo="cleaner">
+              <label for="d-input">List (one item per line)</label>
+              <textarea id="d-input" rows="6" placeholder="Paste a list…"></textarea>
+              <fieldset class="steps">
+                <legend>Pipeline steps (applied in this order)</legend>
+                <label><input type="checkbox" value="trim" checked> Trim spaces</label>
+                <label><input type="checkbox" value="blank" checked> Remove blank lines</label>
+                <label><input type="checkbox" value="title"> Title Case</label>
+                <label><input type="checkbox" value="dedupe" checked> Remove duplicates</label>
+                <label><input type="checkbox" value="sort"> Sort A→Z</label>
+                <label><input type="checkbox" value="emails"> Keep only emails</label>
+              </fieldset>
+              <div class="tool-row">
+                <button class="btn btn-ghost btn-sm" type="button" data-action="sample">Load sample</button>
+                <button class="btn btn-primary btn-sm" type="button" data-action="run">Run pipeline</button>
+                <button class="btn btn-ghost btn-sm" type="button" data-action="copy">Copy result</button>
               </div>
-              <span class="font-mono text-xs text-indigo-300">03 / EXECUTION</span>
-              <h3 class="font-heading text-lg font-bold text-white mt-1 mb-2.5">Design + Development Mindset</h3>
-              <p class="text-sm text-slate-300 leading-relaxed">
-                Bridging the gap between Figma prototypes and clean frontend code so design intent is preserved down to every micro-interaction.
-              </p>
-            </div>
-            <div class="mt-5 pt-3 border-t border-white/10 text-xs font-mono text-slate-400">
-              Figma to Code • Interactive Web
-            </div>
-          </div>
-
-          <!-- Pillar 4 -->
-          <div class="glass-card p-6 flex flex-col justify-between" data-reveal-item data-tilt>
-            <div>
-              <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/35 flex items-center justify-center text-emerald-300 mb-5">
-                <i data-lucide="sparkles" class="w-6 h-6"></i>
+              <div class="tool-output" aria-live="polite" data-out>
+                <p class="placeholder">Results will appear here.</p>
               </div>
-              <span class="font-mono text-xs text-emerald-400">04 / EVOLUTION</span>
-              <h3 class="font-heading text-lg font-bold text-white mt-1 mb-2.5">Continuous Learning &amp; Long-Term Impact</h3>
-              <p class="text-sm text-slate-300 leading-relaxed">
-                Continuously experimenting with Three.js, modern frontend workflows, and AI automation to build forward-looking digital products.
-              </p>
-            </div>
-            <div class="mt-5 pt-3 border-t border-white/10 text-xs font-mono text-slate-400">
-              Curiosity • Growth Mindset
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           SECTION 4: SERVICES PREVIEW (4 COMPACT SERVICE CARDS)
-           =================================================================== -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14" data-reveal-group>
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10" data-reveal-item>
-          <div>
-            <span class="eyebrow-badge mb-3">
-              <span class="eyebrow-dot"></span>
-              <span>FREELANCE CAPABILITIES</span>
-            </span>
-            <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white">
-              Services <span class="text-gradient">Preview</span>
-            </h2>
-          </div>
-          <a href="services.html" class="btn-secondary text-sm self-start sm:self-auto">
-            <span>Explore Full Services</span>
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <a href="services.html#web-development" class="glass-card p-6 group block" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-purple-500/15 border border-purple-500/35 flex items-center justify-center text-purple-300 mb-4">
-              <i data-lucide="globe" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2 group-hover:text-purple-300 transition">Web Development</h3>
-            <p class="text-sm text-slate-300 leading-relaxed mb-4">
-              Responsive websites, modern landing pages, React apps, and interactive Three.js web experiences.
-            </p>
-            <span class="text-xs font-mono text-cyan-300 inline-flex items-center gap-1">
-              <span>Learn More</span>
-              <span aria-hidden="true">→</span>
-            </span>
-          </a>
-
-          <a href="services.html#ui-ux-design" class="glass-card p-6 group block" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-cyan-500/15 border border-cyan-500/35 flex items-center justify-center text-cyan-300 mb-4">
-              <i data-lucide="layers" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition">UI/UX Design</h3>
-            <p class="text-sm text-slate-300 leading-relaxed mb-4">
-              Website UI design, mobile interfaces, Figma wireframes, interactive prototypes, and design systems.
-            </p>
-            <span class="text-xs font-mono text-cyan-300 inline-flex items-center gap-1">
-              <span>Learn More</span>
-              <span aria-hidden="true">→</span>
-            </span>
-          </a>
-
-          <a href="services.html#ai-automation" class="glass-card p-6 group block" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-indigo-500/15 border border-indigo-500/35 flex items-center justify-center text-indigo-300 mb-4">
-              <i data-lucide="cpu" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2 group-hover:text-indigo-300 transition">AI Automation</h3>
-            <p class="text-sm text-slate-300 leading-relaxed mb-4">
-              Python automation scripts, AI-assisted workflows, browser automation, and custom productivity tools.
-            </p>
-            <span class="text-xs font-mono text-cyan-300 inline-flex items-center gap-1">
-              <span>Learn More</span>
-              <span aria-hidden="true">→</span>
-            </span>
-          </a>
-
-          <a href="services.html#graphic-design" class="glass-card p-6 group block" data-reveal-item data-tilt>
-            <div class="w-11 h-11 rounded-xl bg-pink-500/15 border border-pink-500/35 flex items-center justify-center text-pink-300 mb-4">
-              <i data-lucide="palette" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-heading text-lg font-bold text-white mb-2 group-hover:text-pink-300 transition">Graphic Design</h3>
-            <p class="text-sm text-slate-300 leading-relaxed mb-4">
-              YouTube thumbnails, logo concepts, brand identity explorations, posters, and social media visuals.
-            </p>
-            <span class="text-xs font-mono text-cyan-300 inline-flex items-center gap-1">
-              <span>Learn More</span>
-              <span aria-hidden="true">→</span>
-            </span>
-          </a>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           SECTION 5: CLOSING CTA BANNER
-           =================================================================== -->
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6" data-reveal-group>
-        <div class="glass-card p-8 sm:p-12 relative overflow-hidden" data-reveal-item>
-          <div class="absolute -right-16 -bottom-24 w-80 h-80 rounded-full bg-gradient-to-tr from-purple-600/30 via-cyan-500/20 to-transparent blur-2xl pointer-events-none" aria-hidden="true"></div>
-
-          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-            <div class="max-w-2xl">
-              <div class="inline-flex items-center gap-2 text-purple-300 font-mono text-xs uppercase tracking-widest mb-3">
-                <i data-lucide="sparkles" class="w-4 h-4 text-cyan-400"></i>
-                <span>AVAILABLE FOR FREELANCE &amp; COLLABORATION</span>
-              </div>
-              <h2 class="font-heading text-3xl sm:text-4xl font-bold text-white mb-2">
-                Have an idea worth building?
-              </h2>
-              <p class="text-slate-300 text-base sm:text-lg">
-                Let's turn your vision into something extraordinary.
-              </p>
-            </div>
-
-            <div class="flex flex-wrap items-center gap-4">
-              <a href="contact.html" class="btn-primary text-base px-7 py-3.5" data-magnetic>
-                <span>Contact Me</span>
-                <span aria-hidden="true">→</span>
-              </a>
-              <a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener noreferrer" class="btn-secondary text-sm px-5 py-3.5">
-                <span>Hire on Upwork</span>
-                <span aria-hidden="true">↗</span>
-              </a>
             </div>
           </div>
         </div>
-      </section>
-    </main>
 
-    <!-- Case Study Detail Modal (Shared Interactive Component) -->
-    <div id="case-study-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-project-title">
-      <div class="modal-panel relative">
-        <button
-          id="case-study-modal-close"
-          type="button"
-          class="sticky top-4 float-right mr-4 mt-4 z-20 w-10 h-10 rounded-full bg-white/10 hover:bg-purple-500/30 border border-white/20 flex items-center justify-center text-white transition cursor-pointer"
-          aria-label="Close project case study"
-        >
-          ✕
-        </button>
-        <div id="case-study-modal-body"></div>
+        <p class="honesty-note reveal">These are prototypes, not production systems. I don't publish time-saved or cost figures because none of these have been measured in real use.</p>
+      </div>
+    </section>
+
+    <!-- ============ GRAPHIC DESIGN ============ -->
+    <section class="niche niche-design" id="design" aria-labelledby="design-title">
+      <div class="container">
+        <header class="niche-head reveal">
+          <p class="niche-kicker"><span>03</span> Graphic Design</p>
+          <h2 id="design-title">Visuals with a clear idea behind them.</h2>
+          <p class="lead">Thumbnails, brand identities, posters, social campaigns and ads. Every piece below is an original, <strong>self-initiated concept</strong> for a fictional brand or event, drawn as editable vector artwork. Click any piece to view it larger or download the SVG source.</p>
+          <ul class="chips" aria-label="Design services">
+            <li>YouTube thumbnails</li><li>Logo &amp; branding</li><li>Posters</li><li>Social media graphics</li><li>Promo banners</li><li>Ad creative</li>
+          </ul>
+        </header>
+
+        <ul class="gallery">
+          <li class="g-item g-wide reveal">
+            <button class="g-card card-3d" type="button" data-src="assets/design/thumbnail-automation.svg" data-title="YouTube thumbnail concept" data-meta="Fictional channel “Flowbyte” · 1280×720" data-alt="YouTube thumbnail with the headline 'Stop doing this by hand' and a workflow diagram of inbox and spreadsheet feeding a robot into a check mark">
+              <span class="g-art"><img src="assets/design/thumbnail-automation.svg" width="1280" height="720" loading="lazy" alt="YouTube thumbnail with the headline 'Stop doing this by hand' and a workflow diagram of inbox and spreadsheet feeding a robot into a check mark"></span>
+              <span class="g-cap"><span class="g-tag">YouTube thumbnail</span><strong>Stop doing this by hand</strong><em>Concept</em></span>
+            </button>
+          </li>
+          <li class="g-item g-tall reveal">
+            <button class="g-card card-3d" type="button" data-src="assets/design/poster-buildnext.svg" data-title="Event poster concept" data-meta="Fictional event “BUILD/NEXT 2026” · 900×1200" data-alt="Retro sunset poster for the fictional tech event BUILD/NEXT 2026 with a glowing grid floor">
+              <span class="g-art"><img src="assets/design/poster-buildnext.svg" width="900" height="1200" loading="lazy" alt="Retro sunset poster for the fictional tech event BUILD/NEXT 2026 with a glowing grid floor"></span>
+              <span class="g-cap"><span class="g-tag">Poster</span><strong>BUILD/NEXT 2026</strong><em>Concept</em></span>
+            </button>
+          </li>
+          <li class="g-item g-wide reveal">
+            <button class="g-card card-3d" type="button" data-src="assets/design/brand-nodeloop.svg" data-title="Brand identity concept" data-meta="Fictional startup “Nodeloop” · logo, palette, type, app icon" data-alt="Brand board for the fictional startup Nodeloop showing logo variants, colour palette, typography and app icon">
+              <span class="g-art"><img src="assets/design/brand-nodeloop.svg" width="1200" height="900" loading="lazy" alt="Brand board for the fictional startup Nodeloop showing logo variants, colour palette, typography and app icon"></span>
+              <span class="g-cap"><span class="g-tag">Logo &amp; branding</span><strong>Nodeloop mini brand identity</strong><em>Concept</em></span>
+            </button>
+          </li>
+          <li class="g-item g-banner reveal">
+            <button class="g-card card-3d" type="button" data-src="assets/design/social-campaign.svg" data-title="Social media campaign concept" data-meta="Fictional app “Deepwork Daily” · 3-post carousel, 600×600 each" data-alt="Three connected social media posts for a fictional focus app: 'Your focus is a habit', a 25 minute timer, and a call to action">
+              <span class="g-art"><img src="assets/design/social-campaign.svg" width="1800" height="600" loading="lazy" alt="Three connected social media posts for a fictional focus app: 'Your focus is a habit', a 25 minute timer, and a call to action"></span>
+              <span class="g-cap"><span class="g-tag">Social campaign</span><strong>Deepwork Daily — 3-post carousel</strong><em>Concept</em></span>
+            </button>
+          </li>
+          <li class="g-item g-wide reveal">
+            <button class="g-card card-3d" type="button" data-src="assets/design/ad-halo-bottle.svg" data-title="Product advertising concept" data-meta="Fictional brand “Halo” · 1200×1000" data-alt="Advertisement for a fictional reusable bottle brand with the headline 'Refill. Repeat. Forever.' beside a teal bottle">
+              <span class="g-art"><img src="assets/design/ad-halo-bottle.svg" width="1200" height="1000" loading="lazy" alt="Advertisement for a fictional reusable bottle brand with the headline 'Refill. Repeat. Forever.' beside a teal bottle"></span>
+              <span class="g-cap"><span class="g-tag">Creative advertising</span><strong>Halo — Refill. Repeat. Forever.</strong><em>Concept</em></span>
+            </button>
+          </li>
+        </ul>
+        <p class="honesty-note reveal">All brands and events shown (Flowbyte, Nodeloop, BUILD/NEXT, Deepwork Daily, Halo) are fictional. Source files are plain SVG in <code>assets/design/</code>.</p>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-visual reveal">
+          <img src="assets/img/saurav.jpg" width="764" height="1024" loading="lazy" alt="Saurav Bhusal looking thoughtfully to the side" class="about-photo">
+        </div>
+        <div class="about-copy reveal">
+          <p class="eyebrow">About</p>
+          <h2 id="about-title">A student who likes building things that work — and look right.</h2>
+          <p>I'm Saurav, a Computer Science student at Oxford Secondary College, based in Kapilvastu and also available in Butwal, Nepal. I enjoy turning ideas into interfaces, automating the boring parts of a task, and designing visuals that communicate clearly.</p>
+          <p>I completed Harvard's <a href="https://certificates.cs50.io/c95716f9-c771-4c7b-91b5-c0e45c322f56" target="_blank" rel="noopener">CS50x: Introduction to Computer Science</a>, which is where TubeKit started as my final project. Beyond code, my GitHub profile also lists video and photo editing, WordPress and social media work.</p>
+          <p>I prefer remote work, which suits my studies. I'm early in my freelance journey, so you'll find real personal projects here rather than a list of big clients.</p>
+          <dl class="about-facts">
+            <div><dt>Build with</dt><dd>HTML5, CSS3, JavaScript (ES6+), TypeScript, React, Vite, Tailwind CSS, Python, C</dd></div>
+            <div><dt>Design with</dt><dd>Figma, Canva · UI/UX, wireframes, prototypes, logos</dd></div>
+            <div><dt>Also</dt><dd>Chrome extensions (Manifest V3), WordPress, video &amp; photo editing</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="section process" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">How I work</p>
+          <h2 id="process-title">A simple process, adapted to the kind of project.</h2>
+        </header>
+        <ol class="steps-grid">
+          <li class="step card-3d reveal">
+            <span class="step-num">01</span>
+            <h3>Understand</h3>
+            <p>We agree on the goal, audience, deadline and what “done” means.</p>
+            <ul><li><b>Web:</b> pages, content, devices</li><li><b>AI:</b> the task being repeated</li><li><b>Design:</b> brand, format, tone</li></ul>
+          </li>
+          <li class="step card-3d reveal">
+            <span class="step-num">02</span>
+            <h3>Plan</h3>
+            <p>I outline the solution and share it before building anything large.</p>
+            <ul><li><b>Web:</b> structure &amp; wireframe</li><li><b>AI:</b> workflow map &amp; data</li><li><b>Design:</b> moodboard &amp; sketches</li></ul>
+          </li>
+          <li class="step card-3d reveal">
+            <span class="step-num">03</span>
+            <h3>Build &amp; refine</h3>
+            <p>Work in small steps with check-ins, so feedback shapes the result early.</p>
+            <ul><li><b>Web:</b> responsive build</li><li><b>AI:</b> prototype with review step</li><li><b>Design:</b> drafts &amp; revisions</li></ul>
+          </li>
+          <li class="step card-3d reveal">
+            <span class="step-num">04</span>
+            <h3>Test &amp; deliver</h3>
+            <p>I test, fix, and hand over clean files with simple documentation.</p>
+            <ul><li><b>Web:</b> devices &amp; accessibility</li><li><b>AI:</b> edge cases &amp; limits</li><li><b>Design:</b> export-ready files</li></ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div class="contact-copy reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-title">Have a project in mind? Let's talk.</h2>
+          <p class="lead">Tell me what you're trying to build, automate or design. The quickest way to reach me is through any of the profiles below — I'm happy to take a first conversation about scope and timing.</p>
+          <ul class="contact-links">
+            <li><a href="https://www.fiverr.com/saurav_bhusal" target="_blank" rel="noopener"><svg class="ico ico-fiverr" aria-hidden="true"><use href="#i-fiverr"/></svg><span><b>Fiverr</b><small>Order direct gigs (@saurav_bhusal)</small></span><svg class="ico go" aria-hidden="true"><use href="#i-ext"/></svg></a></li>
+            <li><a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-linkedin"/></svg><span><b>LinkedIn</b><small>Message me directly</small></span><svg class="ico go" aria-hidden="true"><use href="#i-ext"/></svg></a></li>
+            <li><a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-upwork"/></svg><span><b>Upwork</b><small>Hire through Upwork</small></span><svg class="ico go" aria-hidden="true"><use href="#i-ext"/></svg></a></li>
+            <li><a href="https://www.freelancer.com/u/sauravb369" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-freelancer"/></svg><span><b>Freelancer.com</b><small>Hire through Freelancer</small></span><svg class="ico go" aria-hidden="true"><use href="#i-ext"/></svg></a></li>
+            <li><a href="https://github.com/saurav-96" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-github"/></svg><span><b>GitHub</b><small>See the source code</small></span><svg class="ico go" aria-hidden="true"><use href="#i-ext"/></svg></a></li>
+          </ul>
+        </div>
+
+        <form class="brief-card card-3d reveal" id="brief-form" novalidate>
+          <h3>Draft your project brief</h3>
+          <p class="muted">This site has no server, so nothing is sent from here. Fill this in, copy the brief, then paste it into a message on Fiverr, LinkedIn, Upwork or Freelancer.</p>
+          <div class="field">
+            <label for="b-name">Your name</label>
+            <input id="b-name" name="name" type="text" autocomplete="name" required>
+            <p class="err" id="b-name-err" hidden>Please enter your name.</p>
+          </div>
+          <div class="field">
+            <label for="b-type">What do you need?</label>
+            <select id="b-type" name="type">
+              <option>Website / landing page</option>
+              <option>AI automation / workflow</option>
+              <option>Graphic design</option>
+              <option>Something that mixes these</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="b-details">Project details</label>
+            <textarea id="b-details" name="details" rows="5" required placeholder="Goals, audience, deadline, budget range…"></textarea>
+            <p class="err" id="b-details-err" hidden>A few details help me reply usefully.</p>
+          </div>
+          <button class="btn btn-primary" type="submit">Copy brief <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <p class="form-status" id="brief-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a class="wordmark" href="#home" aria-label="Back to top"><span class="wordmark-mark" aria-hidden="true">SB</span><span class="wordmark-text">Saurav Bhusal</span></a>
+        <p>Web developer, AI automation builder and graphic designer from Nepal. Open to remote projects.</p>
+      </div>
+      <nav aria-label="Footer">
+        <ul class="footer-links">
+          <li><a href="https://www.fiverr.com/saurav_bhusal" target="_blank" rel="noopener">Fiverr</a></li>
+          <li><a href="https://github.com/saurav-96" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener">Upwork</a></li>
+          <li><a href="https://www.freelancer.com/u/sauravb369" target="_blank" rel="noopener">Freelancer.com</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="container footer-base">
+      <p>© <span id="year">2026</span> Saurav Bhusal. All rights reserved.</p>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lb-title">
+    <div class="lb-bar">
+      <div><h3 id="lb-title"></h3><p id="lb-meta"></p></div>
+      <div class="lb-actions">
+        <a class="btn btn-ghost btn-sm" id="lb-download" href="#" download><svg class="ico" aria-hidden="true"><use href="#i-download"/></svg> SVG source</a>
+        <button class="btn btn-primary btn-sm" id="lb-close" type="button">Close</button>
       </div>
     </div>
+    <div class="lb-stage"><img id="lb-img" src="" alt=""></div>
+  </dialog>
 
-    <!-- Shared Footer -->
-    <footer class="site-footer py-10 px-4 sm:px-6 lg:px-8">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-3">
-          <a href="index.html" class="brand-logo text-base">
-            <svg viewBox="0 0 64 64" fill="none" class="w-6 h-6" aria-hidden="true">
-              <polygon points="32,8 10,52 32,43" fill="#06B6D4"/>
-              <polygon points="32,8 54,52 32,43" fill="#A855F7"/>
-              <polygon points="10,52 54,52 32,43" fill="#7C3AED"/>
-            </svg>
-            <span>SAURAV<span class="text-purpleNeon">.</span></span>
-          </a>
-          <span class="text-slate-600">|</span>
-          <span class="text-xs text-slate-400">Design. Develop. Innovate.</span>
-        </div>
-
-        <ul class="flex flex-wrap items-center gap-6 text-xs text-slate-400">
-          <li><a href="index.html" class="hover:text-white transition">Home</a></li>
-          <li><a href="about.html" class="hover:text-white transition">About</a></li>
-          <li><a href="projects.html" class="hover:text-white transition">Projects</a></li>
-          <li><a href="services.html" class="hover:text-white transition">Services</a></li>
-          <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
-          <li><a href="assets/documents/Saurav-Bhusal-CV.html" class="text-cyan-400 hover:underline">Resume / CV</a></li>
-        </ul>
-
-        <div class="flex items-center gap-4 text-xs text-slate-400">
-          <a href="https://github.com/saurav-96" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="hover:text-white transition">GitHub</a>
-          <a href="https://www.linkedin.com/in/saurav-b-502352415/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-white transition">LinkedIn</a>
-          <a href="https://www.upwork.com/freelancers/~010a6e73c111779a15" target="_blank" rel="noopener noreferrer" aria-label="Upwork" class="hover:text-cyan-300 transition">Upwork</a>
-          <a href="https://www.freelancer.com/u/sauravb369" target="_blank" rel="noopener noreferrer" aria-label="Freelancer" class="hover:text-purple-300 transition">Freelancer</a>
-        </div>
-      </div>
-      <div class="max-w-7xl mx-auto mt-6 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
-        <p>© <span data-current-year>2026</span> Saurav Bhusal. Crafted with semantic HTML5, Three.js &amp; GSAP.</p>
-        <p class="font-mono text-[11px] text-slate-400">Kapilvastu &amp; Butwal, Nepal • Available Worldwide (Remote)</p>
-      </div>
-    </footer>
-  </div>
-
-  <!-- Vendor Scripts: Three.js, GSAP, ScrollTrigger, Lenis, Lucide Icons -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
-  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
-  <script src="https://unpkg.com/lucide@latest" defer></script>
-
-  <!-- Modular Portfolio Scripts -->
-  <script src="js/navigation.js" defer></script>
-  <script src="js/three-scene.js" defer></script>
-  <script src="js/animations.js" defer></script>
-  <script src="js/projects.js" defer></script>
+  <script src="js/demos.js" defer></script>
   <script src="js/main.js" defer></script>
 </body>
 </html>
