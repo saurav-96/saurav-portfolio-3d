@@ -4,6 +4,24 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v2.7.0] — 2026-11-03 (Continuous Living Background Motion, Studio Rim Lighting Sync & Hero Polish)
+
+### Changed & Refined
+- **Continuous Living Background Motion:**
+  - Upgraded CSS `.ambient-backdrop` with dual silky aurora nebulae (`::before` purple drifting orb, `::after` cyber cyan drifting orb) powered by smooth counter-harmonic keyframes (`auroraDrift1`, `auroraDrift2`) that continuously glide across the viewport.
+  - Added continuous fluid architectural grid movement (`gridFlow` 38s linear infinite) on `.bg-grid-overlay`.
+  - Upgraded Three.js particle system with individual 3D velocity vectors (`velocities`) for continuous forward cosmic drift and boundary wrapping, plus responsive acceleration on mouse wheel scroll momentum.
+- **Studio Rim Lighting Synchronization with Portrait:**
+  - Removed obsolete decorative SVG polyhedra from the hero stage in `index.html` to eliminate artificial clutter around Saurav's head.
+  - Updated dual-tone `.portrait-glow-aura` with cyan gradient at `28% 36%` (matching the teal rim light on his hair and ear) and vivid purple gradient at `72% 54%` (matching the purple rim light on his shoulder and collar) with breathing pulse animation (`auraBreathe`).
+  - Tuned `.portrait-img` multi-layer drop shadows (`-16px -8px 24px rgba(6, 182, 212, 0.42)` and `18px 10px 28px rgba(168, 85, 247, 0.46)`).
+  - Synchronized Three.js 3D point lights with portrait orientation: Electric Cyan (`#06B6D4`) at `(-6.5, -3.5, 6.0)` on the left, and Neon Purple (`#A855F7`) at `(6.5, 4.5, 6.0)` on the right.
+  - Adjusted 3D sculpture framing depth (`z: -2.8`, `x: 3.85`) and scaled outer halo geometry (`radius: 3.2`) so 3D wireframe lines never collide with Saurav's face, framing him as a cybernetic holographic portal instead.
+- **Scroll Parallax Upgrades:**
+  - Bound `.neon-orbit-ring` and `.portrait-glow-aura` to GSAP scroll parallax for a three-dimensional depth transition as the visitor scrolls down.
+
+---
+
 ## [v2.6.0] — 2026-11-03 (Custom Avatar Logo, Fiverr Integration & Enhanced 3D Scroll Perspective)
 
 ### Added

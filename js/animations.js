@@ -243,7 +243,7 @@
       );
     });
 
-    // 9. Scroll-Based Parallax Sync for Hero Portrait & Floating 3D Polyhedra
+    // 9. Scroll-Based Parallax Sync for Hero Portrait, Studio Aura & Base Orbit Ring
     if (portraitStage && !isTouchDevice) {
       gsap.to('.portrait-frame', {
         y: -32,
@@ -257,15 +257,29 @@
         }
       });
 
-      gsap.to('.floating-poly', {
-        y: -48,
-        rotation: 32,
+      gsap.to('.neon-orbit-ring', {
+        rotationX: 84,
+        rotationZ: 45,
+        scale: 1.15,
+        opacity: 0.85,
         ease: 'none',
         scrollTrigger: {
           trigger: portraitStage,
           start: 'top top',
           end: 'bottom top',
           scrub: 0.5
+        }
+      });
+
+      gsap.to('.portrait-glow-aura', {
+        scale: 1.25,
+        y: -18,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: portraitStage,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.7
         }
       });
     }

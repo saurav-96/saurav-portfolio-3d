@@ -4,10 +4,12 @@
    Features:
    - Dynamic 3D Sculpture: Wireframe Icosahedron + Outer Glowing Vertex Nodes +
      Inner Octahedron Core + Signature Torus Knot + Triple Gyroscopic Orbital Rings
-   - Interactive Scroll Inertia: Mouse wheel scroll drives camera flight depth,
-     rotational momentum, and 3D warp particle drift
-   - Vibrant Atmospheric Colors: Electric Violet (#7C3AED), Neon Purple (#A855F7),
-     Cyber Cyan (#06B6D4) & Deep Indigo (#4F46E5)
+   - Continuous Living Background Motion: Cosmic Starfield Particle Flow +
+     Multi-Layer Gyroscopic Rotations + Satellite Orbits
+   - Studio Rim Lighting Sync: Electric Cyan (#06B6D4) on Left, Neon Purple
+     (#A855F7) on Right, perfectly synced with Saurav's photographic lighting
+   - Interactive Scroll Inertia: Mouse wheel momentum, camera flight depth,
+     rotational speed, and warp acceleration
    - Real-time Mouse Parallax + Pointerdown Energy Pulse
    ========================================================================== */
 
@@ -50,7 +52,7 @@
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x06060b, 0.026);
+    scene.fog = new THREE.FogExp2(0x06060b, 0.024);
 
     const camera = new THREE.PerspectiveCamera(
       50,
@@ -60,30 +62,32 @@
     );
     camera.position.set(0, 0, 11.5);
 
-    // Vibrant Atmospheric Studio Lighting Setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.65);
+    // Studio Lighting Setup (Cyan Left, Purple Right — Synced with Saurav's Cutout Rim Light)
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.68);
     scene.add(ambientLight);
 
-    const purpleLight = new THREE.PointLight(0xa855f7, 4.8, 42);
-    purpleLight.position.set(6, 5, 7);
+    const purpleLight = new THREE.PointLight(0xa855f7, 5.2, 45);
+    purpleLight.position.set(6.5, 4.5, 6.0);
     scene.add(purpleLight);
 
-    const cyanLight = new THREE.PointLight(0x06b6d4, 4.6, 42);
-    cyanLight.position.set(-6, -4, 6);
+    const cyanLight = new THREE.PointLight(0x06b6d4, 5.2, 45);
+    cyanLight.position.set(-6.5, -3.5, 6.0);
     scene.add(cyanLight);
 
-    const indigoRimLight = new THREE.PointLight(0x4f46e5, 3.4, 34);
-    indigoRimLight.position.set(0, 6, -5);
+    const indigoRimLight = new THREE.PointLight(0x4f46e5, 3.8, 36);
+    indigoRimLight.position.set(0, 6.5, -4.5);
     scene.add(indigoRimLight);
 
-    // Master 3D Sculpture Group
+    // Master 3D Sculpture Group (Framing behind Saurav on Home, never obstructing his face)
     const mainGroup = new THREE.Group();
     const pageType = document.body.getAttribute('data-page') || 'home';
     const basePos = { x: 2.8, y: 0.25, z: -1.6 };
+
     if (pageType === 'home' && !isSmallScreen) {
-      basePos.x = 3.35;
-      basePos.y = 0.45;
-      basePos.z = -1.1;
+      // Pushed to z: -2.8 and x: 3.85 so it acts as an expansive framing portal behind his portrait
+      basePos.x = 3.85;
+      basePos.y = 0.35;
+      basePos.z = -2.8;
     } else if (pageType === 'services' && !isSmallScreen) {
       basePos.x = 2.9;
       basePos.y = 0.85;
@@ -96,15 +100,16 @@
     mainGroup.position.set(basePos.x, basePos.y, basePos.z);
     scene.add(mainGroup);
 
-    // 1. Outer Faceted Wireframe Icosahedron
-    const icoGeo = new THREE.IcosahedronGeometry(2.6, 1);
+    // 1. Outer Faceted Wireframe Icosahedron (Scaled to frame like a holographic halo)
+    const icoRadius = pageType === 'home' ? 3.2 : 2.6;
+    const icoGeo = new THREE.IcosahedronGeometry(icoRadius, 1);
     const icoMat = new THREE.MeshStandardMaterial({
       color: 0xc084fc,
       emissive: 0x7c3aed,
       emissiveIntensity: 0.58,
       wireframe: true,
       transparent: true,
-      opacity: isSmallScreen ? 0.24 : 0.44
+      opacity: isSmallScreen ? 0.22 : 0.42
     });
     const icosahedron = new THREE.Mesh(icoGeo, icoMat);
     mainGroup.add(icosahedron);
@@ -112,45 +117,47 @@
     // 2. Outer Vertex Glow Points on the Icosahedron
     const icoPointsMat = new THREE.PointsMaterial({
       color: 0x22d3ee,
-      size: isSmallScreen ? 0.07 : 0.1,
+      size: isSmallScreen ? 0.07 : 0.095,
       transparent: true,
-      opacity: 0.9
+      opacity: 0.88
     });
     const icoVertexPoints = new THREE.Points(icoGeo, icoPointsMat);
     mainGroup.add(icoVertexPoints);
 
     // 3. Inner Translucent Crystalline Core
-    const coreGeo = new THREE.OctahedronGeometry(1.55, 1);
+    const coreRadius = pageType === 'home' ? 1.4 : 1.55;
+    const coreGeo = new THREE.OctahedronGeometry(coreRadius, 1);
     const coreMat = new THREE.MeshPhysicalMaterial({
       color: 0x0d0e17,
       emissive: 0x6d28d9,
-      emissiveIntensity: 0.45,
+      emissiveIntensity: 0.42,
       roughness: 0.12,
       metalness: 0.9,
       transparent: true,
-      opacity: isSmallScreen ? 0.32 : 0.58,
+      opacity: isSmallScreen ? 0.28 : 0.52,
       flatShading: true
     });
     const coreMesh = new THREE.Mesh(coreGeo, coreMat);
     mainGroup.add(coreMesh);
 
     // 4. Inner Wireframe Torus Knot
-    const knotGeo = new THREE.TorusKnotGeometry(0.88, 0.22, 92, 14);
+    const knotRadius = pageType === 'home' ? 0.8 : 0.88;
+    const knotGeo = new THREE.TorusKnotGeometry(knotRadius, 0.2, 92, 14);
     const knotMat = new THREE.MeshBasicMaterial({
       color: 0x22d3ee,
       wireframe: true,
       transparent: true,
-      opacity: isSmallScreen ? 0.2 : 0.36
+      opacity: isSmallScreen ? 0.18 : 0.32
     });
     const torusKnot = new THREE.Mesh(knotGeo, knotMat);
     mainGroup.add(torusKnot);
 
     // 5. Primary Cyber Cyan Gyroscopic Orbital Ring
-    const torusGeo1 = new THREE.TorusGeometry(3.6, 0.026, 16, 128);
+    const torusGeo1 = new THREE.TorusGeometry(pageType === 'home' ? 4.1 : 3.6, 0.026, 16, 128);
     const torusMat1 = new THREE.MeshBasicMaterial({
       color: 0x06b6d4,
       transparent: true,
-      opacity: isSmallScreen ? 0.28 : 0.56
+      opacity: isSmallScreen ? 0.28 : 0.54
     });
     const orbitalRing1 = new THREE.Mesh(torusGeo1, torusMat1);
     orbitalRing1.rotation.x = Math.PI * 0.38;
@@ -158,11 +165,11 @@
     mainGroup.add(orbitalRing1);
 
     // 6. Secondary Neon Purple Gyroscopic Orbital Ring
-    const torusGeo2 = new THREE.TorusGeometry(4.2, 0.02, 16, 128);
+    const torusGeo2 = new THREE.TorusGeometry(pageType === 'home' ? 4.7 : 4.2, 0.02, 16, 128);
     const torusMat2 = new THREE.MeshBasicMaterial({
       color: 0xa855f7,
       transparent: true,
-      opacity: isSmallScreen ? 0.2 : 0.4
+      opacity: isSmallScreen ? 0.2 : 0.42
     });
     const orbitalRing2 = new THREE.Mesh(torusGeo2, torusMat2);
     orbitalRing2.rotation.x = -Math.PI * 0.32;
@@ -170,11 +177,11 @@
     mainGroup.add(orbitalRing2);
 
     // 7. Tertiary Deep Indigo Equatorial Halo Ring
-    const torusGeo3 = new THREE.TorusGeometry(4.8, 0.014, 12, 128);
+    const torusGeo3 = new THREE.TorusGeometry(pageType === 'home' ? 5.3 : 4.8, 0.015, 12, 128);
     const torusMat3 = new THREE.MeshBasicMaterial({
       color: 0x4f46e5,
       transparent: true,
-      opacity: isSmallScreen ? 0.14 : 0.28
+      opacity: isSmallScreen ? 0.15 : 0.3
     });
     const orbitalRing3 = new THREE.Mesh(torusGeo3, torusMat3);
     orbitalRing3.rotation.x = Math.PI * 0.48;
@@ -190,12 +197,12 @@
       new THREE.DodecahedronGeometry(0.3, 0)
     ];
     const satPositions = [
-      [-6.0, 2.9, -2.8],
-      [-4.6, -2.8, -2.2],
-      [6.4, -2.7, -3.2],
-      [-2.1, 3.7, -3.8],
-      [1.4, -3.5, -2.9],
-      [-6.8, -0.4, -4.2]
+      [-6.2, 3.1, -3.2],
+      [-4.8, -2.6, -2.5],
+      [6.6, -2.5, -3.5],
+      [-2.3, 3.9, -4.0],
+      [1.6, -3.4, -3.1],
+      [-7.0, -0.2, -4.4]
     ];
     const satellites = [];
     if (!isSmallScreen) {
@@ -206,7 +213,7 @@
           emissiveIntensity: 0.6,
           wireframe: true,
           transparent: true,
-          opacity: 0.55
+          opacity: 0.52
         });
         const mesh = new THREE.Mesh(satGeos[idx % satGeos.length], mat);
         mesh.position.set(pos[0], pos[1], pos[2]);
@@ -216,9 +223,10 @@
       });
     }
 
-    // 9. Vibrant 3D Starfield Particle Warp System
-    const particleCount = isSmallScreen ? 160 : isLowPower ? 260 : 460;
+    // 9. Vibrant 3D Living Starfield Particle System with Continuous Forward Drift & Wrap
+    const particleCount = isSmallScreen ? 180 : isLowPower ? 280 : 520;
     const positions = new Float32Array(particleCount * 3);
+    const velocities = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
 
     const colorViolet = new THREE.Color(0xc084fc);
@@ -227,9 +235,13 @@
 
     for (let i = 0; i < particleCount; i++) {
       const i3 = i * 3;
-      positions[i3] = (Math.random() - 0.5) * 34;
-      positions[i3 + 1] = (Math.random() - 0.5) * 28;
-      positions[i3 + 2] = (Math.random() - 0.5) * 20 - 2;
+      positions[i3] = (Math.random() - 0.5) * 38;
+      positions[i3 + 1] = (Math.random() - 0.5) * 32;
+      positions[i3 + 2] = (Math.random() - 0.5) * 22 - 3;
+
+      velocities[i3] = (Math.random() - 0.5) * 0.006;
+      velocities[i3 + 1] = 0.005 + Math.random() * 0.012;
+      velocities[i3 + 2] = 0.02 + Math.random() * 0.035;
 
       const pick = Math.random();
       const c = pick < 0.45 ? colorViolet : pick < 0.82 ? colorCyan : colorIndigo;
@@ -243,10 +255,10 @@
     particlesGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particlesMat = new THREE.PointsMaterial({
-      size: isSmallScreen ? 0.052 : 0.072,
+      size: isSmallScreen ? 0.056 : 0.076,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85
+      opacity: 0.88
     });
 
     const particleSystem = new THREE.Points(particlesGeo, particlesMat);
@@ -390,19 +402,33 @@
       });
 
       // Dynamic 3D Trajectory of Main Sculpture
-      const scrollWaveX = Math.sin(smoothScroll * Math.PI) * (isSmallScreen ? 0.4 : -1.8);
+      const scrollWaveX = Math.sin(smoothScroll * Math.PI) * (isSmallScreen ? 0.4 : -2.0);
       mainGroup.rotation.y = currentMouseX * 0.45 + smoothScroll * 0.48;
       mainGroup.rotation.x = -currentMouseY * 0.35 + vel * 0.18;
       mainGroup.position.x = basePos.x + scrollWaveX + currentMouseX * 0.35;
       mainGroup.position.y =
-        basePos.y + Math.sin(elapsed * 0.9) * 0.3 - smoothScroll * 0.9 - currentMouseY * 0.25;
+        basePos.y + Math.sin(elapsed * 0.9) * 0.28 - smoothScroll * 1.1 - currentMouseY * 0.25;
+      mainGroup.position.z = basePos.z + Math.cos(elapsed * 0.7) * 0.25 + smoothScroll * 1.2;
 
-      // Dynamic Particle Starfield Warp Reaction
-      particleSystem.rotation.y = elapsed * 0.035 + smoothScroll * 0.85 + vel * 0.15;
-      particleSystem.rotation.x = smoothScroll * 0.3 + vel * 0.1;
-      particleSystem.position.x = -currentMouseX * 0.7;
-      particleSystem.position.y = currentMouseY * 0.5 + smoothScroll * 2.4;
-      particleSystem.position.z = Math.sin(elapsed * 0.5) * 0.8 + vel * 0.8;
+      // Living Continuous Particle Starfield Flow & Boundary Wrap
+      const pPositions = particlesGeo.attributes.position.array;
+      const velBoost = 1 + Math.abs(vel) * 2.5;
+      for (let i = 0; i < particleCount; i++) {
+        const i3 = i * 3;
+        pPositions[i3] += velocities[i3] * velBoost;
+        pPositions[i3 + 1] += velocities[i3 + 1] * velBoost;
+        pPositions[i3 + 2] += velocities[i3 + 2] * velBoost;
+
+        if (pPositions[i3 + 2] > 7.5) {
+          pPositions[i3 + 2] = -18;
+          pPositions[i3] = (Math.random() - 0.5) * 38;
+          pPositions[i3 + 1] = (Math.random() - 0.5) * 32;
+        }
+        if (pPositions[i3 + 1] > 18) {
+          pPositions[i3 + 1] = -18;
+        }
+      }
+      particlesGeo.attributes.position.needsUpdate = true;
 
       // Dynamic Camera Depth Flight on Scroll
       camera.position.z = 11.5 - Math.sin(smoothScroll * Math.PI * 0.85) * 2.0 + Math.abs(vel) * 0.3;
