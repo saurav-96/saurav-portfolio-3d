@@ -4,6 +4,27 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.7.0] — 2026-11-03 (Cross-Browser Performance Engine, Brave Farbling Immunity, Zero-Lag Motion, Mobile Ergonomics & Clean Repository)
+
+### Performance & Cross-Browser Optimization
+- **Brave Browser Stutter & Lag Elimination (`css/style.css`, `js/animations.js`, `js/three-scene.js`):**
+  - **Fixed Root Cause of Brave Jitter:** Removed conflicting native CSS `scroll-behavior: smooth` on `html` which fought Lenis's frame-by-frame updates in Brave, enforcing `.lenis.lenis-smooth { scroll-behavior: auto !important; }`.
+  - **Brave WebGL Farbling Protection:** Bypassed Brave Shields fingerprint randomization delays by setting `failIfMajorPerformanceCaveat: false`, `stencil: false`, and selectively enabling MSAA antialiasing only on low-DPI displays while capping Retina/high-DPI pixel ratio to 1.35x (1.0x on mobile).
+  - **Dynamic Buffer Streaming:** Configured `posAttr.setUsage(THREE.DynamicDrawUsage)` on particle buffers, eliminating GPU pipeline re-allocation stalls during real-time vertex position streaming.
+  - **True rAF Sleeping Loop:** Gated WebGL `requestAnimationFrame` loop behind `isPageVisible` and `IntersectionObserver`. Loop now stops 100% when canvas is offscreen or page is hidden, consuming 0% GPU/CPU when tabbed away.
+- **Motion Engine & Compositing Layer Optimization (`css/animations.css`, `js/animations.js`):**
+  - **Removed Redundant Perspective:** Eliminated blanket `main, section, .grid { perspective: 1300px; }` which forced dozens of nested 3D compositing contexts in Chromium.
+  - **Smart `will-change` Isolation:** Removed persistent `will-change: transform, opacity, filter;` on cards and backdrops; `will-change: transform` is now applied strictly during active hover or active transitions (`.glass-card:hover`, `.is-animating`).
+  - **Offscreen Keyframe Animation Pausing:** Added `is-offscreen` section IntersectionObserver to pause heavy infinite blur and glowing animations (`.portrait-glow-aura`, `.neon-orbit-ring`, `.animate-float`) when scrolled out of view.
+  - **GSAP Ticker Lag Smoothing:** Restored `gsap.ticker.lagSmoothing(500, 33)` and set `ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true })` to prevent mobile address bar collapses from triggering layout recalculations.
+- **Mobile & Touch Responsiveness (`css/responsive.css`, `js/animations.js`):**
+  - **Gated Fine-Pointer Interactivity:** 3D card tilt, cursor spotlight, and magnetic button physics are now strictly scoped to `(hover: hover) and (pointer: fine)`. Touch interactions on mobile phones and tablets scroll with 100% native frictionless fluid momentum without synthetic mouse event lag.
+  - **Responsive Typography & Word Wrapping:** Added dynamic `clamp()` font scaling and `overflow-wrap: anywhere;` on narrow viewports ($\le 480\text{px}$) to guarantee zero horizontal overflow.
+- **Repository Cleanup:**
+  - Removed temporary QA screenshots (`scratch/*.png`) and one-off capture script (`scripts/shot.mjs`).
+
+---
+
 ## [v3.6.0] — 2026-11-03 (Complete Hire/Contact Page Separation, Buttery-Smooth Carousel Scroll Motion System, and Balanced Services UI Layout)
 
 ### Added & Enhanced

@@ -135,16 +135,27 @@
   animation: spinSlow 24s linear infinite;
 }
 
-/* 3D Component Perspective & Inner Layer Depth Across Entire Site */
-main, section, .grid {
-  perspective: 1300px;
-}
-
+/* 3D Component Layer Depth */
 .glass-card,
 [data-tilt] {
   transform-style: preserve-3d;
-  will-change: transform;
   backface-visibility: hidden;
+}
+
+.glass-card:hover,
+[data-tilt]:hover,
+.glass-card.is-animating {
+  will-change: transform;
+}
+
+/* Offscreen Animation Pauses (optimize-web-animations — stops CPU/GPU waste offscreen) */
+section.is-offscreen .neon-orbit-ring,
+section.is-offscreen .animate-float,
+section.is-offscreen .animate-float-delayed,
+section.is-offscreen .animate-pulse-glow,
+section.is-offscreen .animate-spin-slow,
+section.is-offscreen .portrait-glow-aura {
+  animation-play-state: paused !important;
 }
 
 /* Inner Elements Pop Forward in 3D Space When Hovering Any 3D Glass Card */

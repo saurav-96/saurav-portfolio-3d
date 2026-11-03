@@ -8,6 +8,8 @@
   'use strict';
 
   function initAnimationsAndMicroInteractions() {
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
     // 1. Automatically Upgrade All .glass-card & .project-card Elements into Interactive 3D Components
     const allGlassCards = document.querySelectorAll('.glass-card, .project-card');
     allGlassCards.forEach((card) => {
@@ -16,58 +18,60 @@
       }
     });
 
-    // 2. High-Performance 3D Card Tilt + Cursor Radial Glare (Active on all desktop/mouse viewports)
-    allGlassCards.forEach((card) => {
-      const maxTilt = parseFloat(card.getAttribute('data-tilt-max') || '8.5');
-      let rafId = null;
-      let cachedRect = null;
+    // 2. High-Performance 3D Card Tilt + Cursor Radial Glare (Active only on pointer/mouse devices)
+    if (isFinePointer) {
+      allGlassCards.forEach((card) => {
+        const maxTilt = parseFloat(card.getAttribute('data-tilt-max') || '8.5');
+        let rafId = null;
+        let cachedRect = null;
 
-      card.addEventListener(
-        'mouseenter',
-        () => {
-          cachedRect = card.getBoundingClientRect();
-        },
-        { passive: true }
-      );
-
-      card.addEventListener(
-        'mousemove',
-        (e) => {
-          if (!cachedRect) {
+        card.addEventListener(
+          'mouseenter',
+          () => {
             cachedRect = card.getBoundingClientRect();
-          }
-          if (rafId) cancelAnimationFrame(rafId);
-          rafId = requestAnimationFrame(() => {
-            const x = e.clientX - cachedRect.left;
-            const y = e.clientY - cachedRect.top;
+          },
+          { passive: true }
+        );
 
-            card.style.setProperty('--mouse-x', `${x}px`);
-            card.style.setProperty('--mouse-y', `${y}px`);
+        card.addEventListener(
+          'mousemove',
+          (e) => {
+            if (!cachedRect) {
+              cachedRect = card.getBoundingClientRect();
+            }
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = requestAnimationFrame(() => {
+              const x = e.clientX - cachedRect.left;
+              const y = e.clientY - cachedRect.top;
 
-            const relX = x / cachedRect.width - 0.5;
-            const relY = y / cachedRect.height - 0.5;
-            const rotX = (-relY * maxTilt * 2).toFixed(2);
-            const rotY = (relX * maxTilt * 2).toFixed(2);
-            card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -8px, 24px)`;
-          });
-        },
-        { passive: true }
-      );
+              card.style.setProperty('--mouse-x', `${x}px`);
+              card.style.setProperty('--mouse-y', `${y}px`);
 
-      card.addEventListener(
-        'mouseleave',
-        () => {
-          if (rafId) cancelAnimationFrame(rafId);
-          cachedRect = null;
-          card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0px, 0px)';
-        },
-        { passive: true }
-      );
-    });
+              const relX = x / cachedRect.width - 0.5;
+              const relY = y / cachedRect.height - 0.5;
+              const rotX = (-relY * maxTilt * 2).toFixed(2);
+              const rotY = (relX * maxTilt * 2).toFixed(2);
+              card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -8px, 24px)`;
+            });
+          },
+          { passive: true }
+        );
 
-    // 3. 3D Portrait Stage Interactive Tilt & Depth Tracking
+        card.addEventListener(
+          'mouseleave',
+          () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            cachedRect = null;
+            card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0px, 0px)';
+          },
+          { passive: true }
+        );
+      });
+    }
+
+    // 3. 3D Portrait Stage Interactive Tilt & Depth Tracking (Mouse viewports only)
     const portraitStage = document.querySelector('.hero-portrait-stage');
-    if (portraitStage) {
+    if (portraitStage && isFinePointer) {
       let stageRaf = null;
       window.addEventListener(
         'mousemove',
@@ -85,8 +89,8 @@
       );
     }
 
-    // 4. Ambient Cursor Spotlight (Luxury Editorial Focus)
-    if (typeof window.gsap !== 'undefined') {
+    // 4. Ambient Cursor Spotlight (Luxury Editorial Focus — Mouse only)
+    if (typeof window.gsap !== 'undefined' && isFinePointer) {
       let spotlight = document.querySelector('.ambient-cursor-spotlight');
       if (!spotlight) {
         spotlight = document.createElement('div');
@@ -118,8 +122,8 @@
       );
     }
 
-    // 5. Magnetic Button Physics with GSAP quickTo (Spring feel)
-    if (typeof window.gsap !== 'undefined') {
+    // 5. Magnetic Button Physics with GSAP quickTo (Spring feel — Mouse only)
+    if (typeof window.gsap !== 'undefined' && isFinePointer) {
       document.querySelectorAll('[data-magnetic], .btn-primary, .btn-secondary').forEach((btn) => {
         const xTo = gsap.quickTo(btn, 'x', { duration: 0.32, ease: 'power2.out' });
         const yTo = gsap.quickTo(btn, 'y', { duration: 0.32, ease: 'power2.out' });
@@ -164,6 +168,11 @@
 
     if (typeof window.ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
+      // Prevent mobile address-bar hide/show from triggering expensive layout recalculations
+      ScrollTrigger.config({
+        limitCallbacks: true,
+        ignoreMobileResize: true
+      });
     }
 
     if (typeof window.Lenis !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
@@ -172,18 +181,40 @@
           duration: 1.05,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
           smoothWheel: true,
-          wheelMultiplier: 1.0
+          wheelMultiplier: 0.95,
+          syncTouch: false,
+          touchMultiplier: 1.0
         });
 
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
           lenis.raf(time * 1000);
         });
-        gsap.ticker.lagSmoothing(0);
+        gsap.ticker.lagSmoothing(500, 33);
         window.portfolioLenis = lenis;
       } catch (e) {
         // Fallback to native scroll
       }
+    }
+
+    // 6B. Offscreen Section Observer (optimize-web-animations — stops offscreen continuous work)
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove('is-offscreen');
+            } else {
+              entry.target.classList.add('is-offscreen');
+            }
+          });
+        },
+        { rootMargin: '120px 0px 120px 0px', threshold: 0 }
+      );
+
+      document.querySelectorAll('section').forEach((sec) => {
+        sectionObserver.observe(sec);
+      });
     }
 
     // 7. Hero Section 3D Entrance

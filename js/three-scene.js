@@ -32,22 +32,26 @@
     }
 
     const isSmallScreen = window.innerWidth < 768;
-    const isLowPower = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+    const isTouch = 'ontouchstart' in window || (navigator.maxTouchPoints && navigator.maxTouchPoints > 0);
+    const isLowPower = (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) || isSmallScreen;
 
     let renderer;
     try {
       renderer = new THREE.WebGLRenderer({
         canvas: canvas,
         alpha: true,
-        antialias: !isSmallScreen && !isLowPower,
-        powerPreference: 'high-performance'
+        antialias: !isSmallScreen && !isLowPower && (window.devicePixelRatio || 1) <= 1.25,
+        powerPreference: 'default',
+        stencil: false,
+        depth: true,
+        failIfMajorPerformanceCaveat: false
       });
     } catch (err) {
       canvas.style.display = 'none';
       return;
     }
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isSmallScreen ? 1.25 : 1.75));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, isSmallScreen ? 1.0 : (isLowPower ? 1.0 : 1.35)));
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const scene = new THREE.Scene();
@@ -225,7 +229,7 @@
     });
 
     // 9. Vibrant 3D Living Starfield Particle System with Continuous Forward Drift & Wrap
-    const particleCount = isSmallScreen ? 220 : isLowPower ? 320 : 540;
+    const particleCount = isSmallScreen ? 140 : isLowPower ? 240 : 420;
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
     const colors = new Float32Array(particleCount * 3);
@@ -252,7 +256,9 @@
     }
 
     const particlesGeo = new THREE.BufferGeometry();
-    particlesGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const posAttr = new THREE.BufferAttribute(positions, 3);
+    posAttr.setUsage(THREE.DynamicDrawUsage);
+    particlesGeo.setAttribute('position', posAttr);
     particlesGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
     const particlesMat = new THREE.PointsMaterial({
@@ -271,7 +277,8 @@
     let currentMouseX = 0;
     let currentMouseY = 0;
 
-    if (!isSmallScreen) {
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!isSmallScreen && isFinePointer) {
       window.addEventListener(
         'mousemove',
         (e) => {
@@ -324,16 +331,47 @@
 
     // Pause WebGL loop when page is hidden or offscreen (optimize-web-animations)
     let isPageVisible = !document.hidden;
+    let isCanvasInViewport = true;
+    let isLoopRunning = false;
+    let rafId = null;
+
+    function startLoop() {
+      if (!isLoopRunning && isPageVisible && isCanvasInViewport) {
+        isLoopRunning = true;
+        lastTime = performance.now();
+        rafId = requestAnimationFrame(animate);
+      }
+    }
+
+    function stopLoop() {
+      if (isLoopRunning) {
+        isLoopRunning = false;
+        if (rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      }
+    }
+
     document.addEventListener('visibilitychange', () => {
       isPageVisible = !document.hidden;
+      if (isPageVisible && isCanvasInViewport) {
+        startLoop();
+      } else {
+        stopLoop();
+      }
     });
 
-    let isCanvasInViewport = true;
     if ('IntersectionObserver' in window) {
       const canvasObserver = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
             isCanvasInViewport = entry.isIntersecting;
+            if (isCanvasInViewport && isPageVisible) {
+              startLoop();
+            } else {
+              stopLoop();
+            }
           });
         },
         { threshold: 0 }
@@ -364,11 +402,11 @@
     const pPositions = particlesGeo.attributes.position.array;
 
     function animate() {
-      requestAnimationFrame(animate);
       if (!isPageVisible || !isCanvasInViewport) {
-        lastTime = performance.now();
+        stopLoop();
         return;
       }
+      rafId = requestAnimationFrame(animate);
 
       const now = performance.now();
       const rawDelta = (now - lastTime) / 1000;
@@ -471,7 +509,7 @@
       renderer.render(scene, camera);
     }
 
-    animate();
+    startLoop();
   }
 
   if (document.readyState === 'loading') {

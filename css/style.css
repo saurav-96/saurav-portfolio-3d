@@ -70,11 +70,29 @@ html {
   color: var(--text-primary);
   font-family: var(--font-body);
   font-size: 16px;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scroll-padding-top: var(--header-clearance);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+/* Lenis Butter-Smooth Scroll Standards (Prevents browser smooth-scroll clash) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 body {
@@ -654,7 +672,7 @@ p {
   pointer-events: none;
   transform: translate(-50%, -50%);
   animation: auraBreathe 5.5s ease-in-out infinite alternate;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
 }
 
 .portrait-frame {

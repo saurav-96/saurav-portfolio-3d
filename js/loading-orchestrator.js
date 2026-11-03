@@ -80,6 +80,11 @@
           window.triggerHeroEntrance();
         }
 
+        // Refresh ScrollTrigger positions once DOM is stable and preloader lifts
+        if (typeof window.ScrollTrigger !== 'undefined') {
+          window.ScrollTrigger.refresh();
+        }
+
         // Clean up preloader from DOM after transition
         setTimeout(() => {
           if (preloader && preloader.parentNode) {

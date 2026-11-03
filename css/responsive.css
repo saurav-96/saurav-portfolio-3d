@@ -125,4 +125,41 @@
     width: 100%;
     justify-content: center;
   }
+
+  /* Ergonomic mobile spacing & word breaking */
+  h1 {
+    font-size: clamp(2rem, 8vw, 2.75rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  h2 {
+    font-size: clamp(1.65rem, 6.5vw, 2.15rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  .glass-card {
+    padding: 1.15rem !important;
+  }
+
+  pre, code, .font-mono {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* Safe touch tap targets */
+  button, a {
+    min-height: 40px;
+  }
+}
+
+/* Touch Device Frictionless Smooth Native Momentum */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .projects-carousel-track {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
 }
