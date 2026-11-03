@@ -204,25 +204,6 @@ main, section, .grid {
   transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Respect User Reduced Motion Preferences */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-
-  .animate-float,
-  .animate-float-delayed,
-  .animate-pulse-glow,
-  .animate-spin-slow,
-  .neon-orbit-ring {
-    animation: none !important;
-  }
-}
-
-
 /* ==========================================================================
    LENIS SMOOTH SCROLL INTEGRATION (cinematic-gsap-lenis-motion-system)
    ========================================================================== */
@@ -243,17 +224,12 @@ html.lenis, html.lenis body {
    MASKED STAGGERED WORD REVEALS (masked-reveal & cinematic motion)
    ========================================================================== */
 .word-mask {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  padding-bottom: 0.08em;
+  display: inline;
 }
 
 .word-reveal {
-  display: inline-block;
-  will-change: transform, opacity;
-  transform: translate3d(0, 115%, 0);
-  opacity: 0;
+  display: inline;
+  opacity: 1;
 }
 
 /* ==========================================================================
@@ -321,17 +297,4 @@ body.cursor-active .ambient-cursor-spotlight {
    ========================================================================== */
 .is-offscreen {
   animation-play-state: paused !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .word-reveal {
-    transform: none !important;
-    opacity: 1 !important;
-  }
-  .ambient-cursor-spotlight {
-    display: none !important;
-  }
-  .timeline-track-fill {
-    transform: scaleY(1) !important;
-  }
 }

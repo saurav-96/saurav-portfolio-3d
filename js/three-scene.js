@@ -31,7 +31,6 @@
       return;
     }
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const isSmallScreen = window.innerWidth < 768;
     const isLowPower = navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
 
@@ -350,11 +349,6 @@
       },
       { passive: true }
     );
-
-    if (prefersReducedMotion) {
-      renderer.render(scene, camera);
-      return;
-    }
 
     let smoothScroll = window.PortfolioThreeScene.scrollProgress || 0;
     let smoothVelocity = 0;

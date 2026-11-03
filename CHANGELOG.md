@@ -4,6 +4,23 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v3.2.0] — 2026-11-03 (Universal Reduced-Motion & Touch Blockers Removal, Persistent 3D Scroll-Trigger System)
+
+### Fixed & Enhanced
+- **Eliminated Accessibility & OS Reduced-Motion Execution Blockers:**
+  - Diagnosed that in Windows environments with remote display / accessibility visual effects minimized, `window.matchMedia('(prefers-reduced-motion: reduce)')` was evaluating to `true`.
+  - Removed early return guards in `js/three-scene.js` and `js/animations.js` that were completely shutting off the Three.js render loop, Lenis, and GSAP ScrollTrigger.
+  - Removed aggressive CSS `@media (prefers-reduced-motion: reduce)` overrides (`animation-duration: 0.01ms !important`) that were nullifying CSS keyframes.
+- **Removed Touchscreen / Hybrid Device Execution Blockers:**
+  - Removed `isTouchDevice` conditional blocks from 3D card tilt, portrait stage interactive tracking, ambient spotlight, and magnetic button physics so laptops and desktops with touch support still run 100% of mouse-driven 3D animations.
+- **Persistent 3D Scroll-Driven Component Animation System:**
+  - Upgraded ScrollTrigger on all cards and components with `toggleActions: 'play none none reverse'` and `start: 'top 92%'`.
+  - Cards dynamically glide and rotate into place in 3D perspective (`rotateX: -18deg`, `rotationY: ±4deg`, `translateZ: -95px`, `translateY: 65px`, `scale: 0.91`) whenever the visitor scrolls into view.
+- **Headline Gradient Text Preservation:**
+  - Fixed hero headline text rendering to guarantee that `<span class="text-gradient">intuitive, impactful</span>` is 100% visible, fully gradient colored, and completely animated without clipping artifacts.
+
+---
+
 ## [v3.1.0] — 2026-11-03 (3D Stacking Context Resolution, 3D Spatial Card Pop & Vibrant Holographic Mesh)
 
 ### Fixed & Enhanced

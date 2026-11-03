@@ -1,88 +1,61 @@
 /* ==========================================================================
    SAURAV BHUSAL — PREMIUM 3D INTERACTIVE PORTFOLIO
-   js/animations.js — Lenis Smooth Scroll, Universal 3D ScrollTrigger
-                       Choreography, Masked Editorial Word Reveals,
-                       Perspective 3D Component Fly-Ins, Magnetic Physics,
-                       Dynamic Process Timeline & Animation Performance Engine
+   js/animations.js — Dynamic 3D ScrollTrigger System, Perspective Component Fly-Ins,
+                       rAF 3D Card Tilt, Magnetic Physics & Smooth Motion Engine
    ========================================================================== */
 
 (function () {
   'use strict';
 
   function initAnimationsAndMicroInteractions() {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 768;
-
-    // 1. Performance Engine: Pause offscreen section animations (optimize-web-animations)
-    if ('IntersectionObserver' in window) {
-      const sectionObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
-          });
-        },
-        { threshold: 0.02, rootMargin: '120px 0px 120px 0px' }
-      );
-      document.querySelectorAll('section, footer').forEach((sec) => {
-        sectionObserver.observe(sec);
-      });
-    }
-
-    // 2. Automatically Upgrade All .glass-card Elements into Interactive 3D Components
-    const allGlassCards = document.querySelectorAll('.glass-card');
+    // 1. Automatically Upgrade All .glass-card & .project-card Elements into Interactive 3D Components
+    const allGlassCards = document.querySelectorAll('.glass-card, .project-card');
     allGlassCards.forEach((card) => {
       if (!card.hasAttribute('data-tilt')) {
         card.setAttribute('data-tilt', '');
       }
     });
 
-    // 3. High-Performance rAF-Throttled 3D Card Tilt + Cursor Radial Glare
-    if (!isTouchDevice) {
-      allGlassCards.forEach((card) => {
-        const maxTilt = parseFloat(card.getAttribute('data-tilt-max') || '7.5');
-        let rafId = null;
+    // 2. High-Performance 3D Card Tilt + Cursor Radial Glare (Active on all desktop/mouse viewports)
+    allGlassCards.forEach((card) => {
+      const maxTilt = parseFloat(card.getAttribute('data-tilt-max') || '8.5');
+      let rafId = null;
 
-        card.addEventListener(
-          'mousemove',
-          (e) => {
-            if (rafId) cancelAnimationFrame(rafId);
-            rafId = requestAnimationFrame(() => {
-              const rect = card.getBoundingClientRect();
-              const x = e.clientX - rect.left;
-              const y = e.clientY - rect.top;
+      card.addEventListener(
+        'mousemove',
+        (e) => {
+          if (rafId) cancelAnimationFrame(rafId);
+          rafId = requestAnimationFrame(() => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
 
-              // Update radial glare coordinates
-              card.style.setProperty('--mouse-x', `${x}px`);
-              card.style.setProperty('--mouse-y', `${y}px`);
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
 
-              if (!prefersReducedMotion) {
-                const relX = x / rect.width - 0.5;
-                const relY = y / rect.height - 0.5;
-                const rotX = (-relY * maxTilt * 2).toFixed(2);
-                const rotY = (relX * maxTilt * 2).toFixed(2);
-                card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -8px, 24px)`;
-              }
-            });
-          },
-          { passive: true }
-        );
+            const relX = x / rect.width - 0.5;
+            const relY = y / rect.height - 0.5;
+            const rotX = (-relY * maxTilt * 2).toFixed(2);
+            const rotY = (relX * maxTilt * 2).toFixed(2);
+            card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -8px, 24px)`;
+          });
+        },
+        { passive: true }
+      );
 
-        card.addEventListener(
-          'mouseleave',
-          () => {
-            if (rafId) cancelAnimationFrame(rafId);
-            if (!prefersReducedMotion) {
-              card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0px, 0px)';
-            }
-          },
-          { passive: true }
-        );
-      });
-    }
+      card.addEventListener(
+        'mouseleave',
+        () => {
+          if (rafId) cancelAnimationFrame(rafId);
+          card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0px, 0px)';
+        },
+        { passive: true }
+      );
+    });
 
-    // 4. 3D Portrait Stage Interactive Tilt & Depth Sync
+    // 3. 3D Portrait Stage Interactive Tilt & Depth Tracking
     const portraitStage = document.querySelector('.hero-portrait-stage');
-    if (portraitStage && !prefersReducedMotion && !isTouchDevice) {
+    if (portraitStage) {
       let stageRaf = null;
       window.addEventListener(
         'mousemove',
@@ -100,8 +73,8 @@
       );
     }
 
-    // 5. Ambient Cursor Spotlight (Luxury Editorial Focus)
-    if (!prefersReducedMotion && !isTouchDevice && typeof window.gsap !== 'undefined') {
+    // 4. Ambient Cursor Spotlight (Luxury Editorial Focus)
+    if (typeof window.gsap !== 'undefined') {
       let spotlight = document.querySelector('.ambient-cursor-spotlight');
       if (!spotlight) {
         spotlight = document.createElement('div');
@@ -133,8 +106,8 @@
       );
     }
 
-    // 6. Magnetic Button Physics with GSAP quickTo (smooth spring feel)
-    if (!prefersReducedMotion && !isTouchDevice && typeof window.gsap !== 'undefined') {
+    // 5. Magnetic Button Physics with GSAP quickTo (Spring feel)
+    if (typeof window.gsap !== 'undefined') {
       document.querySelectorAll('[data-magnetic], .btn-primary, .btn-secondary').forEach((btn) => {
         const xTo = gsap.quickTo(btn, 'x', { duration: 0.32, ease: 'power2.out' });
         const yTo = gsap.quickTo(btn, 'y', { duration: 0.32, ease: 'power2.out' });
@@ -162,8 +135,8 @@
       });
     }
 
-    // 7. Synchronized Lenis + GSAP ScrollTrigger Setup
-    if (prefersReducedMotion || typeof window.gsap === 'undefined') {
+    // 6. Lenis Smooth Scroll Setup Synchronized with GSAP
+    if (typeof window.gsap === 'undefined') {
       return;
     }
 
@@ -171,8 +144,7 @@
       gsap.registerPlugin(ScrollTrigger);
     }
 
-    // Initialize Lenis if available and synchronize with ScrollTrigger
-    if (typeof window.Lenis !== 'undefined' && typeof window.ScrollTrigger !== 'undefined' && !isTouchDevice) {
+    if (typeof window.Lenis !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
       try {
         const lenis = new Lenis({
           duration: 1.05,
@@ -188,213 +160,74 @@
         gsap.ticker.lagSmoothing(0);
         window.portfolioLenis = lenis;
       } catch (e) {
-        // Fallback to native smooth scroll
+        // Fallback to native scroll
       }
     }
 
-    // 8. Masked Editorial Word Reveals (masked-reveal skill)
-    // Traverses headline DOM safely preserving inner tags like <span class="text-gradient"> and <br>
-    function splitWordsSafely(element) {
-      if (element.dataset.maskedSplitDone === 'true') return [];
-      const words = [];
-
-      function traverse(node) {
-        if (node.nodeType === Node.TEXT_NODE) {
-          const text = node.textContent;
-          if (!text.trim()) return;
-          const frag = document.createDocumentFragment();
-          const tokens = text.split(/(\s+)/);
-          tokens.forEach((token) => {
-            if (!token) return;
-            if (/^\s+$/.test(token)) {
-              frag.appendChild(document.createTextNode(token));
-            } else {
-              const mask = document.createElement('span');
-              mask.className = 'word-mask';
-              mask.setAttribute('aria-hidden', 'true');
-              const inner = document.createElement('span');
-              inner.className = 'word-reveal';
-              inner.textContent = token;
-              mask.appendChild(inner);
-              frag.appendChild(mask);
-              words.push(inner);
-            }
-          });
-          node.parentNode.replaceChild(frag, node);
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          if (node.tagName.toLowerCase() === 'br') return;
-          Array.from(node.childNodes).forEach(traverse);
-        }
-      }
-
-      const originalText = element.textContent.trim();
-      element.setAttribute('aria-label', originalText);
-      Array.from(element.childNodes).forEach(traverse);
-      element.dataset.maskedSplitDone = 'true';
-      return words;
-    }
-
-    // 9. 3D Hero Entrance Choreography (Perspective 3D Unfold + Word-by-Word Reveal)
-    const heroHeading = document.querySelector('h1[data-hero-reveal]');
-    let headlineWords = [];
-    if (heroHeading) {
-      headlineWords = splitWordsSafely(heroHeading);
-    }
-
-    const heroItems = document.querySelectorAll('[data-hero-reveal]');
-    if (heroItems.length > 0) {
-      // Animate headline masked words
-      if (headlineWords.length > 0) {
-        gsap.to(headlineWords, {
-          y: '0%',
+    // 7. Hero Section 3D Entrance
+    const heroElements = document.querySelectorAll('[data-hero-reveal]');
+    if (heroElements.length > 0) {
+      gsap.fromTo(
+        heroElements,
+        {
+          opacity: 0,
+          y: 35,
+          z: -55,
+          rotationX: -12,
+          scale: 0.95,
+          transformPerspective: 1200
+        },
+        {
           opacity: 1,
+          y: 0,
+          z: 0,
+          rotationX: 0,
+          scale: 1,
           duration: 0.85,
-          stagger: 0.026,
+          stagger: 0.09,
           ease: 'power3.out',
           clearProps: 'transform,opacity'
-        });
-      }
-
-      // Animate remaining hero elements (eyebrow, subcopy, CTA buttons)
-      const otherHeroItems = Array.from(heroItems).filter((item) => item !== heroHeading);
-      if (otherHeroItems.length > 0) {
-        gsap.fromTo(
-          otherHeroItems,
-          {
-            y: 36,
-            opacity: 0,
-            rotationX: -12,
-            z: -50,
-            scale: 0.96,
-            transformPerspective: 1200
-          },
-          {
-            y: 0,
-            opacity: 1,
-            rotationX: 0,
-            z: 0,
-            scale: 1,
-            duration: 0.8,
-            stagger: 0.08,
-            ease: 'power3.out',
-            clearProps: 'transform,opacity'
-          }
-        );
-      }
+        }
+      );
     }
 
     if (typeof window.ScrollTrigger === 'undefined') {
       return;
     }
 
-    // 10. Universal 3D Scroll-Triggered Section Header Reveals
-    const sectionHeaders = document.querySelectorAll(
-      'section:not(:first-of-type) [data-reveal-item]:not(.glass-card):not(.project-card), section:not(:first-of-type) > div > .max-w-2xl, section:not(:first-of-type) .eyebrow-badge'
+    // 8. UNIVERSAL SCROLL-BASED 3D COMPONENT ANIMATION
+    // As the visitor scrolls down, cards glide in from 3D space with rotationX, depth, scale, and stagger
+    const scrollComponents = document.querySelectorAll(
+      'section:not(:first-of-type) .glass-card, section:not(:first-of-type) .project-card, [data-reveal-group] > *'
     );
-    sectionHeaders.forEach((header) => {
-      if (header.closest('[data-hero-reveal]')) return;
-      gsap.fromTo(
-        header,
-        {
-          y: 38,
-          opacity: 0,
-          rotationX: -12,
-          z: -50,
-          transformPerspective: 1100
-        },
-        {
-          y: 0,
-          opacity: 1,
-          rotationX: 0,
-          z: 0,
-          duration: 0.72,
-          ease: 'power3.out',
-          clearProps: 'transform,opacity',
-          scrollTrigger: {
-            trigger: header,
-            start: 'top 88%',
-            once: true
-          }
-        }
-      );
-    });
 
-    // 11. Universal 3D Component Fly-Ins: Every Card Group & Grid
-    const animatedCardsSet = new Set();
-
-    const revealGroups = document.querySelectorAll('[data-reveal-group], section:not(:first-of-type) .grid');
-    revealGroups.forEach((group) => {
-      const cards = Array.from(group.querySelectorAll('[data-reveal-item], .glass-card, .project-card')).filter(
-        (card) => card.closest('[data-reveal-group], section .grid') === group
-      );
-      if (cards.length === 0) return;
-
-      cards.forEach((c) => animatedCardsSet.add(c));
+    scrollComponents.forEach((card, index) => {
+      if (card.closest('[data-hero-reveal]')) return;
 
       gsap.fromTo(
-        cards,
+        card,
         {
-          y: 58,
           opacity: 0,
+          y: 65,
+          z: -95,
           rotationX: -18,
-          rotationY: (i) => (i % 2 === 0 ? -4 : 4),
-          z: -90,
+          rotationY: index % 2 === 0 ? -4 : 4,
           scale: 0.91,
           transformPerspective: 1200
         },
         {
-          y: 0,
           opacity: 1,
+          y: 0,
+          z: 0,
           rotationX: 0,
           rotationY: 0,
-          z: 0,
           scale: 1,
-          duration: 0.82,
-          stagger: 0.085,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: group,
-            start: 'top 86%',
-            once: true
-          },
-          onComplete: () => {
-            cards.forEach((card) => {
-              card.style.transform = '';
-              card.style.opacity = '1';
-            });
-          }
-        }
-      );
-    });
-
-    // Standalone 3D Cards
-    const allRemainingCards = Array.from(document.querySelectorAll('.glass-card, .project-card')).filter(
-      (card) => !animatedCardsSet.has(card) && !card.closest('[data-hero-reveal]')
-    );
-
-    allRemainingCards.forEach((card) => {
-      gsap.fromTo(
-        card,
-        {
-          y: 52,
-          opacity: 0,
-          rotationX: -16,
-          z: -80,
-          scale: 0.92,
-          transformPerspective: 1200
-        },
-        {
-          y: 0,
-          opacity: 1,
-          rotationX: 0,
-          z: 0,
-          scale: 1,
-          duration: 0.76,
+          duration: 0.8,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: card,
-            start: 'top 87%',
-            once: true
+            start: 'top 92%',
+            toggleActions: 'play none none reverse'
           },
           onComplete: () => {
             card.style.transform = '';
@@ -404,36 +237,46 @@
       );
     });
 
-    // 12. Dynamic Scroll-Progress Timeline Controller (services.html)
-    const timelineContainer = document.getElementById('working-process-timeline');
-    const timelineFill = document.getElementById('timeline-progress-fill');
-    if (timelineContainer && timelineFill) {
-      const steps = timelineContainer.querySelectorAll('.timeline-step');
-      ScrollTrigger.create({
-        trigger: timelineContainer,
-        start: 'top 78%',
-        end: 'bottom 60%',
-        scrub: 0.35,
-        onUpdate: (self) => {
-          const p = self.progress;
-          timelineFill.style.transform = `scaleY(${p})`;
-          steps.forEach((step, idx) => {
-            const stepThreshold = steps.length > 1 ? idx / (steps.length - 1) : 0;
-            if (p >= stepThreshold - 0.06) {
-              step.classList.add('is-active');
-            } else {
-              step.classList.remove('is-active');
-            }
-          });
+    // 9. Section Headings & Badges 3D Scroll Entrance
+    const sectionHeaders = document.querySelectorAll(
+      'section:not(:first-of-type) .eyebrow-badge, section:not(:first-of-type) h2, section:not(:first-of-type) > div > .max-w-2xl'
+    );
+    sectionHeaders.forEach((header) => {
+      if (header.closest('[data-hero-reveal]')) return;
+      gsap.fromTo(
+        header,
+        {
+          opacity: 0,
+          y: 35,
+          z: -50,
+          rotationX: -14,
+          transformPerspective: 1100
+        },
+        {
+          opacity: 1,
+          y: 0,
+          z: 0,
+          rotationX: 0,
+          duration: 0.72,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 90%',
+            toggleActions: 'play none none reverse'
+          },
+          onComplete: () => {
+            header.style.transform = '';
+            header.style.opacity = '1';
+          }
         }
-      });
-    }
+      );
+    });
 
-    // 13. Scroll-Based Parallax Sync for Hero Portrait, Studio Aura & Base Orbit Ring
-    if (portraitStage && !isTouchDevice) {
+    // 10. Scroll-Based Parallax on Hero Portrait, Studio Aura & Base Orbit Ring
+    if (portraitStage) {
       gsap.to('.portrait-frame', {
-        y: -36,
-        z: 42,
+        y: -32,
+        z: 40,
         ease: 'none',
         scrollTrigger: {
           trigger: portraitStage,
@@ -467,6 +310,46 @@
           end: 'bottom top',
           scrub: 0.7
         }
+      });
+    }
+
+    // 11. Dynamic Scroll-Progress Timeline Controller (services.html)
+    const timelineContainer = document.getElementById('working-process-timeline');
+    const timelineFill = document.getElementById('timeline-progress-fill');
+    if (timelineContainer && timelineFill) {
+      const steps = timelineContainer.querySelectorAll('.timeline-step');
+      ScrollTrigger.create({
+        trigger: timelineContainer,
+        start: 'top 78%',
+        end: 'bottom 60%',
+        scrub: 0.35,
+        onUpdate: (self) => {
+          const p = self.progress;
+          timelineFill.style.transform = `scaleY(${p})`;
+          steps.forEach((step, idx) => {
+            const stepThreshold = steps.length > 1 ? idx / (steps.length - 1) : 0;
+            if (p >= stepThreshold - 0.06) {
+              step.classList.add('is-active');
+            } else {
+              step.classList.remove('is-active');
+            }
+          });
+        }
+      });
+    }
+
+    // 12. IntersectionObserver to Pause Offscreen Keyframes
+    if ('IntersectionObserver' in window) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
+          });
+        },
+        { threshold: 0.02, rootMargin: '100px 0px 100px 0px' }
+      );
+      document.querySelectorAll('section, footer').forEach((sec) => {
+        sectionObserver.observe(sec);
       });
     }
   }
