@@ -69,6 +69,10 @@
 }
 
 /* 3D Component Perspective & Inner Layer Depth Across Entire Site */
+main, section, .grid {
+  perspective: 1300px;
+}
+
 .glass-card,
 [data-tilt] {
   transform-style: preserve-3d;

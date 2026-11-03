@@ -1,7 +1,7 @@
 /* ==========================================================================
    SAURAV BHUSAL — PREMIUM 3D INTERACTIVE PORTFOLIO
    js/animations.js — Lenis Smooth Scroll, 3D ScrollTrigger Choreography,
-                      Interactive 3D Card Tilt + Inner Parallax Depth,
+                      Perspective 3D Section & Card Fly-Ins,
                       Magnetic Buttons, and Cursor-Following Radial Glare
    ========================================================================== */
 
@@ -23,7 +23,7 @@
     // 2. High-Performance rAF-Throttled 3D Card Tilt + Cursor Radial Glare
     if (!isTouchDevice) {
       allGlassCards.forEach((card) => {
-        const maxTilt = parseFloat(card.getAttribute('data-tilt-max') || '6.5');
+        const maxTilt = parseFloat(card.getAttribute('data-tilt-max') || '7.5');
         let rafId = null;
 
         card.addEventListener(
@@ -44,7 +44,7 @@
                 const relY = y / rect.height - 0.5;
                 const rotX = (-relY * maxTilt * 2).toFixed(2);
                 const rotY = (relX * maxTilt * 2).toFixed(2);
-                card.style.transform = `perspective(1100px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -4px, 8px)`;
+                card.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg) translate3d(0, -6px, 14px)`;
               }
             });
           },
@@ -56,7 +56,7 @@
           () => {
             if (rafId) cancelAnimationFrame(rafId);
             if (!prefersReducedMotion) {
-              card.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) translate3d(0, 0px, 0px)';
+              card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) translate3d(0, 0px, 0px)';
             }
           },
           { passive: true }
@@ -75,8 +75,8 @@
           stageRaf = requestAnimationFrame(() => {
             const nx = (e.clientX / window.innerWidth - 0.5) * 2;
             const ny = (e.clientY / window.innerHeight - 0.5) * 2;
-            const rotY = (nx * 7.5).toFixed(2);
-            const rotX = (-ny * 6.0).toFixed(2);
+            const rotY = (nx * 8.5).toFixed(2);
+            const rotX = (-ny * 6.5).toFixed(2);
             portraitStage.style.transform = `perspective(1200px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
           });
         },
@@ -96,7 +96,7 @@
               const rect = btn.getBoundingClientRect();
               const dx = e.clientX - (rect.left + rect.width / 2);
               const dy = e.clientY - (rect.top + rect.height / 2);
-              btn.style.transform = `translate3d(${(dx * 0.16).toFixed(1)}px, ${(dy * 0.2).toFixed(1)}px, 6px)`;
+              btn.style.transform = `translate3d(${(dx * 0.16).toFixed(1)}px, ${(dy * 0.2).toFixed(1)}px, 8px)`;
             });
           },
           { passive: true }
@@ -148,19 +148,21 @@
       gsap.fromTo(
         heroItems,
         {
-          y: 24,
+          y: 35,
           opacity: 0,
-          rotationX: -10,
-          scale: 0.97,
-          transformPerspective: 1100
+          rotationX: -14,
+          z: -60,
+          scale: 0.95,
+          transformPerspective: 1200
         },
         {
           y: 0,
           opacity: 1,
           rotationX: 0,
+          z: 0,
           scale: 1,
-          duration: 0.65,
-          stagger: 0.075,
+          duration: 0.75,
+          stagger: 0.08,
           ease: 'power3.out',
           clearProps: 'transform,opacity'
         }
@@ -171,7 +173,8 @@
       return;
     }
 
-    // 7. Scroll-Triggered 3D Perspective Section & Card Reveals
+    // 7. Scroll-Triggered 3D Perspective Section & Card Fly-Ins
+    // When user scrolls down, elements sweep in from 3D space with rotationX, z-depth and scale
     document.querySelectorAll('[data-reveal-group]').forEach((group) => {
       const children = group.querySelectorAll('[data-reveal-item]');
       if (children.length === 0) return;
@@ -179,23 +182,60 @@
       gsap.fromTo(
         children,
         {
-          y: 32,
+          y: 52,
           opacity: 0,
-          rotationX: -9,
-          scale: 0.96,
-          transformPerspective: 1100
+          rotationX: -16,
+          rotationY: (i) => (i % 2 === 0 ? -3 : 3),
+          z: -85,
+          scale: 0.92,
+          transformPerspective: 1200
         },
         {
           y: 0,
           opacity: 1,
           rotationX: 0,
+          rotationY: 0,
+          z: 0,
           scale: 1,
-          duration: 0.58,
-          stagger: 0.07,
-          ease: 'power2.out',
+          duration: 0.75,
+          stagger: 0.085,
+          ease: 'power3.out',
           clearProps: 'transform,opacity',
           scrollTrigger: {
             trigger: group,
+            start: 'top 85%',
+            once: true
+          }
+        }
+      );
+    });
+
+    // 8. Scroll-Based 3D Cards on Pages without explicit [data-reveal-group] (e.g. Projects Grid & Service Articles)
+    const standaloneCards = Array.from(document.querySelectorAll('.project-card, #web-development, #ui-ux-design, #ai-automation, #graphic-design')).filter(
+      (el) => !el.closest('[data-reveal-group]')
+    );
+    standaloneCards.forEach((card) => {
+      gsap.fromTo(
+        card,
+        {
+          y: 48,
+          opacity: 0,
+          rotationX: -15,
+          z: -75,
+          scale: 0.93,
+          transformPerspective: 1200
+        },
+        {
+          y: 0,
+          opacity: 1,
+          rotationX: 0,
+          z: 0,
+          scale: 1,
+          duration: 0.72,
+          ease: 'power3.out',
+          clearProps: 'transform,opacity',
+          scrollTrigger: {
+            trigger: card,
             start: 'top 86%',
             once: true
           }
@@ -203,42 +243,11 @@
       );
     });
 
-    // 8. Scroll-Based 3D Cards on Pages without explicit [data-reveal-group] (e.g., Projects Grid)
-    const standaloneCards = Array.from(document.querySelectorAll('.project-card')).filter(
-      (el) => !el.hasAttribute('data-reveal-item')
-    );
-    if (standaloneCards.length > 0) {
-      gsap.fromTo(
-        standaloneCards,
-        {
-          y: 34,
-          opacity: 0,
-          rotationX: -8,
-          scale: 0.96,
-          transformPerspective: 1100
-        },
-        {
-          y: 0,
-          opacity: 1,
-          rotationX: 0,
-          scale: 1,
-          duration: 0.55,
-          stagger: 0.065,
-          ease: 'power2.out',
-          clearProps: 'transform,opacity',
-          scrollTrigger: {
-            trigger: standaloneCards[0],
-            start: 'top 88%',
-            once: true
-          }
-        }
-      );
-    }
-
     // 9. Scroll-Based Parallax Sync for Hero Portrait & Floating 3D Polyhedra
     if (portraitStage && !isTouchDevice) {
       gsap.to('.portrait-frame', {
-        y: -24,
+        y: -32,
+        z: 36,
         ease: 'none',
         scrollTrigger: {
           trigger: portraitStage,
@@ -249,8 +258,8 @@
       });
 
       gsap.to('.floating-poly', {
-        y: -42,
-        rotation: 28,
+        y: -48,
+        rotation: 32,
         ease: 'none',
         scrollTrigger: {
           trigger: portraitStage,

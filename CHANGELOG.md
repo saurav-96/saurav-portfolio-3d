@@ -4,6 +4,21 @@ All notable changes, milestones, and design iterations for **Saurav Bhusal's 3D 
 
 ---
 
+## [v2.6.0] — 2026-11-03 (Custom Avatar Logo, Fiverr Integration & Enhanced 3D Scroll Perspective)
+
+### Added
+- **Custom Illustrated Avatar Logo:**
+  - Integrated Saurav's custom illustrated cyberpunk portrait (`assets/images/saurav-avatar-logo.jpg`) into a circular brand logo frame with cyan/purple/magenta neon gradient ring (`assets/images/saurav-logo.png`).
+  - Updated high-resolution PNG & ICO favicons (`assets/icons/favicon.png`, `assets/icons/favicon.ico`).
+- **Fiverr Account Integration:**
+  - Added verified **Fiverr** profile card on `contact.html` with direct order link (`https://www.fiverr.com/sellers/saurav_bhusal`).
+  - Added Fiverr links across all page footers, home credibility strip (`Upwork, Fiverr & Freelancer`), structured JSON-LD schema, and downloadable CV (`assets/documents/Saurav-Bhusal-CV.html`).
+- **Dynamic 3D Background & Scroll-Triggered Perspective Fly-Ins:**
+  - Upgraded Three.js background with direct mouse wheel momentum, dynamic camera flight depth along Z-axis, scroll velocity inertia, and warp starfield particle drift.
+  - Upgraded GSAP ScrollTrigger reveals with 3D perspective depth (`perspective(1200px) rotateX(-16deg) translate3d(0, 52px, -85px) scale(0.92)`) smoothly unfurling into place as the user scrolls.
+
+---
+
 ## [v2.5.0] — 2026-11-03 (Verified Credentials, 3D Component Motion & Custom Project Showcase)
 
 ### Added
