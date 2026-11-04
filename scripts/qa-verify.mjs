@@ -283,6 +283,11 @@ const turntableTestRes = await send('Runtime.evaluate', {
     await new Promise(r => setTimeout(r, 200));
     const angleAfterNext = angleBadge ? angleBadge.textContent : null;
 
+    // Test idle auto-return: wait for 3.5s idle timer + animation
+    await new Promise(r => setTimeout(r, 4700));
+    const angleAfterIdleReturn = angleBadge ? angleBadge.textContent : null;
+    const isOriginalVisibleAfterIdle = staticImg ? (staticImg.style.display !== 'none') : false;
+
     // Click reset to return to front view
     if (btnReset) btnReset.click();
     await new Promise(r => setTimeout(r, 400));
@@ -296,6 +301,8 @@ const turntableTestRes = await send('Runtime.evaluate', {
       canvasH,
       initialAngle,
       angleAfterNext,
+      angleAfterIdleReturn,
+      isOriginalVisibleAfterIdle,
       angleAfterReset
     };
   })()`

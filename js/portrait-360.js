@@ -6,6 +6,8 @@
    - Continuous sub-frame cross-fading (alpha blending) between adjacent frames
      for buttery smooth 3D model rotation (eliminates photo-slideshow popping)
    - Auto-spin removed per user request for authentic 3D model feel
+   - Intelligent Idle Auto-Return: After 3.5s of no dragging/interaction,
+     smoothly transitions back to 0° and cross-fades into the original picture
    - Inertia momentum with physics damping
    - Coordinated 3D perspective tilt (rotateX, rotateY) & studio rim lighting
    - One-click animated reset back to front view (0°)
@@ -24,6 +26,7 @@
   const DRAG_SENSITIVITY = 0.36;
   const INERTIA_FRICTION = 0.91;
   const MIN_VELOCITY = 0.015;
+  const IDLE_RETURN_DELAY_MS = 3500; // 3.5 seconds after user stops dragging
 
   function initPortrait360() {
     const container = document.getElementById('hero-portrait-360');
@@ -55,8 +58,6 @@
     let loadedCount = 0;
 
     let currentAngle = 0; // 0 to 360
-    let targetAngle = 0;
-    let isResetting = false;
     let isDragging = false;
     let hasActivated = false;
 
@@ -64,6 +65,14 @@
     let lastPointerTime = 0;
     let velocity = 0;
     let rafId = null;
+
+    // Smooth return-to-original state & timer
+    let idleReturnTimer = null;
+    let isAutoReturning = false;
+    let returnStartAngle = 0;
+    let returnDeltaAngle = 0;
+    let returnStartTime = 0;
+    let returnDuration = 800;
 
     // 3D Perspective Tilt state
     let targetTiltX = 0;
@@ -110,19 +119,78 @@
     }
 
     function activate3D() {
+      cancelIdleReturn();
       if (!hasActivated) {
         hasActivated = true;
         if (fallbackImg) {
-          fallbackImg.style.transition = 'opacity 0.25s ease';
+          fallbackImg.style.transition = 'opacity 0.28s ease';
           fallbackImg.style.opacity = '0';
           setTimeout(() => {
-            fallbackImg.style.display = 'none';
-          }, 260);
+            if (hasActivated && fallbackImg) {
+              fallbackImg.style.display = 'none';
+            }
+          }, 300);
         }
       }
     }
 
-    // Animation Loop (handles inertia, reset lerp & 3D tilt lerp)
+    function restoreOriginalPicture() {
+      if (fallbackImg) {
+        fallbackImg.style.display = 'block';
+        void fallbackImg.offsetWidth; // Force layout reflow
+        fallbackImg.style.transition = 'opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+        fallbackImg.style.opacity = '1';
+      }
+      hasActivated = false;
+      isAutoReturning = false;
+    }
+
+    function scheduleIdleReturn() {
+      cancelIdleReturn();
+      const norm = ((currentAngle % 360) + 360) % 360;
+      // Only schedule if rotated away from 0° front pose
+      if (norm >= 1.5 && norm <= 358.5) {
+        idleReturnTimer = setTimeout(() => {
+          triggerSmoothReturn(850);
+        }, IDLE_RETURN_DELAY_MS);
+      }
+    }
+
+    function cancelIdleReturn() {
+      if (idleReturnTimer) {
+        clearTimeout(idleReturnTimer);
+        idleReturnTimer = null;
+      }
+      isAutoReturning = false;
+    }
+
+    function triggerSmoothReturn(duration = 800) {
+      if (isDragging) return;
+
+      const norm = ((currentAngle % 360) + 360) % 360;
+      if (norm < 1.0 || norm > 359.0) {
+        currentAngle = 0;
+        renderCrossfadedAngle(0);
+        restoreOriginalPicture();
+        return;
+      }
+
+      // Shortest circular path to 0°
+      let diff = 0 - norm;
+      if (diff < -180) diff += 360;
+      if (diff > 180) diff -= 360;
+
+      returnStartAngle = norm;
+      returnDeltaAngle = diff;
+      returnStartTime = performance.now();
+      // Natural spring duration scaling
+      returnDuration = Math.max(600, Math.min(1050, duration || Math.abs(diff) * 4.2));
+      isAutoReturning = true;
+      velocity = 0;
+      wakeLoop();
+    }
+
+    // Animation Loop (handles inertia, return-to-original lerp & 3D tilt lerp)
     function tick() {
       // 3D Perspective Tilt Lerp
       currentTiltX += (targetTiltX - currentTiltX) * 0.12;
@@ -131,21 +199,23 @@
 
       let keepLooping = false;
 
-      // Handle animated reset back to 0°
-      if (isResetting) {
-        let diff = targetAngle - currentAngle;
-        // Shortest circular path
-        while (diff < -180) diff += 360;
-        while (diff > 180) diff -= 360;
+      // Handle Smooth Return Animation to 0°
+      if (isAutoReturning) {
+        const now = performance.now();
+        const elapsed = now - returnStartTime;
+        const progress = Math.min(1, elapsed / returnDuration);
 
-        if (Math.abs(diff) > 0.3) {
-          currentAngle += diff * 0.15;
-          renderCrossfadedAngle(currentAngle);
-          keepLooping = true;
-        } else {
+        // Cubic ease-out curve for natural deceleration
+        const ease = 1 - Math.pow(1 - progress, 3);
+        currentAngle = ((returnStartAngle + returnDeltaAngle * ease) % 360 + 360) % 360;
+        renderCrossfadedAngle(currentAngle);
+
+        if (progress >= 1) {
           currentAngle = 0;
           renderCrossfadedAngle(0);
-          isResetting = false;
+          restoreOriginalPicture();
+        } else {
+          keepLooping = true;
         }
       } else if (!isDragging && Math.abs(velocity) > MIN_VELOCITY) {
         // Inertia deceleration
@@ -153,8 +223,10 @@
         velocity *= INERTIA_FRICTION;
         renderCrossfadedAngle(currentAngle);
         keepLooping = true;
-      } else if (!isDragging) {
+      } else if (!isDragging && velocity !== 0) {
         velocity = 0;
+        // Schedule idle return once inertia has fully settled
+        scheduleIdleReturn();
       }
 
       // Keep loop running if tilt hasn't settled
@@ -179,9 +251,9 @@
     function onPointerDown(e) {
       if (e.target.closest('button')) return;
 
+      cancelIdleReturn();
       activate3D();
       isDragging = true;
-      isResetting = false;
 
       lastPointerX = e.clientX;
       lastPointerTime = performance.now();
@@ -210,6 +282,8 @@
 
       if (!isDragging) return;
 
+      cancelIdleReturn();
+
       const now = performance.now();
       const dt = Math.max(1, now - lastPointerTime);
       const deltaX = e.clientX - lastPointerX;
@@ -237,6 +311,8 @@
       const MAX_FLING = 3.2;
       velocity = Math.max(-MAX_FLING, Math.min(MAX_FLING, velocity));
 
+      // Schedule idle return to 0° after inactivity
+      scheduleIdleReturn();
       wakeLoop();
     }
 
@@ -254,13 +330,14 @@
     window.addEventListener('pointercancel', onPointerUp, { passive: true });
     container.addEventListener('pointerleave', onPointerLeave, { passive: true });
 
-    // Step Buttons: Left & Right rotate by 15° with smooth inertia
+    // Step Buttons: Left & Right rotate by with smooth inertia
     if (btnPrev) {
       btnPrev.addEventListener('click', (e) => {
         e.preventDefault();
+        cancelIdleReturn();
         activate3D();
-        isResetting = false;
         velocity = -1.6;
+        scheduleIdleReturn();
         wakeLoop();
       });
     }
@@ -268,22 +345,21 @@
     if (btnNext) {
       btnNext.addEventListener('click', (e) => {
         e.preventDefault();
+        cancelIdleReturn();
         activate3D();
-        isResetting = false;
         velocity = 1.6;
+        scheduleIdleReturn();
         wakeLoop();
       });
     }
 
-    // Reset Button: Smoothly lerps view back to front 0° thumbnail
+    // Reset Button: Immediately triggers the smooth return animation to 0°
     if (btnReset) {
       btnReset.addEventListener('click', (e) => {
         e.preventDefault();
+        cancelIdleReturn();
         activate3D();
-        targetAngle = 0;
-        velocity = 0;
-        isResetting = true;
-        wakeLoop();
+        triggerSmoothReturn(550);
       });
     }
 
