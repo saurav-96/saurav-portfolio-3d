@@ -87,10 +87,11 @@
 
         // Clean up preloader from DOM after transition
         setTimeout(() => {
-          if (preloader && preloader.parentNode) {
+          if (preloader) {
             preloader.setAttribute('aria-hidden', 'true');
+            preloader.style.display = 'none';
           }
-        }, 600);
+        }, 500);
       }, 120);
     }
 
