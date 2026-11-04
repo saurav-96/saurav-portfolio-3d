@@ -202,15 +202,15 @@
             <div class="hero-portrait-stage" data-tilt data-tilt-max="4">
               <div class="portrait-glow-aura" aria-hidden="true"></div>
 
-              <!-- Designated 360° Interactive Portrait Showcase (Studio Synced & Inertia Physics) -->
+              <!-- Designated 360° Interactive 3D Portrait Showcase (Studio Synced & Inertia Physics) -->
               <div class="portrait-frame">
-                <div class="portrait-turntable-360" id="hero-portrait-360" role="region" aria-label="Interactive 360-degree rotating portrait of Saurav Bhusal. Drag horizontally to rotate.">
-                  <!-- High-DPI Turntable Canvas -->
-                  <canvas id="portrait-360-canvas" class="portrait-360-canvas" width="540" height="760"></canvas>
+                <div class="portrait-turntable-360" id="hero-portrait-360" role="region" aria-label="Interactive 3D rotating portrait of Saurav Bhusal. Drag horizontally to rotate in 3D.">
+                  <!-- High-DPI 3D Turntable Canvas with Smooth Sub-Frame Blending -->
+                  <canvas id="portrait-360-canvas" class="portrait-360-canvas" width="657" height="1008"></canvas>
 
-                  <!-- Fallback / Initial Static Cutout (eager load, graceful degradation) -->
+                  <!-- Authentic Original Hero Portrait as Initial Thumbnail -->
                   <img
-                    src="assets/images/portrait-360/frame-00.png"
+                    src="assets/images/saurav-cutout.png"
                     alt="Saurav Bhusal — Creative Web Developer and UI/UX Designer"
                     class="portrait-img portrait-fallback-img"
                     id="portrait-static-img"
@@ -219,32 +219,33 @@
                     loading="eager"
                   />
 
-                  <!-- Floating 360° Interactive Angle Badge -->
+                  <!-- Floating 3D Interactive Badge -->
                   <div class="portrait-360-badge" id="portrait-360-badge" aria-live="polite">
                     <span class="badge-icon-spin" aria-hidden="true">
                       <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                        <path d="M3 3v5h5"/>
-                        <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/>
-                        <path d="M16 21h5v-5"/>
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/>
+                        <path d="M2 12h20"/>
                       </svg>
                     </span>
-                    <span class="badge-label">360° Interactive</span>
+                    <span class="badge-label">3D Interactive</span>
                     <span class="badge-separator">•</span>
                     <span class="badge-instruction">Drag to Rotate</span>
                     <span class="badge-angle" id="portrait-360-angle">0°</span>
                   </div>
 
-                  <!-- Quick Action Controls -->
-                  <div class="portrait-360-controls" aria-label="360 view controls">
+                  <!-- Sleek Interaction Controls (Auto-spin removed for smooth model feel) -->
+                  <div class="portrait-360-controls" aria-label="3D view controls">
                     <button type="button" class="portrait-spin-btn btn-spin-left" id="portrait-btn-prev" aria-label="Rotate Left">
                       <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+                      <span class="text-[10px]">Left</span>
                     </button>
-                    <button type="button" class="portrait-spin-btn btn-spin-auto" id="portrait-btn-auto" aria-label="Toggle Auto Spin">
-                      <i data-lucide="refresh-cw" class="w-3 h-3" id="portrait-auto-icon"></i>
-                      <span class="text-[10px] font-mono tracking-wider">360° AUTO</span>
+                    <button type="button" class="portrait-spin-btn btn-spin-reset" id="portrait-btn-reset" aria-label="Reset to Front View">
+                      <i data-lucide="rotate-ccw" class="w-3 h-3"></i>
+                      <span class="text-[10px] font-mono tracking-wider">RESET</span>
                     </button>
                     <button type="button" class="portrait-spin-btn btn-spin-right" id="portrait-btn-next" aria-label="Rotate Right">
+                      <span class="text-[10px]">Right</span>
                       <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
                     </button>
                   </div>

@@ -30,7 +30,6 @@ public class TurntableProcessor {
 
                 int[] queue = new int[totalPixels];
 
-                // BFS to find all connected black components (maxC <= 6)
                 for (int y = 0; y < targetH; y++) {
                     for (int x = 0; x < targetW; x++) {
                         int idx = y * targetW + x;
@@ -105,21 +104,19 @@ public class TurntableProcessor {
                     }
                 }
 
-                // Any component connected to border OR size > 150 pixels is background!
                 bool[] isBg = new bool[totalPixels];
                 for (int y = 0; y < targetH; y++) {
                     for (int x = 0; x < targetW; x++) {
                         int idx = y * targetW + x;
                         int lbl = labels[idx];
                         if (lbl > 0) {
-                            if (borderLabels.Contains(lbl) || componentSizes[lbl] > 150) {
+                            if (borderLabels.Contains(lbl) || componentSizes[lbl] > 200) {
                                 isBg[idx] = true;
                             }
                         }
                     }
                 }
 
-                // Lookup table for color grading: Gamma 1.42, Contrast 1.14, Brightness +0.07
                 byte[] lut = new byte[256];
                 for (int i = 0; i < 256; i++) {
                     float v = (float)i / 255.0f;
@@ -173,19 +170,25 @@ Add-Type -TypeDefinition $code -Language CSharp -ReferencedAssemblies "System.Dr
 
 $srcDir = 'c:\Users\Administrator\Downloads\ezgif-72b991f2a17cce42-jpg'
 $destDir = 'C:\Users\Administrator\Desktop\portfolio\3d Portfolio Website\assets\images\portrait-360'
+$origCutout = 'C:\Users\Administrator\Desktop\portfolio\3d Portfolio Website\assets\images\saurav-cutout.png'
 
 if (-not (Test-Path $destDir)) { New-Item -ItemType Directory -Path $destDir -Force | Out-Null }
 
 $files = Get-ChildItem -Path $srcDir | Sort-Object Name
 
-Write-Host "Starting batch generation of 36 frames..."
+Write-Host "Batch generating 36 frames aligned with original saurav-cutout.png..."
 $sw = [System.Diagnostics.Stopwatch]::StartNew()
 
-for ($i = 0; $i -lt $files.Count; $i++) {
+# Frame 00 is EXACT original saurav-cutout.png!
+Copy-Item -Path $origCutout -Destination (Join-Path $destDir "frame-00.png") -Force
+Write-Host "Frame 00 set directly to original saurav-cutout.png!"
+
+# Frames 01 to 35 generated at matching 657x1008 aspect ratio
+for ($i = 1; $i -lt $files.Count; $i++) {
     $pad = $i.ToString("D2")
     $outFile = Join-Path $destDir "frame-$pad.png"
-    [TurntableProcessor]::ProcessSingle($files[$i].FullName, $outFile, 60, 300, 960, 1350, 540, 760, [float]1.14, [float]0.07, [float]1.42)
+    [TurntableProcessor]::ProcessSingle($files[$i].FullName, $outFile, 70, 310, 940, 1442, 657, 1008, [float]1.14, [float]0.07, [float]1.42)
 }
 
 $sw.Stop()
-Write-Host "Processed all $($files.Count) frames into assets/images/portrait-360/ in $($sw.ElapsedMilliseconds)ms!"
+Write-Host "Processed all frames in $($sw.ElapsedMilliseconds)ms!"

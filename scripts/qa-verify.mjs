@@ -258,7 +258,7 @@ const hireTestRes = await send('Runtime.evaluate', {
 });
 console.log('[Functional Test: Hire Form] ->', JSON.stringify(hireTestRes.result?.value));
 
-// Functional Test 4: Interactive 360 Turntable on index.html
+// Functional Test 4: Interactive 3D Model Portrait on index.html
 await send('Page.navigate', { url: `http://127.0.0.1:${PORT}/index.html` });
 await sleep(2500);
 const turntableTestRes = await send('Runtime.evaluate', {
@@ -266,38 +266,41 @@ const turntableTestRes = await send('Runtime.evaluate', {
   returnByValue: true,
   expression: `(async () => {
     const canvas = document.getElementById('portrait-360-canvas');
+    const staticImg = document.getElementById('portrait-static-img');
     const angleBadge = document.getElementById('portrait-360-angle');
     const btnNext = document.getElementById('portrait-btn-next');
-    const btnAuto = document.getElementById('portrait-btn-auto');
+    const btnReset = document.getElementById('portrait-btn-reset');
 
+    const thumbnailSrc = staticImg ? staticImg.getAttribute('src') : null;
+    const thumbnailLoaded = staticImg ? (staticImg.complete && staticImg.naturalWidth > 0) : false;
     const initialAngle = angleBadge ? angleBadge.textContent : null;
     const canvasExists = !!canvas;
     const canvasW = canvas ? canvas.width : 0;
     const canvasH = canvas ? canvas.height : 0;
 
-    // Simulate clicking next button
+    // Simulate clicking next button (smooth 3D step)
     if (btnNext) btnNext.click();
     await new Promise(r => setTimeout(r, 200));
     const angleAfterNext = angleBadge ? angleBadge.textContent : null;
 
-    // Toggle auto-spin
-    if (btnAuto) btnAuto.click();
+    // Click reset to return to front view
+    if (btnReset) btnReset.click();
     await new Promise(r => setTimeout(r, 400));
-    const isAutoActive = btnAuto ? btnAuto.classList.contains('active') : false;
-    const angleAfterAuto = angleBadge ? angleBadge.textContent : null;
+    const angleAfterReset = angleBadge ? angleBadge.textContent : null;
 
     return {
+      thumbnailSrc,
+      thumbnailLoaded,
       canvasExists,
       canvasW,
       canvasH,
       initialAngle,
       angleAfterNext,
-      isAutoActive,
-      angleAfterAuto
+      angleAfterReset
     };
   })()`
 });
-console.log('[Functional Test: 360 Turntable] ->', JSON.stringify(turntableTestRes.result?.value));
+console.log('[Functional Test: 3D Portrait] ->', JSON.stringify(turntableTestRes.result?.value));
 
 console.log('Console Errors Count:', consoleErrors.length);
 if (consoleErrors.length > 0) {

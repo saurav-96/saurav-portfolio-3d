@@ -1,43 +1,38 @@
 /* ==========================================================================
    SAURAV BHUSAL — PREMIUM 3D INTERACTIVE PORTFOLIO
-   js/portrait-360.js — Interactive 360° Turntable Portrait Controller
+   js/portrait-360.js — Interactive 3D Model Portrait Controller
    Features:
-   - High-DPI Retina HTML5 Canvas Rendering
-   - Smooth 360° Circular Frame Turntable (36 frames, 10° per step)
-   - Inertia Momentum with Physics Damping & Friction Deceleration
-   - Non-Blocking Multi-Phase Preloader (Frame 00 instant, remainder cached in background)
-   - Dynamic 3D Perspective Tilt Tracking
-   - Coordinated Studio Rim Lighting & Orbit Ring Glow
-   - Mobile Touch-Optimized with touch-action: pan-y (no vertical scroll trapping)
-   - Ambient Cinematic Idle Turntable Drift with Instant-Resume on Inactivity
-   - Real-time Angle & Direction Readout Badge
+   - Uses authentic original portrait (saurav-cutout.png) as initial thumbnail
+   - Continuous sub-frame cross-fading (alpha blending) between adjacent frames
+     for buttery smooth 3D model rotation (eliminates photo-slideshow popping)
+   - Auto-spin removed per user request for authentic 3D model feel
+   - Inertia momentum with physics damping
+   - Coordinated 3D perspective tilt (rotateX, rotateY) & studio rim lighting
+   - One-click animated reset back to front view (0°)
+   - Mobile touch safe (touch-action: pan-y preserves natural vertical scrolling)
    ========================================================================== */
 
 (function () {
   'use strict';
 
   const TOTAL_FRAMES = 36;
-  const DEGREES_PER_FRAME = 360 / TOTAL_FRAMES; // 10 deg
+  const DEGREES_PER_FRAME = 360 / TOTAL_FRAMES; // 10 deg per frame
   const FRAME_PATH = 'assets/images/portrait-360/frame-';
   const FRAME_EXT = '.png';
 
-  // Physics constants
-  const DRAG_SENSITIVITY = 0.38;
-  const INERTIA_FRICTION = 0.925;
+  // Physics & Interaction constants
+  const DRAG_SENSITIVITY = 0.36;
+  const INERTIA_FRICTION = 0.91;
   const MIN_VELOCITY = 0.015;
-  const AUTO_SPIN_VELOCITY = 0.16;
-  const IDLE_DELAY_MS = 2800;
 
   function initPortrait360() {
     const container = document.getElementById('hero-portrait-360');
     const canvas = document.getElementById('portrait-360-canvas');
     const fallbackImg = document.getElementById('portrait-static-img');
     const angleBadge = document.getElementById('portrait-360-angle');
-    const badgeContainer = document.getElementById('portrait-360-badge');
     const btnPrev = document.getElementById('portrait-btn-prev');
     const btnNext = document.getElementById('portrait-btn-next');
-    const btnAuto = document.getElementById('portrait-btn-auto');
-    const autoIcon = document.getElementById('portrait-auto-icon');
+    const btnReset = document.getElementById('portrait-btn-reset');
     const orbitRing = document.querySelector('.neon-orbit-ring');
 
     if (!container || !canvas) return;
@@ -45,10 +40,10 @@
     const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    // High-DPI Canvas Setup
+    // High-DPI Canvas Setup matching saurav-cutout.png (657x1008)
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const logicalW = 540;
-    const logicalH = 760;
+    const logicalW = 657;
+    const logicalH = 1008;
 
     canvas.width = logicalW * dpr;
     canvas.height = logicalH * dpr;
@@ -60,105 +55,106 @@
     let loadedCount = 0;
 
     let currentAngle = 0; // 0 to 360
-    let currentFrameIndex = 0;
+    let targetAngle = 0;
+    let isResetting = false;
     let isDragging = false;
-    let pointerStartX = 0;
-    let pointerStartY = 0;
+    let hasActivated = false;
+
     let lastPointerX = 0;
     let lastPointerTime = 0;
     let velocity = 0;
     let rafId = null;
-    let isAutoSpinning = false;
-    let idleTimer = null;
-    let hasUserInteracted = false;
 
-    // 3D Tilt perspective state
+    // 3D Perspective Tilt state
     let targetTiltX = 0;
     let targetTiltY = 0;
     let currentTiltX = 0;
     let currentTiltY = 0;
 
-    // 1. Draw frame to canvas
-    function drawFrame(index) {
-      const img = images[index];
-      if (!img || !loaded[index]) {
-        // Fallback to nearest loaded frame if current isn't ready
-        let fallbackIndex = -1;
-        for (let dist = 1; dist < TOTAL_FRAMES; dist++) {
-          const prev = (index - dist + TOTAL_FRAMES) % TOTAL_FRAMES;
-          const next = (index + dist) % TOTAL_FRAMES;
-          if (loaded[prev]) { fallbackIndex = prev; break; }
-          if (loaded[next]) { fallbackIndex = next; break; }
-        }
-        if (fallbackIndex === -1 && loaded[0]) fallbackIndex = 0;
-        if (fallbackIndex !== -1 && images[fallbackIndex]) {
-          renderImage(images[fallbackIndex]);
-        }
-        return;
-      }
-      renderImage(img);
-    }
+    // Sub-frame crossfade rendering: blends frameA and frameB for continuous 3D model fluidity
+    function renderCrossfadedAngle(angle) {
+      const normAngle = ((angle % 360) + 360) % 360;
+      const fracIndex = normAngle / DEGREES_PER_FRAME;
+      const frameA = Math.floor(fracIndex) % TOTAL_FRAMES;
+      const frameB = (frameA + 1) % TOTAL_FRAMES;
+      const blend = fracIndex - Math.floor(fracIndex); // 0.0 to 1.0
 
-    function renderImage(img) {
       ctx.clearRect(0, 0, logicalW, logicalH);
-      ctx.drawImage(img, 0, 0, logicalW, logicalH);
 
-      // Hide fallback image once canvas has rendered successfully
-      if (fallbackImg && fallbackImg.style.display !== 'none') {
-        fallbackImg.style.display = 'none';
-      }
-    }
+      const imgA = images[frameA];
+      const imgB = images[frameB];
 
-    // 2. Update angle and frame index
-    function setAngle(angle, updateUI = true) {
-      // Normalize angle to [0, 360)
-      currentAngle = ((angle % 360) + 360) % 360;
-      const newFrame = Math.floor(currentAngle / DEGREES_PER_FRAME) % TOTAL_FRAMES;
-
-      if (newFrame !== currentFrameIndex || !loadedCount) {
-        currentFrameIndex = newFrame;
-        drawFrame(currentFrameIndex);
+      if (imgA && loaded[frameA]) {
+        ctx.globalAlpha = 1.0;
+        ctx.drawImage(imgA, 0, 0, logicalW, logicalH);
       }
 
-      if (updateUI && angleBadge) {
-        angleBadge.textContent = `${Math.round(currentAngle)}°`;
+      // Smoothly blend in adjacent frame to eliminate any sudden jumping
+      if (imgB && loaded[frameB] && blend > 0.02) {
+        ctx.globalAlpha = blend;
+        ctx.drawImage(imgB, 0, 0, logicalW, logicalH);
+      }
+
+      ctx.globalAlpha = 1.0;
+
+      // Update UI angle badge
+      if (angleBadge) {
+        angleBadge.textContent = `${Math.round(normAngle)}°`;
       }
 
       // Synchronize orbit ring tilt and rotation
       if (orbitRing) {
-        const ringRot = (currentAngle * 0.4).toFixed(1);
+        const ringRot = (normAngle * 0.4).toFixed(1);
         orbitRing.style.transform = `translateX(-50%) rotateX(72deg) rotateZ(${ringRot}deg)`;
       }
     }
 
-    // 3. Animation loop (handles physics deceleration, auto-spin & 3D tilt lerp)
+    function activate3D() {
+      if (!hasActivated) {
+        hasActivated = true;
+        if (fallbackImg) {
+          fallbackImg.style.transition = 'opacity 0.25s ease';
+          fallbackImg.style.opacity = '0';
+          setTimeout(() => {
+            fallbackImg.style.display = 'none';
+          }, 260);
+        }
+      }
+    }
+
+    // Animation Loop (handles inertia, reset lerp & 3D tilt lerp)
     function tick() {
       // 3D Perspective Tilt Lerp
       currentTiltX += (targetTiltX - currentTiltX) * 0.12;
       currentTiltY += (targetTiltY - currentTiltY) * 0.12;
-      canvas.style.transform = `perspective(1000px) rotateX(${currentTiltX.toFixed(2)}deg) rotateY(${currentTiltY.toFixed(2)}deg)`;
-
-      if (isDragging) {
-        // Active pointer drag is handled in pointermove
-        rafId = requestAnimationFrame(tick);
-        return;
-      }
+      canvas.style.transform = `perspective(1200px) rotateX(${currentTiltX.toFixed(2)}deg) rotateY(${currentTiltY.toFixed(2)}deg)`;
 
       let keepLooping = false;
 
-      // Handle Inertia Deceleration
-      if (Math.abs(velocity) > MIN_VELOCITY) {
-        setAngle(currentAngle + velocity);
-        velocity *= INERTIA_FRICTION;
-        keepLooping = true;
-      } else {
-        velocity = 0;
-      }
+      // Handle animated reset back to 0°
+      if (isResetting) {
+        let diff = targetAngle - currentAngle;
+        // Shortest circular path
+        while (diff < -180) diff += 360;
+        while (diff > 180) diff -= 360;
 
-      // Handle Auto-Spin
-      if (isAutoSpinning) {
-        setAngle(currentAngle + AUTO_SPIN_VELOCITY);
+        if (Math.abs(diff) > 0.3) {
+          currentAngle += diff * 0.15;
+          renderCrossfadedAngle(currentAngle);
+          keepLooping = true;
+        } else {
+          currentAngle = 0;
+          renderCrossfadedAngle(0);
+          isResetting = false;
+        }
+      } else if (!isDragging && Math.abs(velocity) > MIN_VELOCITY) {
+        // Inertia deceleration
+        currentAngle = ((currentAngle + velocity) % 360 + 360) % 360;
+        velocity *= INERTIA_FRICTION;
+        renderCrossfadedAngle(currentAngle);
         keepLooping = true;
+      } else if (!isDragging) {
+        velocity = 0;
       }
 
       // Keep loop running if tilt hasn't settled
@@ -166,7 +162,7 @@
         keepLooping = true;
       }
 
-      if (keepLooping) {
+      if (keepLooping || isDragging) {
         rafId = requestAnimationFrame(tick);
       } else {
         rafId = null;
@@ -179,63 +175,36 @@
       }
     }
 
-    function resetIdleTimer() {
-      if (idleTimer) clearTimeout(idleTimer);
-      idleTimer = setTimeout(() => {
-        if (!isDragging && !isAutoSpinning) {
-          isAutoSpinning = true;
-          if (btnAuto) btnAuto.classList.add('active');
-          wakeLoop();
-        }
-      }, IDLE_DELAY_MS);
-    }
-
-    function stopAutoSpin(userAction = true) {
-      if (isAutoSpinning) {
-        isAutoSpinning = false;
-        if (btnAuto) btnAuto.classList.remove('active');
-      }
-      if (userAction) {
-        hasUserInteracted = true;
-        if (badgeContainer) badgeContainer.classList.add('has-interacted');
-        resetIdleTimer();
-      }
-    }
-
-    // 4. Pointer Events (Desktop Drag + Mobile Touch)
+    // Pointer Events (Mouse Drag & Touch Swipe)
     function onPointerDown(e) {
-      // Don't drag if clicking buttons
       if (e.target.closest('button')) return;
 
+      activate3D();
       isDragging = true;
-      stopAutoSpin(true);
+      isResetting = false;
 
-      pointerStartX = e.clientX;
-      pointerStartY = e.clientY;
       lastPointerX = e.clientX;
       lastPointerTime = performance.now();
       velocity = 0;
 
       container.classList.add('is-dragging');
       if (canvas.setPointerCapture) {
-        try {
-          canvas.setPointerCapture(e.pointerId);
-        } catch (_) {}
+        try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
       }
 
       wakeLoop();
     }
 
     function onPointerMove(e) {
-      // Calculate 3D perspective tilt from container center
+      // 3D Perspective Tilt from container center
       const rect = container.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       const normX = Math.max(-1, Math.min(1, (e.clientX - centerX) / (rect.width / 2)));
       const normY = Math.max(-1, Math.min(1, (e.clientY - centerY) / (rect.height / 2)));
 
-      targetTiltY = normX * 8.0;
-      targetTiltX = -normY * 6.0;
+      targetTiltY = normX * 7.0;
+      targetTiltX = -normY * 5.0;
 
       wakeLoop();
 
@@ -247,11 +216,10 @@
 
       // Invert delta so dragging left rotates right (natural turntable behavior)
       const angleDelta = -deltaX * DRAG_SENSITIVITY;
-      setAngle(currentAngle + angleDelta);
+      currentAngle = ((currentAngle + angleDelta) % 360 + 360) % 360;
+      renderCrossfadedAngle(currentAngle);
 
-      // Instantaneous angular velocity for inertia release
       velocity = (angleDelta / dt) * 16.6;
-
       lastPointerX = e.clientX;
       lastPointerTime = now;
     }
@@ -262,16 +230,13 @@
       container.classList.remove('is-dragging');
 
       if (canvas.releasePointerCapture) {
-        try {
-          canvas.releasePointerCapture(e.pointerId);
-        } catch (_) {}
+        try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
       }
 
-      // Cap maximum fling velocity for smooth physics
-      const MAX_FLING = 4.5;
+      // Smooth inertia fling cap
+      const MAX_FLING = 3.2;
       velocity = Math.max(-MAX_FLING, Math.min(MAX_FLING, velocity));
 
-      resetIdleTimer();
       wakeLoop();
     }
 
@@ -283,19 +248,19 @@
       }
     }
 
-    // Attach pointer listeners to container
     container.addEventListener('pointerdown', onPointerDown, { passive: true });
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     window.addEventListener('pointerup', onPointerUp, { passive: true });
     window.addEventListener('pointercancel', onPointerUp, { passive: true });
     container.addEventListener('pointerleave', onPointerLeave, { passive: true });
 
-    // 5. Button Navigation Controls
+    // Step Buttons: Left & Right rotate by 15° with smooth inertia
     if (btnPrev) {
       btnPrev.addEventListener('click', (e) => {
         e.preventDefault();
-        stopAutoSpin(true);
-        velocity = -1.8;
+        activate3D();
+        isResetting = false;
+        velocity = -1.6;
         wakeLoop();
       });
     }
@@ -303,47 +268,41 @@
     if (btnNext) {
       btnNext.addEventListener('click', (e) => {
         e.preventDefault();
-        stopAutoSpin(true);
-        velocity = 1.8;
+        activate3D();
+        isResetting = false;
+        velocity = 1.6;
         wakeLoop();
       });
     }
 
-    if (btnAuto) {
-      btnAuto.addEventListener('click', (e) => {
+    // Reset Button: Smoothly lerps view back to front 0° thumbnail
+    if (btnReset) {
+      btnReset.addEventListener('click', (e) => {
         e.preventDefault();
-        if (isAutoSpinning) {
-          isAutoSpinning = false;
-          btnAuto.classList.remove('active');
-          velocity = 0;
-        } else {
-          isAutoSpinning = true;
-          btnAuto.classList.add('active');
-          wakeLoop();
-        }
+        activate3D();
+        targetAngle = 0;
+        velocity = 0;
+        isResetting = true;
+        wakeLoop();
       });
     }
 
-    // 6. Non-Blocking Two-Phase Preloader
-    // Phase 1: Frame 00 loads immediately and paints on canvas
+    // Preload image sequence (Frame 00 is original saurav-cutout.png)
+    // Frame 00 loads first, remainder load in background without blocking
     const img0 = new Image();
     img0.onload = () => {
       images[0] = img0;
       loaded[0] = true;
       loadedCount++;
-      drawFrame(0);
       loadRemainingFrames();
     };
     img0.src = `${FRAME_PATH}00${FRAME_EXT}`;
 
-    // Phase 2: Remainder (01-35) loads in background without blocking main thread
     function loadRemainingFrames() {
       let nextIndex = 1;
 
       function loadNextBatch() {
         const batchSize = 4;
-        let batchLoaded = 0;
-
         for (let b = 0; b < batchSize && nextIndex < TOTAL_FRAMES; b++) {
           const idx = nextIndex++;
           const img = new Image();
@@ -353,16 +312,9 @@
             images[idx] = img;
             loaded[idx] = true;
             loadedCount++;
-            batchLoaded++;
-
-            // If user is currently looking at this frame, redraw
-            if (currentFrameIndex === idx) {
-              drawFrame(idx);
+            if (hasActivated) {
+              renderCrossfadedAngle(currentAngle);
             }
-          };
-
-          img.onerror = () => {
-            console.warn(`[Portrait-360] Frame ${pad} failed to load.`);
           };
 
           img.src = `${FRAME_PATH}${pad}${FRAME_EXT}`;
@@ -384,16 +336,12 @@
       }
     }
 
-    // Re-trigger Lucide icons for quick-action buttons
+    // Initialize Lucide icons
     if (typeof window.lucide !== 'undefined' && typeof window.lucide.createIcons === 'function') {
       try { window.lucide.createIcons(); } catch (_) {}
     }
-
-    // Start idle drift timer
-    resetIdleTimer();
   }
 
-  // Auto-initialize when DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initPortrait360);
   } else {
