@@ -58,8 +58,10 @@
     let loadedCount = 0;
 
     let currentAngle = 0; // 0 to 360
+    let targetAngle = 0;
     let isDragging = false;
     let hasActivated = false;
+    let lastRoundedAngle = -1;
 
     let lastPointerX = 0;
     let lastPointerTime = 0;
@@ -80,7 +82,8 @@
     let currentTiltX = 0;
     let currentTiltY = 0;
 
-    // Sub-frame crossfade rendering: blends frameA and frameB for continuous 3D model fluidity
+    // Sub-frame crossfade rendering: True two-pass alpha blending (alphaA = 1 - blend, alphaB = blend)
+    // Ensures sum of opacities is always strictly 1.0 (zero ghosting / zero double-vision)
     function renderCrossfadedAngle(angle) {
       const normAngle = ((angle % 360) + 360) % 360;
       const fracIndex = normAngle / DEGREES_PER_FRAME;
@@ -93,28 +96,41 @@
       const imgA = images[frameA];
       const imgB = images[frameB];
 
-      if (imgA && loaded[frameA]) {
+      if (blend <= 0.04) {
+        // Crisp single frame at key angle
+        if (imgA && loaded[frameA]) {
+          ctx.globalAlpha = 1.0;
+          ctx.drawImage(imgA, 0, 0, logicalW, logicalH);
+        }
+      } else if (blend >= 0.96) {
+        if (imgB && loaded[frameB]) {
+          ctx.globalAlpha = 1.0;
+          ctx.drawImage(imgB, 0, 0, logicalW, logicalH);
+        }
+      } else {
+        // True two-pass linear crossfade
+        if (imgA && loaded[frameA]) {
+          ctx.globalAlpha = 1.0 - blend;
+          ctx.drawImage(imgA, 0, 0, logicalW, logicalH);
+        }
+        if (imgB && loaded[frameB]) {
+          ctx.globalAlpha = blend;
+          ctx.drawImage(imgB, 0, 0, logicalW, logicalH);
+        }
         ctx.globalAlpha = 1.0;
-        ctx.drawImage(imgA, 0, 0, logicalW, logicalH);
       }
 
-      // Smoothly blend in adjacent frame to eliminate any sudden jumping
-      if (imgB && loaded[frameB] && blend > 0.02) {
-        ctx.globalAlpha = blend;
-        ctx.drawImage(imgB, 0, 0, logicalW, logicalH);
-      }
-
-      ctx.globalAlpha = 1.0;
-
-      // Update UI angle badge
-      if (angleBadge) {
-        angleBadge.textContent = `${Math.round(normAngle)}°`;
-      }
-
-      // Synchronize orbit ring tilt and rotation
-      if (orbitRing) {
-        const ringRot = (normAngle * 0.4).toFixed(1);
-        orbitRing.style.transform = `translateX(-50%) rotateX(72deg) rotateZ(${ringRot}deg)`;
+      // Cached DOM updates to prevent style recalculation storms during drag
+      const roundedAngle = Math.round(normAngle);
+      if (lastRoundedAngle !== roundedAngle) {
+        lastRoundedAngle = roundedAngle;
+        if (angleBadge) {
+          angleBadge.textContent = `${roundedAngle}°`;
+        }
+        if (orbitRing) {
+          const ringRot = (normAngle * 0.4).toFixed(1);
+          orbitRing.style.transform = `translateX(-50%) rotateX(72deg) rotateZ(${ringRot}deg)`;
+        }
       }
     }
 
@@ -170,6 +186,7 @@
       const norm = ((currentAngle % 360) + 360) % 360;
       if (norm < 1.0 || norm > 359.0) {
         currentAngle = 0;
+        targetAngle = 0;
         renderCrossfadedAngle(0);
         restoreOriginalPicture();
         return;
@@ -199,8 +216,18 @@
 
       let keepLooping = false;
 
-      // Handle Smooth Return Animation to 0°
-      if (isAutoReturning) {
+      // Handle active user dragging via smooth RAF lerp
+      if (isDragging) {
+        let diff = targetAngle - currentAngle;
+        if (diff < -180) diff += 360;
+        if (diff > 180) diff -= 360;
+
+        // Smooth responsive interpolation: eliminates mouse polling jitter & renders at native 60/120Hz
+        currentAngle = ((currentAngle + diff * 0.45) % 360 + 360) % 360;
+        renderCrossfadedAngle(currentAngle);
+        keepLooping = true;
+      } else if (isAutoReturning) {
+        // Handle Smooth Return Animation to 0°
         const now = performance.now();
         const elapsed = now - returnStartTime;
         const progress = Math.min(1, elapsed / returnDuration);
@@ -208,23 +235,27 @@
         // Cubic ease-out curve for natural deceleration
         const ease = 1 - Math.pow(1 - progress, 3);
         currentAngle = ((returnStartAngle + returnDeltaAngle * ease) % 360 + 360) % 360;
+        targetAngle = currentAngle;
         renderCrossfadedAngle(currentAngle);
 
         if (progress >= 1) {
           currentAngle = 0;
+          targetAngle = 0;
           renderCrossfadedAngle(0);
           restoreOriginalPicture();
         } else {
           keepLooping = true;
         }
-      } else if (!isDragging && Math.abs(velocity) > MIN_VELOCITY) {
+      } else if (Math.abs(velocity) > MIN_VELOCITY) {
         // Inertia deceleration
         currentAngle = ((currentAngle + velocity) % 360 + 360) % 360;
+        targetAngle = currentAngle;
         velocity *= INERTIA_FRICTION;
         renderCrossfadedAngle(currentAngle);
         keepLooping = true;
-      } else if (!isDragging && velocity !== 0) {
+      } else if (velocity !== 0) {
         velocity = 0;
+        targetAngle = currentAngle;
         // Schedule idle return once inertia has fully settled
         scheduleIdleReturn();
       }
@@ -254,6 +285,7 @@
       cancelIdleReturn();
       activate3D();
       isDragging = true;
+      targetAngle = currentAngle;
 
       lastPointerX = e.clientX;
       lastPointerTime = performance.now();
@@ -290,17 +322,21 @@
 
       // Invert delta so dragging left rotates right (natural turntable behavior)
       const angleDelta = -deltaX * DRAG_SENSITIVITY;
-      currentAngle = ((currentAngle + angleDelta) % 360 + 360) % 360;
-      renderCrossfadedAngle(currentAngle);
+      targetAngle = ((targetAngle + angleDelta) % 360 + 360) % 360;
 
-      velocity = (angleDelta / dt) * 16.6;
+      // Filter velocity with moving average for smooth release fling
+      const rawVel = (angleDelta / dt) * 16.6;
+      velocity = velocity * 0.3 + rawVel * 0.7;
+
       lastPointerX = e.clientX;
       lastPointerTime = now;
+      // Note: Rendering is cleanly handled by requestAnimationFrame (tick) to avoid jank
     }
 
     function onPointerUp(e) {
       if (!isDragging) return;
       isDragging = false;
+      targetAngle = currentAngle;
       container.classList.remove('is-dragging');
 
       if (canvas.releasePointerCapture) {
@@ -336,6 +372,7 @@
         e.preventDefault();
         cancelIdleReturn();
         activate3D();
+        targetAngle = currentAngle;
         velocity = -1.6;
         scheduleIdleReturn();
         wakeLoop();
@@ -347,6 +384,7 @@
         e.preventDefault();
         cancelIdleReturn();
         activate3D();
+        targetAngle = currentAngle;
         velocity = 1.6;
         scheduleIdleReturn();
         wakeLoop();
@@ -359,6 +397,7 @@
         e.preventDefault();
         cancelIdleReturn();
         activate3D();
+        targetAngle = currentAngle;
         triggerSmoothReturn(550);
       });
     }
